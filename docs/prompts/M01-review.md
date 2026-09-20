@@ -1,0 +1,5 @@
+Review the current uncommitted Museum of Unfinished Futures vertical slice. Do not edit files, commit, install packages, deploy, or use credentials.
+
+Inspect the actual diff and relevant files. Re-run `npm run test:unit`, `npm run typecheck`, `npm run lint`, `npm run build`, and `npm audit --audit-level=moderate` if the read-only sandbox permits. Review for correctness, Next.js 16 compatibility, accessibility, security/secret exposure, content-driven architecture, missing/error handling, and whether claims match evidence. Confirm the app clearly labels local fixture data and does not imply live Sanity integration.
+
+Return severity-ranked findings with exact file:line references. If there are no critical/high/medium issues, say so and list any low-risk limitations. Do not approve deployment; this is review only.

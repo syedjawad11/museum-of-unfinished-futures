@@ -1,0 +1,54 @@
+## Findings
+
+No critical or high-severity issues found. One medium issue remains.
+
+### Medium
+
+1. The empty state can make a false content-status claim. `transformSanityArtifacts()` silently converts a non-array response to an empty list and drops every malformed published artifact. The home page then renders “no published artifacts” and says the dataset is connected. Thus a dataset containing only malformed artifacts—or an unexpected response shape—would be reported as genuinely empty rather than invalid.
+
+   [sanity-transform.ts:66](/home/shah20/Desktop/Hermes/projects/museum-of-unfinished-futures/src/content/sanity-transform.ts:66)
+   [page.tsx:26](/home/shah20/Desktop/Hermes/projects/museum-of-unfinished-futures/src/app/page.tsx:26)
+   [gallery-empty-state.tsx:7](/home/shah20/Desktop/Hermes/projects/museum-of-unfinished-futures/src/app/gallery-empty-state.tsx:7)
+
+### Low
+
+2. `.env.example` will not be included in the eventual change because `.gitignore` ignores every `.env*` file. This leaves README’s copy instruction referring to a local-only file. Runtime still works through the checked-in defaults.
+
+   [.gitignore:33](/home/shah20/Desktop/Hermes/projects/museum-of-unfinished-futures/.gitignore:33)
+   [.env.example:1](/home/shah20/Desktop/Hermes/projects/museum-of-unfinished-futures/.env.example:1)
+   [README.md:45](/home/shah20/Desktop/Hermes/projects/museum-of-unfinished-futures/README.md:45)
+
+3. `sanity:check` validates only that `result` is an object. Missing, non-numeric, or malformed count fields are printed as `undefined` or arbitrary values while the command still exits successfully, weakening its claim to be a deterministic connectivity/content check.
+
+   [sanity-check.mjs:32](/home/shah20/Desktop/Hermes/projects/museum-of-unfinished-futures/scripts/sanity-check.mjs:32)
+   [sanity-check.mjs:41](/home/shah20/Desktop/Hermes/projects/museum-of-unfinished-futures/scripts/sanity-check.mjs:41)
+
+4. The public metadata still describes the application as a “local demo visitor tracer,” although visitor routes now exclusively use live Sanity data.
+
+   [layout.tsx:4](/home/shah20/Desktop/Hermes/projects/museum-of-unfinished-futures/src/app/layout.tsx:4)
+
+## Confirmed
+
+- Project `wa27n68e`, dataset `production_1`, and API version `2026-09-20` are consistently configured in the application, Studio, check script, and documentation.
+- The public client has no token and uses the published perspective implied by the pinned post-2025 API version.
+- No token, password, private key, API credential, or authorization header was found in the reviewed working tree.
+- Required Sanity references are strong references. GROQ dereferencing and Zod validation correctly reject missing outcomes.
+- Next.js 16 async route props, `notFound()`, configuration flags, and embedded Studio routing match the installed framework/package interfaces.
+- The earlier real-404 and high-contrast keyboard-focus fixes remain intact.
+- No fixture fallback has leaked back into public routes.
+
+The exact audit counts in README, HANDOFF, and the build log agree with each other. The installed `next-sanity` peer range also confirms that Sanity `5.14.1` would be incompatible. A fresh audit could not independently reconfirm the 15-vulnerability count.
+
+## Check results
+
+- `npm run test:unit`: unavailable — Vitest attempted to write `node_modules/.vite-temp`; an alternate loader was also blocked by the read-only scratch cache.
+- `npm run sanity:check`: unavailable — network fetch failed.
+- `npx sanity schemas validate`: passed, 0 errors and 0 warnings.
+- `npm run typecheck`: unavailable as written — TypeScript attempted to write `tsconfig.typecheck.tsbuildinfo`. An equivalent run with `--incremental false` passed.
+- `npm run lint`: passed.
+- `npm run build`: unavailable — Next.js attempted to write `.next/trace`.
+- `git diff --check`: passed.
+- `npm audit --audit-level=moderate`: unavailable — registry lookup failed with `ENOTFOUND`.
+- `npm ls --depth=0`: passed; installed top-level versions are internally resolved.
+
+Therefore: **no critical or high issues remain; one medium issue remains.** This review does not approve deployment or Sanity content publication.

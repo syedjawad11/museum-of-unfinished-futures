@@ -1,0 +1,41 @@
+## Findings
+
+No critical or high-severity issues found.
+
+### Medium
+
+1. Unknown exhibit URLs return a normal `200` response rather than an HTTP 404. The missing-resource branch renders friendly UI directly instead of calling Next.js `notFound()`. This can make invalid URLs appear valid to crawlers, caches, and monitoring. Next.js 16’s documented `notFound()` path also adds `noindex`.
+   [src/app/exhibits/[slug]/page.tsx:27](/home/shah20/Desktop/Hermes/projects/museum-of-unfinished-futures/src/app/exhibits/[slug]/page.tsx:27)
+
+2. The custom keyboard-focus indicator has insufficient contrast. The default outline is removed and replaced with `#d9b96f`, whose contrast is only approximately 1.7–1.9:1 against the surrounding white/cream backgrounds. This affects the gallery cards, return link, and primary choice controls.
+   [src/app/page.tsx:26](/home/shah20/Desktop/Hermes/projects/museum-of-unfinished-futures/src/app/page.tsx:26)
+   [src/app/exhibits/[slug]/page.tsx:41](/home/shah20/Desktop/Hermes/projects/museum-of-unfinished-futures/src/app/exhibits/[slug]/page.tsx:41)
+   [src/app/exhibits/[slug]/page.tsx:89](/home/shah20/Desktop/Hermes/projects/museum-of-unfinished-futures/src/app/exhibits/[slug]/page.tsx:89)
+
+### Low-risk limitations
+
+- The saved builder summary is stale: it references the removed `vitest.config.ts` and says unit tests remained blocked and the lockfile could not be updated. The current repository instead contains `vitest.config.mts`, an updated lockfile, and later verification claims in the build log.
+  [evidence/M01-builder-summary.txt:7](/home/shah20/Desktop/Hermes/projects/museum-of-unfinished-futures/evidence/M01-builder-summary.txt:7)
+  [evidence/M01-builder-summary.txt:13](/home/shah20/Desktop/Hermes/projects/museum-of-unfinished-futures/evidence/M01-builder-summary.txt:13)
+  [docs/build-log.md:117](/home/shah20/Desktop/Hermes/projects/museum-of-unfinished-futures/docs/build-log.md:117)
+
+- The typecheck configuration excludes all unit tests, so `npm run typecheck` does not validate test source. Vitest transpilation alone is not a full static type check.
+  [tsconfig.typecheck.json:3](/home/shah20/Desktop/Hermes/projects/museum-of-unfinished-futures/tsconfig.typecheck.json:3)
+
+- Tests cover the domain resolver and missing repository result, but not the route behavior, HTTP status, rendered choice flow, or accessibility behavior.
+  [src/domain/visitor-trace.test.ts:5](/home/shah20/Desktop/Hermes/projects/museum-of-unfinished-futures/src/domain/visitor-trace.test.ts:5)
+
+- There is no route-level error boundary or empty-gallery state. That is low risk while the repository is an in-memory fixture, but becomes relevant when a remote content provider is introduced.
+
+## Verification
+
+- `npm run typecheck`: passed.
+- `npm run lint`: passed.
+- `npm run test:unit`: could not execute because Vitest attempted to write under `node_modules/.vite-temp` on the read-only filesystem. An alternate config-loader attempt was also blocked by a cache-directory write.
+- `npm run build`: could not rerun because Next attempted to open `.next/trace` for writing.
+- `npm audit --audit-level=moderate`: could not run because the registry audit endpoint was unreachable (`ENOTFOUND`).
+- `git diff --check`: passed.
+- Installed top-level dependency tree is internally resolved.
+- No credential, private-key, API-token, or Sanity configuration patterns were found in the reviewed source/diff. The current audit vulnerability claim therefore remains historical rather than independently reconfirmed.
+
+The content architecture is appropriately repository-driven for this slice, and the Next.js 16 async `params`/`searchParams` conventions are used correctly. The application visibly labels the fixture as “Local demo fixture, not live Sanity content,” while the README explicitly states that no live Sanity integration exists. No deployment approval is given.

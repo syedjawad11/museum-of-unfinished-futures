@@ -1,0 +1,17 @@
+Implemented the local visitor tracer slice, without committing or deploying.
+
+Changed:
+- Added typed content/domain layer: [types.ts](/home/shah20/Desktop/Hermes/projects/museum-of-unfinished-futures/src/content/types.ts), [local-fixtures.ts](/home/shah20/Desktop/Hermes/projects/museum-of-unfinished-futures/src/content/local-fixtures.ts), [local-repository.ts](/home/shah20/Desktop/Hermes/projects/museum-of-unfinished-futures/src/content/local-repository.ts), [visitor-trace.ts](/home/shah20/Desktop/Hermes/projects/museum-of-unfinished-futures/src/domain/visitor-trace.ts)
+- Added focused Vitest unit tests: [visitor-trace.test.ts](/home/shah20/Desktop/Hermes/projects/museum-of-unfinished-futures/src/domain/visitor-trace.test.ts)
+- Rebuilt the home gallery and added `/exhibits/[slug]`: [page.tsx](/home/shah20/Desktop/Hermes/projects/museum-of-unfinished-futures/src/app/page.tsx), [page.tsx](/home/shah20/Desktop/Hermes/projects/museum-of-unfinished-futures/src/app/exhibits/[slug]/page.tsx)
+- Added scripts/config/docs: [package.json](/home/shah20/Desktop/Hermes/projects/museum-of-unfinished-futures/package.json), [vitest.config.ts](/home/shah20/Desktop/Hermes/projects/museum-of-unfinished-futures/vitest.config.ts), [tsconfig.typecheck.json](/home/shah20/Desktop/Hermes/projects/museum-of-unfinished-futures/tsconfig.typecheck.json), [docs/build-log.md](/home/shah20/Desktop/Hermes/projects/museum-of-unfinished-futures/docs/build-log.md), [README.md](/home/shah20/Desktop/Hermes/projects/museum-of-unfinished-futures/README.md)
+
+Verification:
+- `npm run typecheck`: passed
+- `npm run lint`: passed
+- `npm run build`: passed
+- `npm run test:unit`: blocked, `vitest: not found`
+
+Blockers:
+- `npm install -D vitest` failed because the sandbox cannot resolve `registry.npmjs.org`, so `package-lock.json` could not be updated and unit tests could not actually run.
+- No Sanity integration was added; README and build log document that no Sanity account/project/credentials exist yet.

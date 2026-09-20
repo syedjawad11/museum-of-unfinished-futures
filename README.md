@@ -37,11 +37,11 @@ The application performs real unauthenticated published-content reads from:
 - Dataset: `production_1`
 - API version: `2026-09-20`
 
-The dataset was reachable on September 20, 2026 and contains four published documents: one era, two outcomes, and one artifact. No API token is required for the public read path, and no token belongs in `NEXT_PUBLIC_*` variables.
+The dataset was reachable on September 20, 2026 and contains twelve published museum content documents: three eras, six outcomes, and three artifacts. Sanity-managed system documents are not part of this content count. No API token is required for the public read path, and no token belongs in `NEXT_PUBLIC_*` variables.
 
 The Sanity CLI is authenticated through Google on this development machine. Local Studio CORS origins with credentials are configured for `http://localhost:3000` and `http://127.0.0.1:3000`. Start the app and open `/studio`; the browser may require its own Google sign-in.
 
-The founder approved and the project published the first fictional exhibit on September 20, 2026. The reproducible source records are stored at `docs/content/first-exhibit.json`.
+The founder approved and the project published all three fictional exhibits on September 20, 2026. The reproducible source records are stored at `docs/content/first-exhibit.json` and `docs/content/remaining-exhibits.json`.
 
 ## Configuration
 

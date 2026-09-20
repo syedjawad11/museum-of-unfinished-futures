@@ -1,0 +1,39 @@
+M03 content pack publication — September 20, 2026
+
+Authorization
+- Founder authorized creation and public publication of the remaining two fictional exhibits.
+- No deployment, contest submission, spending, or publication beyond these records was authorized.
+
+Published content
+- The Telephone for Calling Roads Not Taken
+  - Era: The Counterfactual Communications Boom
+  - Outcomes: A familiar stranger answers; A missed call arrives from you
+- The Umbrella That Remembers Every Storm
+  - Era: The Domestic Weather Memory Era
+  - Outcomes: The room rains back; The forecast forgets your name
+
+Reproducible source
+- docs/content/remaining-exhibits.json
+
+Publication and public-read verification
+- Published 8 records: 2 eras, 4 outcomes, and 2 artifacts.
+- Anonymous artifact query returned all 3 museum artifacts with the expected era and outcome references.
+- npm run sanity:check: documentCount 12; artifactCount 3.
+- Sanity document validation: 12 valid documents; 0 errors; 0 warnings; 0 info markers.
+- Sanity schema validation: 0 errors; 0 warnings.
+
+Automated visitor verification
+- Playwright now covers all three exhibit routes and all six linked outcomes.
+- It also retains invalid-choice, missing-exhibit 404/noindex, and mobile viewport coverage.
+- Focused Playwright result: 6 tests passed.
+- Production-gate Playwright result: 6 tests passed.
+
+Full gate
+- npm run test:unit: 4 files passed; 11 tests passed.
+- npm run typecheck: passed.
+- npm run lint: passed.
+- npm run sanity:check: passed with 12 documents and 3 artifacts.
+- npm run test:e2e: production build passed; 6 tests passed.
+- git diff --check: passed before documentation updates.
+
+No deployment or spending occurred.

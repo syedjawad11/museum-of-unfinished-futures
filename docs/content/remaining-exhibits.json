@@ -1,0 +1,136 @@
+[
+  {
+    "_id": "era-domestic-weather-memory",
+    "_type": "era",
+    "title": "The Domestic Weather Memory Era",
+    "slug": {
+      "_type": "slug",
+      "current": "domestic-weather-memory-era"
+    },
+    "summary": "A short-lived domestic design movement that taught everyday objects to store weather, mood, and the private history of sheltering together."
+  },
+  {
+    "_id": "outcome-room-rains-back",
+    "_type": "outcome",
+    "title": "The room rains back",
+    "body": "The canopy opens with a sigh. A gentle rain falls upward toward the ceiling, carrying the scent of a childhood hallway and a voice calling everyone inside before the thunder.",
+    "era": {
+      "_type": "reference",
+      "_ref": "era-domestic-weather-memory"
+    }
+  },
+  {
+    "_id": "outcome-forecast-forgets",
+    "_type": "outcome",
+    "title": "The forecast forgets your name",
+    "body": "You leave the clasp untouched. By morning, every forecast shows clear skies where you stand, as if the atmosphere has politely removed you from its memory.",
+    "era": {
+      "_type": "reference",
+      "_ref": "era-domestic-weather-memory"
+    }
+  },
+  {
+    "_id": "artifact-memory-umbrella",
+    "_type": "artifact",
+    "title": "The Umbrella That Remembers Every Storm",
+    "slug": {
+      "_type": "slug",
+      "current": "memory-umbrella"
+    },
+    "era": {
+      "_type": "reference",
+      "_ref": "era-domestic-weather-memory"
+    },
+    "accessionNote": "Donated by the last household insured against emotional weather.",
+    "summary": "A translucent umbrella stores traces of every storm beneath which it was opened, preserving rain, voices, and the feeling of having somewhere to return.",
+    "artifactLabel": "Silver droplets hang motionless beneath the canopy. Along the handle, tiny brass dates mark storms that official weather archives insist never occurred.",
+    "visualDescription": "A translucent umbrella is displayed open above a dark pedestal. Suspended silver droplets glow beneath its canopy, and rows of tiny dates are engraved into its brass handle.",
+    "choices": [
+      {
+        "_key": "open-it-indoors",
+        "_type": "object",
+        "label": "Open it indoors",
+        "outcome": {
+          "_type": "reference",
+          "_ref": "outcome-room-rains-back"
+        }
+      },
+      {
+        "_key": "leave-it-furled",
+        "_type": "object",
+        "label": "Leave it furled",
+        "outcome": {
+          "_type": "reference",
+          "_ref": "outcome-forecast-forgets"
+        }
+      }
+    ]
+  },
+  {
+    "_id": "era-counterfactual-communications",
+    "_type": "era",
+    "title": "The Counterfactual Communications Boom",
+    "slug": {
+      "_type": "slug",
+      "current": "counterfactual-communications-boom"
+    },
+    "summary": "An optimistic communications age when public telephone networks briefly connected callers to plausible lives they had chosen not to live."
+  },
+  {
+    "_id": "outcome-familiar-stranger",
+    "_type": "outcome",
+    "title": "A familiar stranger answers",
+    "body": "The voice knows your laugh but not your name. Behind it, dishes clatter in a kitchen you almost recognize, and someone asks whether the train was worth missing.",
+    "era": {
+      "_type": "reference",
+      "_ref": "era-counterfactual-communications"
+    }
+  },
+  {
+    "_id": "outcome-missed-call-self",
+    "_type": "outcome",
+    "title": "A missed call arrives from you",
+    "body": "The receiver stays quiet. Seconds later, the telephone records a missed call from your own number, dated eleven years from now and marked: Do not apologize.",
+    "era": {
+      "_type": "reference",
+      "_ref": "era-counterfactual-communications"
+    }
+  },
+  {
+    "_id": "artifact-roads-not-taken-telephone",
+    "_type": "artifact",
+    "title": "The Telephone for Calling Roads Not Taken",
+    "slug": {
+      "_type": "slug",
+      "current": "roads-not-taken-telephone"
+    },
+    "era": {
+      "_type": "reference",
+      "_ref": "era-counterfactual-communications"
+    },
+    "accessionNote": "Seized from Platform Zero after the counterfactual network shutdown.",
+    "summary": "A cream rotary telephone once connected callers to lives formed by decisions they nearly made, charging each conversation in certainty rather than coins.",
+    "artifactLabel": "Its dial has no numbers, only choices: stay, leave, speak, wait. A second receiver rests behind the first, warm despite never being lifted.",
+    "visualDescription": "A cream rotary telephone sits inside a glass case. Words instead of numbers circle its dial, and a second receiver rests behind it with a faint amber glow.",
+    "choices": [
+      {
+        "_key": "call-declined-life",
+        "_type": "object",
+        "label": "Call the life you declined",
+        "outcome": {
+          "_type": "reference",
+          "_ref": "outcome-familiar-stranger"
+        }
+      },
+      {
+        "_key": "hang-up-before-ring",
+        "_type": "object",
+        "label": "Hang up before it rings",
+        "outcome": {
+          "_type": "reference",
+          "_ref": "outcome-missed-call-self"
+        }
+      }
+    ]
+  }
+]

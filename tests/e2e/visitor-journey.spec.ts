@@ -1,35 +1,67 @@
 import { expect, test } from "@playwright/test";
 
-const exhibitTitle = "The Vending Machine That Sells Extra Mondays";
-const exhibitPath = "/exhibits/extra-mondays-vending-machine";
+const exhibits = [
+  {
+    title: "The Telephone for Calling Roads Not Taken",
+    path: "/exhibits/roads-not-taken-telephone",
+    choices: [
+      ["Call the life you declined", "A familiar stranger answers"],
+      ["Hang up before it rings", "A missed call arrives from you"],
+    ],
+  },
+  {
+    title: "The Umbrella That Remembers Every Storm",
+    path: "/exhibits/memory-umbrella",
+    choices: [
+      ["Open it indoors", "The room rains back"],
+      ["Leave it furled", "The forecast forgets your name"],
+    ],
+  },
+  {
+    title: "The Vending Machine That Sells Extra Mondays",
+    path: "/exhibits/extra-mondays-vending-machine",
+    choices: [
+      ["Spend a plan", "A paper Monday drops"],
+      ["Keep the weekend intact", "The machine keeps humming"],
+    ],
+  },
+] as const;
 
-test("visitor can enter an exhibit, reveal an outcome, and return", async ({
-  page,
-}) => {
-  await page.goto("/");
+for (const exhibit of exhibits) {
+  test(`${exhibit.title} exposes both published outcomes`, async ({ page }) => {
+    await page.goto("/");
 
-  await expect(
-    page.getByRole("heading", { name: "Museum of Unfinished Futures" }),
-  ).toBeVisible();
-  await page.getByRole("link", { name: "Enter exhibit" }).click();
+    await expect(
+      page.getByRole("heading", { name: "Museum of Unfinished Futures" }),
+    ).toBeVisible();
+    await page
+      .getByRole("link", { name: new RegExp(exhibit.title) })
+      .click();
 
-  await expect(page).toHaveURL(new RegExp(`${exhibitPath}$`));
-  await expect(page.getByRole("heading", { name: exhibitTitle })).toBeVisible();
+    await expect(page).toHaveURL(new RegExp(`${exhibit.path}$`));
+    await expect(
+      page.getByRole("heading", { name: exhibit.title }),
+    ).toBeVisible();
 
-  await page.getByRole("link", { name: "Spend a plan" }).click();
+    for (const [choice, outcome] of exhibit.choices) {
+      await page.getByRole("link", { name: choice, exact: true }).click();
+      await expect(page.getByText("Linked outcome")).toBeVisible();
+      await expect(page.getByRole("heading", { name: outcome })).toBeVisible();
+      await page.goto(exhibit.path);
+    }
 
-  await expect(page.getByText("Linked outcome")).toBeVisible();
-  await expect(
-    page.getByRole("heading", { name: "A paper Monday drops" }),
-  ).toBeVisible();
+    await page.getByRole("link", { name: "Back to gallery" }).click();
+    await expect(page).toHaveURL("/");
+    await expect(
+      page.getByRole("heading", { name: exhibit.title }),
+    ).toBeVisible();
+  });
+}
 
-  await page.getByRole("link", { name: "Back to gallery" }).click();
-  await expect(page).toHaveURL("/");
-  await expect(page.getByRole("heading", { name: exhibitTitle })).toBeVisible();
-});
+const vendingMachine = exhibits[2];
 
 test("invalid choice shows a safe unavailable state", async ({ page }) => {
-  await page.goto(`${exhibitPath}?choice=not-a-published-choice`);
+  await page.goto(`${vendingMachine.path}?choice=not-a-published-choice`);
 
   await expect(page.getByText("Choice unavailable")).toBeVisible();
   await expect(
@@ -51,11 +83,16 @@ test("visitor journey remains usable at a mobile viewport", async ({ page }) => 
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/");
 
-  await expect(page.getByRole("heading", { name: exhibitTitle })).toBeVisible();
-  await page.getByRole("link", { name: "Enter exhibit" }).click();
-  await page.getByRole("link", { name: "Keep the weekend intact" }).click();
+  const umbrella = exhibits[1];
+  await expect(
+    page.getByRole("heading", { name: umbrella.title }),
+  ).toBeVisible();
+  await page
+    .getByRole("link", { name: new RegExp(umbrella.title) })
+    .click();
+  await page.getByRole("link", { name: "Leave it furled" }).click();
 
   await expect(
-    page.getByRole("heading", { name: "The machine keeps humming" }),
+    page.getByRole("heading", { name: "The forecast forgets your name" }),
   ).toBeVisible();
 });

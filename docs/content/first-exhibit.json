@@ -1,0 +1,69 @@
+[
+  {
+    "_id": "era-near-future-civic-time",
+    "_type": "era",
+    "title": "The Civic Time Expansion Era",
+    "slug": {
+      "_type": "slug",
+      "current": "civic-time-expansion-era"
+    },
+    "summary": "A near future in which cities treated spare hours as public infrastructure, issuing extra weekdays through experimental municipal machines."
+  },
+  {
+    "_id": "outcome-paper-monday",
+    "_type": "outcome",
+    "title": "A paper Monday drops",
+    "body": "It is warm from the machine and already annotated with chores you do not remember accepting. By noon, the borrowed day begins collecting interest in unfinished plans.",
+    "era": {
+      "_type": "reference",
+      "_ref": "era-near-future-civic-time"
+    }
+  },
+  {
+    "_id": "outcome-soft-refusal",
+    "_type": "outcome",
+    "title": "The machine keeps humming",
+    "body": "Somewhere inside, an extra weekday remains unsold. The corridor feels briefly spacious, and your untouched weekend survives as a small act of resistance.",
+    "era": {
+      "_type": "reference",
+      "_ref": "era-near-future-civic-time"
+    }
+  },
+  {
+    "_id": "artifact-extra-mondays-vending-machine",
+    "_type": "artifact",
+    "title": "The Vending Machine That Sells Extra Mondays",
+    "slug": {
+      "_type": "slug",
+      "current": "extra-mondays-vending-machine"
+    },
+    "era": {
+      "_type": "reference",
+      "_ref": "era-near-future-civic-time"
+    },
+    "accessionNote": "Recovered from the abandoned Municipal Office of Calendar Expansion.",
+    "summary": "A brushed-steel vending machine hums beside a locked gallery door, promising one more Monday to anyone willing to pay in plans.",
+    "artifactLabel": "The selector glass is cracked. Behind it, tiny calendar pages rotate like candy coils, each stamped with a date that never entered the official year.",
+    "visualDescription": "A battered steel vending machine stands under museum lights. Its cracked selector window displays miniature calendar pages coiled like snacks behind smudged glass.",
+    "choices": [
+      {
+        "_key": "spend-a-plan",
+        "_type": "object",
+        "label": "Spend a plan",
+        "outcome": {
+          "_type": "reference",
+          "_ref": "outcome-paper-monday"
+        }
+      },
+      {
+        "_key": "keep-the-weekend",
+        "_type": "object",
+        "label": "Keep the weekend intact",
+        "outcome": {
+          "_type": "reference",
+          "_ref": "outcome-soft-refusal"
+        }
+      }
+    ]
+  }
+]

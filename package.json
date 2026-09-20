@@ -9,6 +9,7 @@
     "lint": "eslint",
     "typecheck": "tsc --noEmit -p tsconfig.typecheck.json",
     "test:unit": "vitest run",
+    "test:e2e": "npm run build && playwright test",
     "sanity:check": "node scripts/sanity-check.mjs"
   },
   "dependencies": {
@@ -22,6 +23,7 @@
     "zod": "4.3.6"
   },
   "devDependencies": {
+    "@playwright/test": "1.63.0",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^26.6.2",
     "@types/react": "^19",

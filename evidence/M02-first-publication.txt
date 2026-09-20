@@ -1,0 +1,27 @@
+First public content publication — September 20, 2026
+
+Authorization
+- Founder approved publication of one era, two outcomes, and one artifact to Sanity project wa27n68e, dataset production_1.
+- No additional content publication, deployment, contest submission, or spending was authorized.
+
+Published records
+- era-near-future-civic-time
+- outcome-paper-monday
+- outcome-soft-refusal
+- artifact-extra-mondays-vending-machine
+
+Reproducible source
+- docs/content/first-exhibit.json
+- sanity.cli.ts resolves the approved project and dataset for Sanity document commands.
+
+Verification
+- Anonymous document query returned all four records and the expected references.
+- npm run sanity:check: documentCount 4; artifactCount 1.
+- npx sanity documents validate --yes --level info --format pretty: 4 valid documents; 0 errors; 0 warnings; 0 info markers.
+- npm run test:unit: 4 test files and 11 tests passed.
+- npm run typecheck: passed.
+- npm run lint: passed.
+- npm run build: passed.
+- git diff --check: passed before documentation updates.
+- Browser: gallery displayed The Vending Machine That Sells Extra Mondays; the exhibit route loaded; Spend a plan revealed A paper Monday drops; Keep the weekend intact revealed The machine keeps humming.
+- The content became visible through the existing local application without a code redeploy.

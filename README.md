@@ -10,7 +10,7 @@ Next.js visitor experience and embedded Sanity Studio for a fictional museum of 
 - A domain resolver that maps a selected artifact choice to its linked outcome.
 - Sanity schemas for artifacts, eras, and outcomes.
 - An embedded Studio at `/studio`.
-- An honest empty-gallery state while the live dataset has no published artifacts.
+- An honest empty-gallery state for datasets with no published artifacts.
 
 The local fixture **The Vending Machine That Sells Extra Mondays** remains test/demo recovery data only. Public visitor routes do not fall back to it.
 
@@ -19,12 +19,15 @@ The local fixture **The Vending Machine That Sells Extra Mondays** remains test/
 ```bash
 npm run dev
 npm run test:unit
+npm run test:e2e
 npm run sanity:check
 npm run typecheck
 npm run lint
 npm run build
 npx sanity schemas validate
 ```
+
+Install the pinned Playwright Chromium bundle once on a new machine with `npx playwright install chromium`. `npm run test:e2e` builds the production application, starts it on `127.0.0.1:3100`, and runs the visitor tests.
 
 ## Sanity Status
 
@@ -34,11 +37,11 @@ The application performs real unauthenticated published-content reads from:
 - Dataset: `production_1`
 - API version: `2026-09-20`
 
-The dataset was reachable on September 20, 2026 and contained zero documents and zero artifacts. No API token is required for the public read path, and no token belongs in `NEXT_PUBLIC_*` variables.
+The dataset was reachable on September 20, 2026 and contains four published documents: one era, two outcomes, and one artifact. No API token is required for the public read path, and no token belongs in `NEXT_PUBLIC_*` variables.
 
 The Sanity CLI is authenticated through Google on this development machine. Local Studio CORS origins with credentials are configured for `http://localhost:3000` and `http://127.0.0.1:3000`. Start the app and open `/studio`; the browser may require its own Google sign-in.
 
-No content has been created or published yet. Publishing content is a separate founder-approved action.
+The founder approved and the project published the first fictional exhibit on September 20, 2026. The reproducible source records are stored at `docs/content/first-exhibit.json`.
 
 ## Configuration
 

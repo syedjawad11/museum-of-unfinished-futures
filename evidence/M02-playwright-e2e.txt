@@ -1,0 +1,33 @@
+Automated Playwright E2E verification — September 20, 2026
+
+Scope
+- Added @playwright/test 1.63.0 and the matching Chromium browser bundle.
+- Added production-mode Playwright configuration on 127.0.0.1:3100.
+- Added npm run test:e2e, which builds the application before running Playwright.
+- Restricted Vitest to src/**/*.test.ts so the unit and E2E runners own separate test files.
+
+Automated scenarios
+1. Gallery -> exhibit -> Spend a plan -> A paper Monday drops -> return to gallery.
+2. Invalid choice -> safe Choice unavailable state.
+3. Missing exhibit -> HTTP 404 with noindex robots metadata.
+4. Mobile 390x844 journey -> Keep the weekend intact -> The machine keeps humming.
+
+RED evidence
+- Before installation, npm exec --no -- playwright test failed because the Playwright package was absent.
+- The first combined quality gate exposed Vitest incorrectly collecting the Playwright spec. npm run test:unit failed with Playwright Test did not expect test() to be called here.
+
+Repair
+- vitest.config.mts now includes only src/**/*.test.ts.
+- The focused npm run test:unit loop then passed 4 files and 11 tests.
+
+Final verification
+- npm run test:unit: 4 files passed; 11 tests passed.
+- npm run typecheck: passed.
+- npm run lint: passed.
+- npm run sanity:check: documentCount 4; artifactCount 1.
+- npx sanity schemas validate: 0 errors; 0 warnings.
+- npm run test:e2e: production build passed; 4 Playwright tests passed.
+- git diff --check: passed.
+
+Environment note
+- Playwright reported that this Linux version is not officially supported and installed its Ubuntu 24.04 fallback Chromium build. The downloaded browser executed all four tests successfully.

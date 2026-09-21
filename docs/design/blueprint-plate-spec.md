@@ -64,7 +64,7 @@ be fully self-contained: no external fonts, scripts, CSS, or images.
    between two tick marks/arrowheads with the number centred above it in
    monospace text.
 5. **Title block**, bottom-right corner, boxed: museum name
-   ("MUSEUM OF UNFINISHED FUTURES"), plate number ("PLATE 001" for this
+   ("MUSEUM OF UNFINISHED FUTURES"), plate number ("PLATE NO. 001" for this
    piece, increment per plate), artifact title, the line
    "DRAWN — NEVER BUILT", and "SHEET 1/1".
 6. **Compass/scale mark** — a small circle with a cross and "N" tick (or

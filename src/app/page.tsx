@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { sanityExhibitRepository } from "@/content/sanity-repository";
+import { loadPlateMarkup } from "@/content/plate-markup";
 import { GalleryEmptyState } from "./gallery-empty-state";
 import { Plaque } from "@/components/Plaque";
 import { Vitrine } from "@/components/Vitrine";
@@ -8,6 +9,11 @@ export const dynamic = "force-dynamic";
 
 export default async function Home() {
   const exhibits = await sanityExhibitRepository.listExhibits();
+  const plateMarkups = await Promise.all(
+    exhibits.map((exhibit) =>
+      loadPlateMarkup({ slug: exhibit.slug, imageUrl: exhibit.image?.url }),
+    ),
+  );
 
   return (
     <div className="mx-auto flex w-full max-w-6xl flex-col gap-12 px-6 py-14 sm:px-10 lg:px-12">
@@ -28,7 +34,7 @@ export default async function Home() {
       <div id="wings">
         {exhibits.length > 0 ? (
           <div className="grid gap-8 sm:grid-cols-2">
-            {exhibits.map((exhibit) => (
+            {exhibits.map((exhibit, index) => (
               <Link
                 className="group rounded-lg"
                 href={`/exhibits/${exhibit.slug}`}
@@ -39,6 +45,7 @@ export default async function Home() {
                     accent={exhibit.era.accentColor}
                     description={exhibit.visualDescription}
                     label={exhibit.artifactLabel}
+                    plateMarkup={plateMarkups[index]}
                     title={exhibit.title}
                   />
                   <Plaque

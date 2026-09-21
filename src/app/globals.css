@@ -42,6 +42,24 @@ body {
   border-radius: 2px;
 }
 
+/*
+ * Inlined blueprint plates (see src/components/Plate.tsx). The wing accent
+ * drives `currentColor` inside the plate SVG; the glow/tint are decorative,
+ * the accessible name lives on the Vitrine's role="img" aria-label.
+ */
+.plate {
+  color: var(--accent);
+}
+
+.plate svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  filter:
+    drop-shadow(0 0 6px currentColor)
+    drop-shadow(0 0 10px color-mix(in srgb, currentColor 35%, transparent));
+}
+
 @media (prefers-reduced-motion: no-preference) {
   @keyframes plate-glow {
     0%,
@@ -82,5 +100,19 @@ body {
 
   .animate-projector-flicker {
     animation: projector-flicker 420ms ease-out both;
+  }
+
+  @keyframes plate-breathe {
+    0%,
+    100% {
+      opacity: 0.88;
+    }
+    50% {
+      opacity: 1;
+    }
+  }
+
+  .plate {
+    animation: plate-breathe 7s ease-in-out infinite;
   }
 }

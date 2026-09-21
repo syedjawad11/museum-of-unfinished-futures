@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Fixture comment should be stripped by sanitizePlateMarkup. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-labelledby="plate-title plate-desc" fill="none" stroke="currentColor">
+  <title id="plate-title">Fixture Plate</title>
+  <desc id="plate-desc">A small blueprint fixture for loader tests.</desc>
+  <g id="fig-1">
+    <rect x="100" y="100" width="160" height="100" fill="none" stroke="currentColor" stroke-width="1.5"/>
+    <line x1="120" y1="130" x2="240" y2="170" stroke="currentColor" stroke-width="1"/>
+  </g>
+  <g id="fig-2">
+    <circle cx="520" cy="180" r="42" fill="none" stroke="currentColor" stroke-width="1"/>
+    <path d="M500 180 L540 180" fill="none" stroke="currentColor" stroke-width="0.75"/>
+  </g>
+  <text x="560" y="540" fill="currentColor" font-size="12">PLATE FIXTURE</text>
+</svg>

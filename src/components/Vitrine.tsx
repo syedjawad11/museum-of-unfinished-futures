@@ -1,8 +1,10 @@
-import type { CSSProperties, ReactNode } from "react";
+import type { CSSProperties } from "react";
+import type { PlateMarkup } from "@/content/plate-markup";
+import { Plate } from "./Plate";
 
 type VitrineProps = {
   title: string;
-  plate?: ReactNode;
+  plateMarkup?: PlateMarkup | null;
   label: string;
   description: string;
   accent?: string;
@@ -10,20 +12,23 @@ type VitrineProps = {
 
 type AccentStyle = CSSProperties & { "--accent"?: string };
 
+const HEX_ACCENT_PATTERN = /^#[0-9a-fA-F]{6}$/;
+
 /**
- * A spotlit glass case. When `plate` is omitted a placeholder "blueprint
- * sheet" is drawn instead — a later task will pass a real SVG plate.
+ * A spotlit glass case. When `plateMarkup` is omitted (or the loader found
+ * nothing) a placeholder "blueprint sheet" is drawn instead.
  */
 export function Vitrine({
   title,
-  plate,
+  plateMarkup,
   label,
   description,
   accent,
 }: VitrineProps) {
-  const style: AccentStyle | undefined = accent
-    ? { "--accent": accent }
-    : undefined;
+  const style: AccentStyle | undefined =
+    accent && HEX_ACCENT_PATTERN.test(accent)
+      ? { "--accent": accent }
+      : undefined;
 
   return (
     <div
@@ -43,7 +48,9 @@ export function Vitrine({
         className="relative mx-auto flex aspect-[4/3] max-w-xl items-center justify-center overflow-hidden rounded-md border border-glass/25 bg-hall/80 p-6"
         role="img"
       >
-        {plate ?? (
+        {plateMarkup ? (
+          <Plate markup={plateMarkup.markup} source={plateMarkup.source} />
+        ) : (
           <div className="relative flex h-full w-full flex-col justify-between rounded-sm border border-brass-dim/50 p-4">
             <div
               aria-hidden

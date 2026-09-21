@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { sanityExhibitRepository } from "@/content/sanity-repository";
+import { loadPlateMarkup } from "@/content/plate-markup";
 import { resolveLinkedOutcome } from "@/domain/visitor-trace";
 import { Doorway } from "@/components/Doorway";
 import { Plaque } from "@/components/Plaque";
@@ -27,6 +28,11 @@ export default async function ExhibitPage({
     notFound();
   }
 
+  const plateMarkup = await loadPlateMarkup({
+    slug: exhibit.slug,
+    imageUrl: exhibit.image?.url,
+  });
+
   const outcome = selectedChoice
     ? resolveLinkedOutcome(exhibit, selectedChoice)
     : undefined;
@@ -40,6 +46,7 @@ export default async function ExhibitPage({
           accent={exhibit.era.accentColor}
           description={exhibit.visualDescription}
           label={exhibit.artifactLabel}
+          plateMarkup={plateMarkup}
           title={exhibit.title}
         />
 

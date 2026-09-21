@@ -42,6 +42,7 @@ for (const exhibit of exhibits) {
     await expect(
       page.getByRole("heading", { name: exhibit.title }),
     ).toBeVisible();
+    await expect(page.locator("[data-plate-source] svg").first()).toBeVisible();
 
     for (const [choice, outcome] of exhibit.choices) {
       await page.getByRole("link", { name: choice, exact: true }).click();
@@ -59,6 +60,13 @@ for (const exhibit of exhibits) {
 }
 
 const vendingMachine = exhibits[2];
+
+test("home grid inlines a blueprint plate for every case", async ({ page }) => {
+  await page.goto("/");
+
+  const plateCount = await page.locator("[data-plate-source]").count();
+  expect(plateCount).toBeGreaterThanOrEqual(3);
+});
 
 test("invalid choice shows a safe unavailable state", async ({ page }) => {
   await page.goto(`${vendingMachine.path}?choice=not-a-published-choice`);

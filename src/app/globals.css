@@ -1,26 +1,86 @@
 @import "tailwindcss";
 
+/*
+ * Blueprint night museum palette — dark only, no prefers-color-scheme.
+ * --font-display / --font-mono are populated at runtime by src/fonts/fonts.ts
+ * (next/font/local) via classes applied to <html> in layout.tsx.
+ */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --hall: #07090d;
+  --floor: #0c0f14;
+  --spotlight: #f5efe3;
+  --glass: #c7d6dc;
+  --brass: #c9a24b;
+  --brass-dim: #8a6a34;
+  --ink: #eae3d3;
+  --ink-muted: #b9b0a0;
+  --accent: #f2b65a;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: Arial, Helvetica, sans-serif;
-  --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-hall: var(--hall);
+  --color-floor: var(--floor);
+  --color-spotlight: var(--spotlight);
+  --color-glass: var(--glass);
+  --color-brass: var(--brass);
+  --color-brass-dim: var(--brass-dim);
+  --color-ink: var(--ink);
+  --color-ink-muted: var(--ink-muted);
+  --color-accent: var(--accent);
+  --font-display: var(--font-display);
+  --font-mono: var(--font-mono);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--hall);
+  color: var(--ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes plate-glow {
+    0%,
+    100% {
+      opacity: 0.55;
+    }
+    50% {
+      opacity: 0.9;
+    }
+  }
+
+  @keyframes projector-flicker {
+    0% {
+      opacity: 0;
+      filter: brightness(1.6);
+    }
+    12% {
+      opacity: 1;
+      filter: brightness(0.7);
+    }
+    24% {
+      opacity: 0.5;
+      filter: brightness(1.3);
+    }
+    40% {
+      opacity: 1;
+      filter: brightness(1);
+    }
+    100% {
+      opacity: 1;
+      filter: brightness(1);
+    }
+  }
+
+  .animate-plate-glow {
+    animation: plate-glow 6s ease-in-out infinite;
+  }
+
+  .animate-projector-flicker {
+    animation: projector-flicker 420ms ease-out both;
+  }
 }

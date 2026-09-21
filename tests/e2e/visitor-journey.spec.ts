@@ -50,7 +50,7 @@ for (const exhibit of exhibits) {
       await page.goto(exhibit.path);
     }
 
-    await page.getByRole("link", { name: "Back to gallery" }).click();
+    await page.getByRole("link", { name: "Back to the hall" }).click();
     await expect(page).toHaveURL("/");
     await expect(
       page.getByRole("heading", { name: exhibit.title }),

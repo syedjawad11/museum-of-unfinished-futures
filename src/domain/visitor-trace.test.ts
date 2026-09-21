@@ -24,11 +24,13 @@ describe("resolveLinkedOutcome", () => {
           id: "receipt",
           title: "A receipt curls out",
           body: "The machine prints a Monday dated three weeks from now.",
+          consequenceTags: [],
         },
         {
           id: "silence",
           title: "The corridor relaxes",
           body: "No extra week begins. The lights dim in relief.",
+          consequenceTags: [],
         },
       ],
     };
@@ -37,6 +39,7 @@ describe("resolveLinkedOutcome", () => {
       id: "receipt",
       title: "A receipt curls out",
       body: "The machine prints a Monday dated three weeks from now.",
+      consequenceTags: [],
     });
   });
 
@@ -61,6 +64,7 @@ describe("resolveLinkedOutcome", () => {
           id: "receipt",
           title: "A receipt curls out",
           body: "The machine prints a Monday dated three weeks from now.",
+          consequenceTags: [],
         },
       ],
     };

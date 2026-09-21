@@ -311,3 +311,53 @@ Result: passed. Routes: /, /_not-found, /exhibits/[slug], /studio/[[...tool]].
 $ git diff --check
 Result: passed.
 ```
+
+## Netlify Release Candidate — September 21, 2026
+
+- Founder approved Netlify Free, CLI authentication, and creation of the empty manual site `museum-of-unfinished-futures`.
+- Authenticated API read-back verified an active Free plan with 300 included/0 used credits, automatic top-up disabled, no payment method, and no published deploy.
+- Added tracked `netlify.toml` build settings and ignored local `.netlify/` metadata.
+- The first lint attempts timed out because generated `.netlify/` files were inside ESLint's traversal. Added `.netlify/**` to the flat-config global ignores; lint then passed normally.
+- Offline Netlify production build passed and packaged `___netlify-server-handler`.
+
+Release-gate rerun:
+
+```text
+$ npm run test:unit
+Test Files  6 passed (6)
+Tests       25 passed (25)
+
+$ npm run sanity:check
+documentCount: 12
+artifactCount: 3
+
+$ npx sanity schemas validate
+Errors:   0
+Warnings: 0
+
+$ npx sanity documents validate --yes --level info --format pretty
+Valid:    13 documents
+Errors:   0
+Warnings: 0
+Info:     0
+
+$ npm run typecheck
+Result: passed.
+
+$ npm run lint
+Result: passed with no warnings after excluding generated `.netlify/**` files.
+
+$ npm run build
+Result: passed.
+
+$ npm run test:e2e
+Tests: 6 passed.
+
+$ git diff --check
+Result: passed.
+```
+
+- Secret/path scan found no tracked Netlify metadata, private keys, or secret-bearing environment files. `.env.example` contains only public Sanity identifiers.
+- `npm audit --audit-level=moderate` still reports the previously documented 15 transitive Sanity CLI/workbench findings (12 moderate, 3 high). The offered force fix remains an incompatible Sanity downgrade and was not applied.
+- Full evidence: `evidence/M05-release-candidate.txt`.
+- No draft or production deployment occurred.

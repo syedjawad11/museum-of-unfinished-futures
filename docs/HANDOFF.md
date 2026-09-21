@@ -6,7 +6,7 @@ Date: September 21, 2026
 
 - Repository: `/home/shah20/Desktop/Hermes/projects/museum-of-unfinished-futures`
 - Branch: `main`
-- Current commit: `52bb72e` (`[verified] publish complete three-exhibit content pack`); the independently reviewed curator workflow implementation, demonstration evidence, validation-gate repair, and approved telephone-summary revision are uncommitted.
+- Current commit: `b511b75` (`[verified] add guarded curator review workflow`); the repository was clean when hosting compatibility was evaluated on September 21, 2026.
 - M00: founder confirmed registered-only status and private eligibility. Sanity project `wa27n68e` and dataset `production_1` are verified; CLI Google authentication succeeded.
 - M01–M04 visitor, content, and curator scope is implemented against the live public dataset. Founder-approved publication created three eras, six outcomes, and three artifacts; all six visitor choices resolve without a code redeploy. The curator demonstration submitted, rejected, revised, resubmitted, approved, and published one artifact revision. No deployment or spend occurred.
 
@@ -50,7 +50,9 @@ See `docs/build-log.md` for implementation evidence; `evidence/M01-review.txt` f
 - Automated Playwright coverage includes all three exhibits and all six outcomes.
 - Curator workflow implementation and the genuine authenticated demonstration are complete.
 - Browser Studio sign-in remains unverified because the secure Google-login save was declined; the CLI-authenticated demonstration succeeded without credentials entering chat or repository files.
-- The curator slice passed final independent review and all local gates. Obtain founder approval before committing it, then verify approved hosting before preparing deployment.
+- The curator slice passed final independent review and all local gates and is committed at `b511b75`.
+- Founder approved Netlify Free, CLI login, and manual site creation on September 21, 2026. The authenticated API verified the `Museum MVP` team is active on Free with 300 included/0 used credits, automatic top-up disabled, and no payment method. Site `museum-of-unfinished-futures` (`d24b8311-81a5-4589-bcc7-68c132ebde2b`) is linked with reserved hostname `https://museum-of-unfinished-futures.netlify.app`, but read-back confirms no published deploy. The tracked Netlify configuration passed an offline production build. See `docs/hosting-decision.md` and `docs/deployment-plan.md`.
+- M05 local release gates pass: 25 unit tests, public Sanity read, schema and 13-document validation, typecheck, lint, production build, six Playwright tests, secret/path checks, and `git diff --check`. Generated `.netlify/**` was added to ESLint ignores after causing the initial lint attempts to time out. The known 15 transitive Sanity CLI/workbench audit findings remain documented. See `evidence/M05-release-candidate.txt`.
 
 ## Authority and cost
 

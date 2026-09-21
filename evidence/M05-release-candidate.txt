@@ -1,0 +1,83 @@
+M05 release-candidate verification
+Date: September 21, 2026
+Repository baseline: b511b75 ([verified] add guarded curator review workflow)
+Scope: local release gates before any Netlify draft deployment
+
+Netlify state before verification
+- Team: Museum MVP
+- Plan: Free
+- Credits: 300 included, 0 used
+- Automatic top-up: disabled
+- Payment method: none
+- Site: museum-of-unfinished-futures
+- Site ID: d24b8311-81a5-4589-bcc7-68c132ebde2b
+- Reserved URL: https://museum-of-unfinished-futures.netlify.app
+- API read-back: published_deploy is null
+- No draft or production deployment occurred.
+
+Release gates
+
+npm run test:unit
+- PASS
+- Test files: 6 passed
+- Tests: 25 passed
+
+npm run sanity:check
+- PASS
+- Project: wa27n68e
+- Dataset: production_1
+- Documents: 12
+- Artifacts: 3
+
+npx sanity schemas validate
+- PASS
+- Errors: 0
+- Warnings: 0
+
+npx sanity documents validate --yes --level info --format pretty
+- PASS
+- Application documents validated: 13
+- Errors: 0
+- Warnings: 0
+- Info markers: 0
+
+npm run typecheck
+- PASS
+
+npm run lint
+- Initial attempts timed out because Netlify's generated `.netlify/` directory was not excluded by the flat ESLint configuration.
+- Root-cause correction: added `.netlify/**` to `globalIgnores` in `eslint.config.mjs`.
+- Final result: PASS with no warnings or errors.
+
+npm run build
+- PASS
+- Next.js 16.3.5 production build completed.
+- Routes: `/`, `/_not-found`, `/exhibits/[slug]`, `/studio/[[...tool]]`.
+
+npm run test:e2e
+- PASS
+- Playwright: 6/6 tests passed.
+- Coverage: all three exhibits and six outcomes, invalid choice, HTTP 404/noindex, and mobile viewport.
+
+Netlify compatibility
+- `netlify.toml` uses `npm run build` and `.next`.
+- Offline Netlify production build passed and packaged `___netlify-server-handler`.
+- No deployment credits were consumed.
+
+Secret and repository checks
+- `git diff --check`: PASS.
+- `.netlify/` is ignored and not tracked.
+- No private key files, Netlify metadata, or secret-bearing environment files are tracked.
+- `.env.example` contains only the public Sanity project ID, dataset, and API version.
+- Added-line scan found no hardcoded secret assignments, private keys, or eval/exec additions.
+
+Dependency audit
+- `npm audit --audit-level=moderate` reports the same known 15 transitive Sanity CLI/workbench findings: 12 moderate and 3 high.
+- npm's proposed automatic resolution requires `--force` and downgrades Sanity to 5.14.1, conflicting with the current compatible dependency graph.
+- No forced downgrade was applied. This is a recorded release limitation, not a newly introduced finding from the Netlify configuration.
+
+Result
+- Local M05 release gates pass.
+- The known Sanity CLI/workbench audit findings remain documented.
+- The release candidate is ready for founder review and separate authorization of a Netlify draft deployment.
+- Production deployment and public release remain unauthorized.

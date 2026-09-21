@@ -275,3 +275,39 @@ Result: passed.
 $ git diff --check
 Result: passed.
 ```
+
+## Curator Workflow Final Review — September 21, 2026
+
+- A fresh-context reviewer found one blocking data-integrity issue in the custom publish action: it enforced curator approval but did not preserve Sanity's schema-validation gate.
+- Added a tested validation guard and wired Sanity's `useValidationStatus` into guarded publishing. Publishing is now blocked while validation is running, while validation is stale for the current draft revision, or while error-level markers exist. Warning-level markers remain non-blocking.
+- Added two regression tests covering running, stale, error, and warning validation states.
+- Removed three lint warnings from the reproducible curator demonstration script.
+- A second fresh-context reviewer passed the repaired slice with no security concerns or logic errors. Its only suggestion was optional action-level coverage around the already typechecked and inspected hook wiring.
+
+Final rerun after repair:
+
+```text
+$ npm run test:unit
+Test Files  6 passed (6)
+Tests       25 passed (25)
+
+$ npm run sanity:check
+documentCount: 12
+artifactCount: 3
+
+$ npx sanity schemas validate
+Errors:   0
+Warnings: 0
+
+$ npm run typecheck
+Result: passed.
+
+$ npm run lint
+Result: passed with no warnings.
+
+$ npm run build
+Result: passed. Routes: /, /_not-found, /exhibits/[slug], /studio/[[...tool]].
+
+$ git diff --check
+Result: passed.
+```

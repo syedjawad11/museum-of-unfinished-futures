@@ -1,5 +1,5 @@
 import { visionTool } from "@sanity/vision";
-import { defineConfig } from "sanity";
+import { defineConfig, type DocumentActionComponent } from "sanity";
 import { structureTool } from "sanity/structure";
 import { schemaTypes } from "./schemas";
 import {
@@ -7,6 +7,10 @@ import {
   sanityDataset,
   sanityProjectId,
 } from "./src/content/sanity-config";
+import {
+  artifactReviewActions,
+  guardedPublishAction,
+} from "./studio/actions/artifactReviewActions";
 
 export default defineConfig({
   name: "museum-of-unfinished-futures",
@@ -23,5 +27,18 @@ export default defineConfig({
   ],
   schema: {
     types: schemaTypes,
+  },
+  document: {
+    actions: (previousActions, context) => {
+      if (context.schemaType !== "artifact" || context.releaseId) {
+        return previousActions;
+      }
+
+      return previousActions.flatMap((previousAction): DocumentActionComponent[] =>
+        previousAction.action === "publish"
+          ? [...artifactReviewActions, guardedPublishAction]
+          : [previousAction],
+      );
+    },
   },
 });

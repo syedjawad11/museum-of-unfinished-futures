@@ -1,0 +1,52 @@
+M04 curator review and guarded publication — September 20, 2026
+
+Scope
+- Added a small custom artifact-review state machine. This is not Sanity Workflows or Content Releases integration.
+- Reviews are separate public-safe artifactReview documents.
+- Studio actions support submit, request changes with a required reason, resubmit after revision, approve the submitted revision, and guarded publish.
+- Only the built-in artifact Publish action is replaced; other document actions and non-artifact document types are preserved.
+
+Subagent use
+- Two read-only subagents inspected installed Sanity 6.15.0 APIs and produced the transition/acceptance specification.
+- One bounded Codex gpt-5.5 builder implemented the first pass without permission to commit, deploy, publish, or mutate the dataset.
+- Main-session integration review found and repaired two issues not caught by the builder: stale-draft decisions compared the stored revision to itself, and cleared review fields could be written as undefined instead of explicit unsets.
+
+TDD evidence
+- Builder RED: the initial focused workflow test failed before src/domain/artifact-review.ts existed.
+- Main-session regression RED: 4 of 12 focused tests failed, reproducing submit bypass and stale-draft decision bugs.
+- GREEN: 12/12 focused workflow tests passed after repair.
+
+Authentication and failure behavior
+- Browser Studio login reached Google authentication. The secure vault save was declined, so credentials were not requested again and none entered chat or repository files.
+- Direct Node execution of the demo failed closed with HTTP 403 create permission because it did not inherit the CLI user token.
+- Read-back confirmed no draft or review was created by that failure.
+- The demo was rerun through `npx sanity exec ... --with-user-token`, the approved authenticated CLI path.
+
+Genuine curator demonstration
+Artifact: artifact-roads-not-taken-telephone
+1. Created a draft from the current published artifact.
+2. Submitted draft revision FhaKCniGTxwFh6i6lrjrky.
+3. Requested changes with the public-safe reason: Clarify what callers hear before the connection opens.
+4. Revised the visitor summary, producing draft revision LI671VOuLZTgT1VfbT52Kw.
+5. Resubmitted and cleared the rejection fields.
+6. Approved exactly revision LI671VOuLZTgT1VfbT52Kw.
+7. Guard check confirmed the approved revision matched the current draft.
+8. Published the approved draft and removed the draft document.
+9. Anonymous read-back confirmed the updated public summary, no remaining draft, and an approved public-safe review document.
+10. Browser read-back confirmed the updated summary appeared on the public exhibit without a code redeploy.
+
+Published improvement
+- The Telephone for Calling Roads Not Taken now explains that its connection begins with a dial tone assembled from almost-spoken words.
+- docs/content/remaining-exhibits.json was updated to remain the reproducible source of truth.
+
+Verified state after demonstration
+- 12 museum visitor-content documents remain published: 3 eras, 6 outcomes, and 3 artifacts.
+- 1 additional artifactReview document records the approved revision.
+- Sanity document validation: 13 valid application documents, 0 errors, 0 warnings, 0 info markers.
+- Public draft query: no draft remains for the demonstrated artifact.
+
+Known limitations
+- The custom actions are Studio UI policy, not a raw Content Lake authorization boundary.
+- Sufficiently privileged administrators or API clients can bypass the workflow.
+- The final read-before-publish check has a small check-to-publish race because the installed built-in publish operation does not accept a draft revision precondition.
+- Review metadata is public and must remain public-safe.

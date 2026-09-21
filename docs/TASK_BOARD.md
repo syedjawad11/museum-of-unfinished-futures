@@ -14,12 +14,12 @@ States: BACKLOG → READY → RUNNING → REVIEW → DONE (BLOCKED / CANCELLED a
 | T-004-plate-markup-loader | Safe inline-SVG plate loader (Sanity asset → local file fallback), tests first | 1 | Codex gpt-5.5 | DONE (Sep 21; 58 tests; reviewer pass-with-fixes, fixes applied + verified) | docs/task-packets/T-004-plate-markup-loader.md |
 | T-005-blueprint-plates-002-003 | Plates 002 (umbrella) and 003 (telephone) per spec | 1 | frontend-designer (Sonnet) | DONE (Sep 21; 13 KB each; compass overlap fixed on all 3 plates; renders inspected) | docs/task-packets/T-005-blueprint-plates-002-003.md |
 | T-006-plate-wiring | Inline plates + wing accent in Vitrine (home + exhibit), e2e, screenshots | 1 | frontend-designer (Sonnet) | DONE (Sep 21; e2e 7/7; Codex gpt-5.6-sol review pass; commit 0a9a5a6; draft deploy 6ab179225cac95ae144beed3) | docs/task-packets/T-006-plate-wiring.md |
+| T-007-plates-into-sanity | Upload the three plates as Sanity image assets and attach them (image + alt) through the review flow with a guarded publish | 1 | Codex gpt-5.5 (script) + orchestrator (run) | DONE (Sep 21; 3 assets 800×600 published via submit→approve→guarded publish; unit 104; e2e 7/7; reviewer pass-with-fixes applied) | docs/task-packets/T-007-plates-into-sanity.md, evidence/T-007/ |
 
-## Backlog (to be turned into packets, in this order; founder said on Sep 21 not to start T-007 until they have reviewed the draft)
+## Backlog (to be turned into packets, in this order; T-007 done on the founder's instruction on Sep 21 night)
 
 | Candidate | imp.md § | Likely worker | Size |
 |---|---|---|---|
-| T-007: upload the three plates as Sanity image assets, set artifact.image + alt through the review flow | 1 | orchestrator (Sanity MCP) + founder publish approval | small |
 | T-008: wings — home grouped by era with placard, `/eras/[slug]`, e2e | 2 | Codex gpt-5.5 (data) + frontend-designer (UI) | ½ day |
 | T-009: chained outcomes — consequenceTags, "Continue to →" via leadsTo (cycle guard), 2–4 choices UI | 2 | Codex gpt-5.5 | ½ day |
 | T-010: visitor ticket page `/your-future?trace=…` + own OG image | 2 | Codex gpt-5.5 (logic) + frontend-designer (UI) | 1 day |

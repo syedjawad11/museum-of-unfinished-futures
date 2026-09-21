@@ -1,0 +1,56 @@
+{
+  "mode": "executed",
+  "plates": [
+    {
+      "artifactId": "artifact-extra-mondays-vending-machine",
+      "draftId": "drafts.artifact-extra-mondays-vending-machine",
+      "reviewId": "artifactReview.artifact-extra-mondays-vending-machine",
+      "publishedRevision": "lQZy04MU9BHWsLf0pPupUS",
+      "approvedRevision": "lQZy04MU9BHWsLf0pPuopm",
+      "publishedDraftRevision": "lQZy04MU9BHWsLf0pPuopm",
+      "assetId": "image-4256fc94397b68064e48002f47dde0c9d313af9c-800x600-svg",
+      "assetUrl": "https://cdn.sanity.io/images/wa27n68e/production_1/4256fc94397b68064e48002f47dde0c9d313af9c-800x600.svg",
+      "bytes": 15466,
+      "dimensions": {
+        "_type": "sanity.imageDimensions",
+        "aspectRatio": 1.3333333333333333,
+        "height": 600,
+        "width": 800
+      }
+    },
+    {
+      "artifactId": "artifact-memory-umbrella",
+      "draftId": "drafts.artifact-memory-umbrella",
+      "reviewId": "artifactReview.artifact-memory-umbrella",
+      "publishedRevision": "FP0EQNyAWKnqTT0GM3IMhW",
+      "approvedRevision": "lQZy04MU9BHWsLf0pPuqCG",
+      "publishedDraftRevision": "lQZy04MU9BHWsLf0pPuqCG",
+      "assetId": "image-36793468b051458992a61ec0dee8eac71f151358-800x600-svg",
+      "assetUrl": "https://cdn.sanity.io/images/wa27n68e/production_1/36793468b051458992a61ec0dee8eac71f151358-800x600.svg",
+      "bytes": 13183,
+      "dimensions": {
+        "_type": "sanity.imageDimensions",
+        "aspectRatio": 1.3333333333333333,
+        "height": 600,
+        "width": 800
+      }
+    },
+    {
+      "artifactId": "artifact-roads-not-taken-telephone",
+      "draftId": "drafts.artifact-roads-not-taken-telephone",
+      "reviewId": "artifactReview.artifact-roads-not-taken-telephone",
+      "publishedRevision": "FP0EQNyAWKnqTT0GM3INv0",
+      "approvedRevision": "lQZy04MU9BHWsLf0pPuuXM",
+      "publishedDraftRevision": "lQZy04MU9BHWsLf0pPuuXM",
+      "assetId": "image-4f5e5425b044a3118da0220e5da5c35f7614c605-800x600-svg",
+      "assetUrl": "https://cdn.sanity.io/images/wa27n68e/production_1/4f5e5425b044a3118da0220e5da5c35f7614c605-800x600.svg",
+      "bytes": 13485,
+      "dimensions": {
+        "_type": "sanity.imageDimensions",
+        "aspectRatio": 1.3333333333333333,
+        "height": 600,
+        "width": 800
+      }
+    }
+  ]
+}

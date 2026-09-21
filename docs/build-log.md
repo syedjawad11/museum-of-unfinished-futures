@@ -361,3 +361,14 @@ Result: passed.
 - `npm audit --audit-level=moderate` still reports the previously documented 15 transitive Sanity CLI/workbench findings (12 moderate, 3 high). The offered force fix remains an incompatible Sanity downgrade and was not applied.
 - Full evidence: `evidence/M05-release-candidate.txt`.
 - No draft or production deployment occurred.
+
+## Netlify Draft Deployment — September 21, 2026
+
+- Founder authorized a verified commit and a draft deploy. Commit `60a60c9` records the Netlify release configuration and M05 local evidence.
+- Draft deploy `6ab119b68b09d5206621140f` reached Netlify state `ready` with no deployment error. It remains unpublished and the site has no production deploy.
+- Logged-out Playwright was redirected to Netlify Edge Access and received HTTP 401, so the private preview could not satisfy public logged-out assertions.
+- Through the founder-authenticated Firefox preview, the gallery, all three exhibits, all six outcomes, invalid-choice state, and visible missing-exhibit 404 page rendered correctly.
+- `/studio` reached Sanity's project connection/CORS gate because the ephemeral draft origin was intentionally not authorized.
+- Ten screenshots are preserved under `evidence/M05-draft/`; detailed results are appended to `evidence/M05-release-candidate.txt`.
+- Netlify API read-back after the draft still reported 300 included/0 used credits, automatic top-up disabled, and no payment method. No spend occurred.
+- Production deployment and public release remain unauthorized.

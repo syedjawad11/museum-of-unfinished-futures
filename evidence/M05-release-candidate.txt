@@ -81,3 +81,33 @@ Result
 - The known Sanity CLI/workbench audit findings remain documented.
 - The release candidate is ready for founder review and separate authorization of a Netlify draft deployment.
 - Production deployment and public release remain unauthorized.
+
+Draft deployment verification
+- Founder authorized commit and draft deployment.
+- Verified commit: `60a60c9` (`[verified] add Netlify release configuration`).
+- Draft deploy ID: `6ab119b68b09d5206621140f`.
+- Draft URL: `https://6ab119b68b09d5206621140f--museum-of-unfinished-futures.netlify.app`.
+- Netlify API read-back: state `ready`, context `deploy-preview`, no error, `published_at: null`, and the site still has no published deploy.
+- Account read-back after deployment: Free plan, 300 included/0 reported used credits, automatic top-up disabled, and no payment method.
+
+Draft visitor checks
+- A logged-out Playwright rerun reached Netlify Edge Access instead of the app: all six tests received the private-preview authentication boundary, including HTTP 401 for the missing-exhibit request. This is a preview-access limitation, not an application assertion failure.
+- The founder-authenticated desktop Firefox session loaded the draft successfully.
+- Verified gallery with all three exhibits.
+- Verified all six published outcome paths:
+  - Umbrella / Open it indoors -> The room rains back.
+  - Umbrella / Leave it furled -> The forecast forgets your name.
+  - Telephone / Call the life you declined -> A familiar stranger answers.
+  - Telephone / Hang up before it rings -> A missed call arrives from you.
+  - Vending machine / Spend a plan -> A paper Monday drops.
+  - Vending machine / Keep the weekend intact -> The machine keeps humming.
+- Verified invalid choice shows `Choice unavailable` and `No linked outcome exists.`
+- Verified missing exhibit renders the visible Next.js 404 page. The remote HTTP 404 status and noindex marker cannot be checked while the preview is protected; repeat while logged out after any authorized production deployment.
+- `/studio` loads but displays Sanity's `Connect this Studio to your project` gate because the draft origin is not registered/CORS-authorized. No wildcard or ephemeral preview origin was added.
+- Remote mobile viewport automation was not possible through the authenticated private-preview browser. The same release candidate passed the local production-mode mobile Playwright test before deployment.
+- Ten draft screenshots are preserved under `evidence/M05-draft/`.
+
+Draft result
+- Draft build and server runtime are operational for the authenticated preview.
+- Public/logged-out verification remains blocked by Netlify's private draft access boundary.
+- Production deployment and public release remain unauthorized.

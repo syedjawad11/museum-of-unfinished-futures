@@ -1,7 +1,7 @@
 # Netlify deployment plan — Museum of Unfinished Futures
 
 Date: September 21, 2026
-Status: hosting approved, CLI authenticated, and manual site created; no deployment has been authorized or executed.
+Status: verified draft deployment created and tested behind Netlify's private preview access; production deployment remains unauthorized.
 Host: Netlify Free
 Deployment mode: manual CLI deployment for the first release
 
@@ -21,7 +21,7 @@ Deployment mode: manual CLI deployment for the first release
 
 Use a two-stage manual release:
 
-1. Create a draft deploy and test its private preview URL.
+1. Create a draft deploy and test its private preview URL. Complete: authenticated preview checks passed; logged-out automation is blocked by Netlify Edge Access.
 2. Promote through a separate production deploy only after the release evidence passes and the founder authorizes public release.
 
 Do not use an anonymous deploy. The site must belong to the founder's approved Netlify Free account so ownership, usage, and deletion controls are clear.
@@ -101,4 +101,4 @@ Create a deployment evidence file containing:
 
 ## Current blocker and next action
 
-The Netlify account, Free-plan controls, manual site, and local deployment configuration are verified. A production-mode offline Netlify build packaged the server handler. All local release gates pass: 25 unit tests, Sanity read/schema/document validation, typecheck, lint, production build, six Playwright tests, secret/path checks, and `git diff --check`. The previously documented 15 transitive Sanity CLI/workbench audit findings remain. See `evidence/M05-release-candidate.txt`. The next action is founder review and separate authorization for a draft deployment. Production deployment remains a later, separate gate.
+The local release gates passed and the draft deploy is ready at ID `6ab119b68b09d5206621140f`. Authenticated preview checks verified the gallery, all six outcomes, invalid-choice handling, visible missing-exhibit 404, and the expected Studio CORS gate. Logged-out Playwright receives Netlify's private-preview HTTP 401 boundary, so public status/noindex and mobile checks must be repeated after any authorized production deployment. See `evidence/M05-release-candidate.txt` and `evidence/M05-draft/`. The next action is founder review and explicit production/public-release authorization.

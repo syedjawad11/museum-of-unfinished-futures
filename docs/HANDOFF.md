@@ -6,7 +6,7 @@ Date: September 21, 2026
 
 - Repository: `/home/shah20/Desktop/Hermes/projects/museum-of-unfinished-futures`
 - Branch: `main`
-- Current commit: `b511b75` (`[verified] add guarded curator review workflow`); the repository was clean when hosting compatibility was evaluated on September 21, 2026.
+- Current commit: `60a60c9` (`[verified] add Netlify release configuration`); draft-deployment evidence gathered afterward is currently uncommitted.
 - M00: founder confirmed registered-only status and private eligibility. Sanity project `wa27n68e` and dataset `production_1` are verified; CLI Google authentication succeeded.
 - M01–M04 visitor, content, and curator scope is implemented against the live public dataset. Founder-approved publication created three eras, six outcomes, and three artifacts; all six visitor choices resolve without a code redeploy. The curator demonstration submitted, rejected, revised, resubmitted, approved, and published one artifact revision. No deployment or spend occurred.
 
@@ -53,6 +53,7 @@ See `docs/build-log.md` for implementation evidence; `evidence/M01-review.txt` f
 - The curator slice passed final independent review and all local gates and is committed at `b511b75`.
 - Founder approved Netlify Free, CLI login, and manual site creation on September 21, 2026. The authenticated API verified the `Museum MVP` team is active on Free with 300 included/0 used credits, automatic top-up disabled, and no payment method. Site `museum-of-unfinished-futures` (`d24b8311-81a5-4589-bcc7-68c132ebde2b`) is linked with reserved hostname `https://museum-of-unfinished-futures.netlify.app`, but read-back confirms no published deploy. The tracked Netlify configuration passed an offline production build. See `docs/hosting-decision.md` and `docs/deployment-plan.md`.
 - M05 local release gates pass: 25 unit tests, public Sanity read, schema and 13-document validation, typecheck, lint, production build, six Playwright tests, secret/path checks, and `git diff --check`. Generated `.netlify/**` was added to ESLint ignores after causing the initial lint attempts to time out. The known 15 transitive Sanity CLI/workbench audit findings remain documented. See `evidence/M05-release-candidate.txt`.
+- Founder authorized draft deploy `6ab119b68b09d5206621140f`. Netlify reports it ready, unpublished, and error-free. Authenticated preview checks verified all three exhibits, six outcomes, invalid-choice handling, and a visible missing-exhibit 404. Logged-out Playwright receives Netlify Edge Access HTTP 401, and `/studio` reaches Sanity's unregistered-origin/CORS gate. Ten screenshots are under `evidence/M05-draft/`. Production deployment remains unauthorized.
 
 ## Authority and cost
 

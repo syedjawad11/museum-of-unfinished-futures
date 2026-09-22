@@ -19,13 +19,15 @@ States: BACKLOG → READY → RUNNING → REVIEW → DONE (BLOCKED / CANCELLED a
 | T-009a-chain-content | Consequence tags for all 6 outcomes + the `leadsTo` chain map, as a reviewable JSON proposal (no Sanity writes) | 2 | content-writer (Opus) | DONE (Sep 22; 18 tags, 6 outcomes, all 3 wings reachable, no self-loops; orchestrator-validated against schema rules) | docs/task-packets/T-009a-chain-content.md, docs/content/chain-outcomes.{json,md} |
 | T-009b-chain-ui | Consequence-tag strip + "Continue to →" on the exhibit page, with a cycle guard; tests first | 2 | Codex gpt-5.5 | DONE (Sep 22; unit 145; Sonnet reviewer pass-with-fixes, vacuous test replaced) | docs/task-packets/T-009b-chain-ui.md |
 | T-009c-apply-chain | Guarded, dry-run-first script applying the approved tags + `leadsTo` to the 6 live outcomes | 2 | Codex gpt-5.5 (script) + orchestrator (run) | DONE (Sep 22; single transaction, per-doc ifRevisionId; 6 documents modified; 0 drafts left) | docs/task-packets/T-009c-apply-chain.md, evidence/T-009/apply-chain-executed.json |
-| T-009d-chain-e2e | Browser tests proving the chain end to end now that content is live | 2 | builder (Sonnet) | RUNNING (Sep 22) | docs/task-packets/T-009b-chain-ui.md |
+| T-009d-chain-e2e | Browser tests proving the chain end to end now that content is live | 2 | builder (Sonnet) | DONE (Sep 22; e2e 14/14, mutation-proved) | docs/task-packets/T-009b-chain-ui.md |
+| T-010a-ticket-logic | parseTrace + composeTicket, deterministic, pure; outcomes-by-id query | 2 | Codex gpt-5.5 | DONE (Sep 22; unit 157) | docs/task-packets/T-010-ticket.md |
+| T-010b-ticket-page | /your-future ticket page, OG image, trace threading through the walk, e2e | 2 | frontend-designer (Sonnet) | DONE (Sep 22; e2e 17/17, mutation-proved; OG image not trace-specific - Next 16.3.5 constraint) | docs/task-packets/T-010-ticket.md |
+| T-010c-ticket-lines | Openings, era lines, 14 tag phrases, closings in the museum voice | 2 | content-writer (Opus) | DONE (Sep 22) | docs/content/ticket-lines.json |
 
 ## Backlog (to be turned into packets, in this order; T-007 done on the founder's instruction on Sep 21 night)
 
 | Candidate | imp.md § | Likely worker | Size |
 |---|---|---|---|
-| T-010: visitor ticket page `/your-future?trace=…` + own OG image | 2 | Codex gpt-5.5 (logic) + frontend-designer (UI) | 1 day |
 | T-011: 3–5 new exhibits + outcomes (voice) + one plate each, published through the review workflow | 2 | content-writer (Opus) + frontend-designer (Sonnet) | 1½ days |
 | T-012: per-exhibit metadata, opengraph-image, favicon, `/about` colophon, sitemap/robots; vitrine-height cosmetic fix | 1, 6 | frontend-designer / builder (Sonnet) | ½ day |
 | T-013: official Sanity Workflows spike (4 h box) → migrate or document | 3 | Codex gpt-5.5, reviewed by reviewer (Sonnet/Opus) | 4 h |

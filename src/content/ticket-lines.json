@@ -1,0 +1,33 @@
+{
+  "openings": [
+    "The museum has finished with you for tonight.",
+    "The last door closes behind you without hurry.",
+    "Your walk is over. What follows is only what the rooms noticed."
+  ],
+  "eraLines": {
+    "civic-time-expansion-era": "The Civic Time Expansion Era expects you back. It is still holding a day with your name on it and no year to put it in.",
+    "counterfactual-communications-boom": "The Counterfactual Communications Boom keeps your line open. Somewhere a receiver is warm, and nobody in that kitchen has hung up.",
+    "domestic-weather-memory-era": "The Domestic Weather Memory Era files your future under shelter. Expect rain indoors, and a voice calling you in before the thunder."
+  },
+  "tagPhrases": {
+    "borrowed-time": "carrying a day that was never yours to keep",
+    "accruing-interest": "quietly owing more than you agreed to spend",
+    "edited-without-asking": "amended in a record you were never shown",
+    "quiet-refusal": "declining something without ever raising your voice",
+    "weekend-intact": "with your weekend still unspent",
+    "room-to-breathe": "with more room around you than the corridor promised",
+    "almost-recognized": "known by something that cannot quite place your name",
+    "another-life-answering": "answered by a life you decided not to live",
+    "line-left-open": "with a line still open behind you",
+    "future-already-calling": "already expected somewhere eleven years ahead",
+    "apology-not-required": "released from an apology you had prepared",
+    "weather-you-can-re-enter": "able to step back into weather that has already passed",
+    "shelter-returned": "given back a hallway you were once called into",
+    "unlisted-by-the-sky": "unlisted by every forecast above you"
+  },
+  "closings": [
+    "The lights go down one room at a time, in the order you walked them.",
+    "Keep the ticket. None of these futures arrived, and one of them is now yours.",
+    "The doors lock behind you. The exhibits continue without an audience, as they have for years."
+  ]
+}

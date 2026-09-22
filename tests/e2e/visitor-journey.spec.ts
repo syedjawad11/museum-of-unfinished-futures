@@ -214,7 +214,10 @@ test("the chain carries a visitor from one exhibit into the next wing", async ({
     .getByRole("link", { name: `Continue to ${telephone.title}` })
     .click();
 
-  await expect(page).toHaveURL(new RegExp(`${telephone.path}$`));
+  // The Continue link now carries the accumulated trace forward as
+  // `?trace=...` (see src/app/exhibits/[slug]/page.tsx), so the destination
+  // URL may have a trailing query string; only the path is asserted here.
+  await expect(page).toHaveURL(new RegExp(`${telephone.path}(\\?|$)`));
   await expect(
     page.getByRole("heading", { name: telephone.title }),
   ).toBeVisible();
@@ -234,17 +237,96 @@ test("a three-exhibit walk threads the whole museum as one route", async ({
     .getByRole("link", { name: `Continue to ${telephone.title}` })
     .click();
 
-  await expect(page).toHaveURL(new RegExp(`${telephone.path}$`));
+  // See the trace-forwarding note above: Continue links now append `?trace=`.
+  await expect(page).toHaveURL(new RegExp(`${telephone.path}(\\?|$)`));
   await page.getByRole("link", { name: "Call the life you declined" }).click();
+  // Choice links also forward whatever trace arrived on this page, so
+  // `&trace=...` may follow `?choice=call-declined-life`.
   await expect(page).toHaveURL(
-    new RegExp(`${telephone.path}\\?choice=call-declined-life$`),
+    new RegExp(`${telephone.path}\\?choice=call-declined-life(&trace=|$)`),
   );
   await page
     .getByRole("link", { name: `Continue to ${umbrella.title}` })
     .click();
 
-  await expect(page).toHaveURL(new RegExp(`${umbrella.path}$`));
+  await expect(page).toHaveURL(new RegExp(`${umbrella.path}(\\?|$)`));
   await expect(
     page.getByRole("heading", { name: umbrella.title }),
+  ).toBeVisible();
+});
+
+test("a valid trace prints a ticket containing the expected composed text", async ({
+  page,
+}) => {
+  await page.goto(
+    "/your-future?trace=outcome-paper-monday,outcome-soft-refusal",
+  );
+
+  await expect(
+    page.getByRole("heading", { name: "Your Unfinished Future" }),
+  ).toBeVisible();
+  // A tag phrase unique to outcome-paper-monday's consequenceTags, joined by
+  // composeTicket's "Your trace carries ..." stem (src/domain/ticket.ts).
+  await expect(
+    page.getByText(/carrying a day that was never yours to keep/),
+  ).toBeVisible();
+  // The civic-time-expansion-era line from ticket-lines.json — both outcomes
+  // share this era, so it must appear exactly once.
+  await expect(
+    page.getByText(
+      "The Civic Time Expansion Era expects you back. It is still holding a day with your name on it and no year to put it in.",
+      { exact: true },
+    ),
+  ).toBeVisible();
+  await expect(page.getByText(/Accession No\./)).toBeVisible();
+});
+
+test("a malformed trace renders the museum-voice failure state, not an error", async ({
+  page,
+}) => {
+  const response = await page.goto("/your-future?trace=Not_A_Valid-id!!");
+
+  expect(response?.status()).toBe(200);
+  await expect(
+    page.getByRole("heading", { name: "This ticket could not be read." }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("link", { name: "Back to the hall" }),
+  ).toBeVisible();
+  // Never a stack trace: no digest/error chrome from Next's error overlay.
+  await expect(page.getByText(/Application error/i)).toHaveCount(0);
+});
+
+test("walking two exhibits then printing the ticket mentions both wings", async ({
+  page,
+}) => {
+  const telephone = exhibits[0];
+
+  await page.goto(`${vendingMachine.path}?choice=spend-a-plan`);
+  await page
+    .getByRole("link", { name: `Continue to ${telephone.title}` })
+    .click();
+  await page.getByRole("link", { name: "Call the life you declined" }).click();
+  await expect(
+    page.getByRole("heading", { name: "A familiar stranger answers" }),
+  ).toBeVisible();
+
+  await page
+    .getByRole("link", { name: "Print your ticket for this trace" })
+    .click();
+
+  await expect(page).toHaveURL(
+    /\/your-future\?trace=outcome-paper-monday,outcome-familiar-stranger$/,
+  );
+  await expect(
+    page.getByRole("heading", { name: "Your Unfinished Future" }),
+  ).toBeVisible();
+  // The Civic Time Expansion Era line (from the vending machine outcome).
+  await expect(
+    page.getByText(/The Civic Time Expansion Era expects you back/),
+  ).toBeVisible();
+  // The Counterfactual Communications Boom line (from the telephone outcome).
+  await expect(
+    page.getByText(/The Counterfactual Communications Boom keeps your line open/),
   ).toBeVisible();
 });

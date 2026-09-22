@@ -184,3 +184,67 @@ test("missing wing returns a noindex 404", async ({ page }) => {
     /noindex/,
   );
 });
+
+test("a choice shows its consequence tags in display form", async ({
+  page,
+}) => {
+  await page.goto(
+    `${vendingMachine.path}?choice=spend-a-plan`,
+  );
+
+  await expect(
+    page.getByRole("heading", { name: "A paper Monday drops" }),
+  ).toBeVisible();
+  await expect(page.getByText("Borrowed time", { exact: true })).toBeVisible();
+  await expect(
+    page.getByText("Accruing interest", { exact: true }),
+  ).toBeVisible();
+  await expect(
+    page.getByText("Edited without asking", { exact: true }),
+  ).toBeVisible();
+});
+
+test("the chain carries a visitor from one exhibit into the next wing", async ({
+  page,
+}) => {
+  await page.goto(`${vendingMachine.path}?choice=spend-a-plan`);
+
+  const telephone = exhibits[0];
+  await page
+    .getByRole("link", { name: `Continue to ${telephone.title}` })
+    .click();
+
+  await expect(page).toHaveURL(new RegExp(`${telephone.path}$`));
+  await expect(
+    page.getByRole("heading", { name: telephone.title }),
+  ).toBeVisible();
+});
+
+test("a three-exhibit walk threads the whole museum as one route", async ({
+  page,
+}) => {
+  const telephone = exhibits[0];
+  const umbrella = exhibits[1];
+
+  await page.goto(`${vendingMachine.path}?choice=spend-a-plan`);
+  await expect(page).toHaveURL(
+    new RegExp(`${vendingMachine.path}\\?choice=spend-a-plan$`),
+  );
+  await page
+    .getByRole("link", { name: `Continue to ${telephone.title}` })
+    .click();
+
+  await expect(page).toHaveURL(new RegExp(`${telephone.path}$`));
+  await page.getByRole("link", { name: "Call the life you declined" }).click();
+  await expect(page).toHaveURL(
+    new RegExp(`${telephone.path}\\?choice=call-declined-life$`),
+  );
+  await page
+    .getByRole("link", { name: `Continue to ${umbrella.title}` })
+    .click();
+
+  await expect(page).toHaveURL(new RegExp(`${umbrella.path}$`));
+  await expect(
+    page.getByRole("heading", { name: umbrella.title }),
+  ).toBeVisible();
+});

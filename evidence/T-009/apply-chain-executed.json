@@ -1,0 +1,89 @@
+{
+  "mode": "executed",
+  "outcomes": [
+    {
+      "id": "outcome-paper-monday",
+      "revisionBefore": "FhaKCniGTxwFh6i6lrFVdg",
+      "revisionAfter": "u3MMk9EkwEQM5L686CP9ig",
+      "consequenceTags": [
+        "borrowed-time",
+        "accruing-interest",
+        "edited-without-asking"
+      ],
+      "leadsTo": {
+        "_type": "reference",
+        "_ref": "artifact-roads-not-taken-telephone"
+      }
+    },
+    {
+      "id": "outcome-soft-refusal",
+      "revisionBefore": "FhaKCniGTxwFh6i6lrFVdg",
+      "revisionAfter": "u3MMk9EkwEQM5L686CP9ig",
+      "consequenceTags": [
+        "quiet-refusal",
+        "weekend-intact",
+        "room-to-breathe"
+      ],
+      "leadsTo": {
+        "_type": "reference",
+        "_ref": "artifact-memory-umbrella"
+      }
+    },
+    {
+      "id": "outcome-familiar-stranger",
+      "revisionBefore": "H9ASAGA65Kq0AQze3s6KdJ",
+      "revisionAfter": "u3MMk9EkwEQM5L686CP9ig",
+      "consequenceTags": [
+        "almost-recognized",
+        "another-life-answering",
+        "line-left-open"
+      ],
+      "leadsTo": {
+        "_type": "reference",
+        "_ref": "artifact-memory-umbrella"
+      }
+    },
+    {
+      "id": "outcome-missed-call-self",
+      "revisionBefore": "H9ASAGA65Kq0AQze3s6KdJ",
+      "revisionAfter": "u3MMk9EkwEQM5L686CP9ig",
+      "consequenceTags": [
+        "quiet-refusal",
+        "future-already-calling",
+        "apology-not-required"
+      ],
+      "leadsTo": {
+        "_type": "reference",
+        "_ref": "artifact-extra-mondays-vending-machine"
+      }
+    },
+    {
+      "id": "outcome-room-rains-back",
+      "revisionBefore": "H9ASAGA65Kq0AQze3s6KdJ",
+      "revisionAfter": "u3MMk9EkwEQM5L686CP9ig",
+      "consequenceTags": [
+        "almost-recognized",
+        "weather-you-can-re-enter",
+        "shelter-returned"
+      ],
+      "leadsTo": {
+        "_type": "reference",
+        "_ref": "artifact-roads-not-taken-telephone"
+      }
+    },
+    {
+      "id": "outcome-forecast-forgets",
+      "revisionBefore": "H9ASAGA65Kq0AQze3s6KdJ",
+      "revisionAfter": "u3MMk9EkwEQM5L686CP9ig",
+      "consequenceTags": [
+        "room-to-breathe",
+        "edited-without-asking",
+        "unlisted-by-the-sky"
+      ],
+      "leadsTo": {
+        "_type": "reference",
+        "_ref": "artifact-extra-mondays-vending-machine"
+      }
+    }
+  ]
+}

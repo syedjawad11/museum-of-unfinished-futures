@@ -16,12 +16,15 @@ States: BACKLOG → READY → RUNNING → REVIEW → DONE (BLOCKED / CANCELLED a
 | T-006-plate-wiring | Inline plates + wing accent in Vitrine (home + exhibit), e2e, screenshots | 1 | frontend-designer (Sonnet) | DONE (Sep 21; e2e 7/7; Codex gpt-5.6-sol review pass; commit 0a9a5a6; draft deploy 6ab179225cac95ae144beed3) | docs/task-packets/T-006-plate-wiring.md |
 | T-007-plates-into-sanity | Upload the three plates as Sanity image assets and attach them (image + alt) through the review flow with a guarded publish | 1 | Codex gpt-5.5 (script) + orchestrator (run) | DONE (Sep 21; 3 assets 800×600 published via submit→approve→guarded publish; unit 104; e2e 7/7; reviewer pass-with-fixes applied) | docs/task-packets/T-007-plates-into-sanity.md, evidence/T-007/ |
 | T-008-wings | Wings: home grouped by era with wall placards, `/eras/[slug]` wing page, WingMap floor plan, e2e | 2 | frontend-designer (Sonnet) | DONE (Sep 22; unit 119; e2e 11/11; Codex gpt-5.6-sol review pass-with-fixes, 3 findings applied; vacuous summary test replaced and mutation-checked) | docs/task-packets/T-008-wings.md, evidence/T-008/ |
+| T-009a-chain-content | Consequence tags for all 6 outcomes + the `leadsTo` chain map, as a reviewable JSON proposal (no Sanity writes) | 2 | content-writer (Opus) | DONE (Sep 22; 18 tags, 6 outcomes, all 3 wings reachable, no self-loops; orchestrator-validated against schema rules) | docs/task-packets/T-009a-chain-content.md, docs/content/chain-outcomes.{json,md} |
+| T-009b-chain-ui | Consequence-tag strip + "Continue to →" on the exhibit page, with a cycle guard; tests first | 2 | Codex gpt-5.5 | DONE (Sep 22; unit 145; Sonnet reviewer pass-with-fixes, vacuous test replaced) | docs/task-packets/T-009b-chain-ui.md |
+| T-009c-apply-chain | Guarded, dry-run-first script applying the approved tags + `leadsTo` to the 6 live outcomes | 2 | Codex gpt-5.5 (script) + orchestrator (run) | DONE (Sep 22; single transaction, per-doc ifRevisionId; 6 documents modified; 0 drafts left) | docs/task-packets/T-009c-apply-chain.md, evidence/T-009/apply-chain-executed.json |
+| T-009d-chain-e2e | Browser tests proving the chain end to end now that content is live | 2 | builder (Sonnet) | RUNNING (Sep 22) | docs/task-packets/T-009b-chain-ui.md |
 
 ## Backlog (to be turned into packets, in this order; T-007 done on the founder's instruction on Sep 21 night)
 
 | Candidate | imp.md § | Likely worker | Size |
 |---|---|---|---|
-| T-009: chained outcomes — consequenceTags, "Continue to →" via leadsTo (cycle guard), 2–4 choices UI | 2 | Codex gpt-5.5 | ½ day |
 | T-010: visitor ticket page `/your-future?trace=…` + own OG image | 2 | Codex gpt-5.5 (logic) + frontend-designer (UI) | 1 day |
 | T-011: 3–5 new exhibits + outcomes (voice) + one plate each, published through the review workflow | 2 | content-writer (Opus) + frontend-designer (Sonnet) | 1½ days |
 | T-012: per-exhibit metadata, opengraph-image, favicon, `/about` colophon, sitemap/robots; vitrine-height cosmetic fix | 1, 6 | frontend-designer / builder (Sonnet) | ½ day |

@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { sanityExhibitRepository } from "@/content/sanity-repository";
 import { loadPlateMarkup } from "@/content/plate-markup";
+import { formatConsequenceTag, nextStep } from "@/domain/outcome-chain";
 import { resolveLinkedOutcome } from "@/domain/visitor-trace";
 import { Doorway } from "@/components/Doorway";
 import { Plaque } from "@/components/Plaque";
@@ -36,6 +37,9 @@ export default async function ExhibitPage({
   const outcome = selectedChoice
     ? resolveLinkedOutcome(exhibit, selectedChoice)
     : undefined;
+  const onwardStep = outcome ? nextStep(outcome, exhibit.slug) : null;
+  const consequenceTags =
+    outcome?.consequenceTags.map(formatConsequenceTag).filter(Boolean) ?? [];
 
   return (
     <div className="mx-auto flex w-full max-w-6xl flex-col gap-8 px-6 py-10 sm:px-10">
@@ -85,11 +89,40 @@ export default async function ExhibitPage({
           </div>
 
           {selectedChoice && outcome ? (
-            <OutcomeProjection
-              body={outcome.body}
-              state="outcome"
-              title={outcome.title}
-            />
+            <div className="flex flex-col gap-5">
+              {consequenceTags.length > 0 ? (
+                <div className="flex flex-wrap gap-2 font-mono text-[0.68rem] uppercase tracking-[0.18em] text-brass">
+                  {consequenceTags.map((tag) => (
+                    <span
+                      className="rounded border border-brass/45 px-2 py-1"
+                      key={tag}
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              ) : null}
+
+              <OutcomeProjection
+                body={outcome.body}
+                state="outcome"
+                title={outcome.title}
+              />
+
+              {onwardStep ? (
+                <Link
+                  aria-label={`Continue to ${onwardStep.title}`}
+                  className="group inline-flex w-fit items-center gap-2 font-mono text-sm uppercase tracking-[0.2em] text-brass motion-safe:transition hover:text-accent"
+                  href={`/exhibits/${onwardStep.slug}`}
+                >
+                  <span
+                    aria-hidden
+                    className="h-2 w-2 rounded-full bg-accent shadow-[0_0_6px_1px_var(--accent)] transition-shadow duration-300 motion-reduce:transition-none group-hover:shadow-[0_0_14px_4px_var(--accent)]"
+                  />
+                  Continue to <span aria-hidden>→</span> {onwardStep.title}
+                </Link>
+              ) : null}
+            </div>
           ) : selectedChoice ? (
             <OutcomeProjection state="unavailable" />
           ) : (

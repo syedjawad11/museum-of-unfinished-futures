@@ -1,0 +1,101 @@
+{
+  "_note": "Proposal only. Not published. Maps each existing outcome _id to its consequenceTags and a single leadsTo artifact. Tags satisfy schemas/outcome.ts: 1-4 per outcome, /^[a-z0-9-]{2,32}$/, unique within an outcome.",
+  "outcomes": [
+    {
+      "_id": "outcome-paper-monday",
+      "title": "A paper Monday drops",
+      "artifact": "artifact-extra-mondays-vending-machine",
+      "consequenceTags": [
+        "borrowed-time",
+        "accruing-interest",
+        "edited-without-asking"
+      ],
+      "leadsTo": {
+        "artifactId": "artifact-roads-not-taken-telephone",
+        "slug": "roads-not-taken-telephone",
+        "title": "The Telephone for Calling Roads Not Taken"
+      },
+      "why": "A day arrives already annotated with someone else's plans for you, so the visitor is handed to the instrument that lets them ask a different version of themselves how those plans turned out."
+    },
+    {
+      "_id": "outcome-soft-refusal",
+      "title": "The machine keeps humming",
+      "artifact": "artifact-extra-mondays-vending-machine",
+      "consequenceTags": [
+        "quiet-refusal",
+        "weekend-intact",
+        "room-to-breathe"
+      ],
+      "leadsTo": {
+        "artifactId": "artifact-memory-umbrella",
+        "slug": "memory-umbrella",
+        "title": "The Umbrella That Remembers Every Storm"
+      },
+      "why": "The visitor has just kept a weekend for themselves, so the museum shows them the object built to store the shelter such weekends were spent under."
+    },
+    {
+      "_id": "outcome-familiar-stranger",
+      "title": "A familiar stranger answers",
+      "artifact": "artifact-roads-not-taken-telephone",
+      "consequenceTags": [
+        "almost-recognized",
+        "another-life-answering",
+        "line-left-open"
+      ],
+      "leadsTo": {
+        "artifactId": "artifact-memory-umbrella",
+        "slug": "memory-umbrella",
+        "title": "The Umbrella That Remembers Every Storm"
+      },
+      "why": "A voice in an almost-familiar kitchen leaves the visitor holding a household they never lived in, and the umbrella is where this museum keeps the weather of households."
+    },
+    {
+      "_id": "outcome-missed-call-self",
+      "title": "A missed call arrives from you",
+      "artifact": "artifact-roads-not-taken-telephone",
+      "consequenceTags": [
+        "quiet-refusal",
+        "future-already-calling",
+        "apology-not-required"
+      ],
+      "leadsTo": {
+        "artifactId": "artifact-extra-mondays-vending-machine",
+        "slug": "extra-mondays-vending-machine",
+        "title": "The Vending Machine That Sells Extra Mondays"
+      },
+      "why": "The visitor now carries a date eleven years ahead that no calendar issued, and the vending machine is the only exhibit that sells dates the official year never entered."
+    },
+    {
+      "_id": "outcome-room-rains-back",
+      "title": "The room rains back",
+      "artifact": "artifact-memory-umbrella",
+      "consequenceTags": [
+        "almost-recognized",
+        "weather-you-can-re-enter",
+        "shelter-returned"
+      ],
+      "leadsTo": {
+        "artifactId": "artifact-roads-not-taken-telephone",
+        "slug": "roads-not-taken-telephone",
+        "title": "The Telephone for Calling Roads Not Taken"
+      },
+      "why": "Someone called the visitor indoors out of a storm that is no longer happening, and the telephone is the exhibit that answers voices like that one."
+    },
+    {
+      "_id": "outcome-forecast-forgets",
+      "title": "The forecast forgets your name",
+      "artifact": "artifact-memory-umbrella",
+      "consequenceTags": [
+        "room-to-breathe",
+        "edited-without-asking",
+        "unlisted-by-the-sky"
+      ],
+      "leadsTo": {
+        "artifactId": "artifact-extra-mondays-vending-machine",
+        "slug": "extra-mondays-vending-machine",
+        "title": "The Vending Machine That Sells Extra Mondays"
+      },
+      "why": "Having been quietly removed from the weather's records, the visitor is walked to the machine that puts days back on a calendar for anyone willing to pay in plans."
+    }
+  ]
+}

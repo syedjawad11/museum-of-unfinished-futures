@@ -1,5 +1,14 @@
 # Project handoff
 
+> **SUPERSEDED — do not use this as current state.** This file describes the project as it stood on the morning of September 21, 2026, before the orchestrated sprint (T-001 … T-010). It is kept as a record of that milestone, not as a status report.
+>
+> For current state read, in this order:
+> 1. `memory/HANDOFF.md` at the workspace root — latest status, commits, blockers, next action.
+> 2. `docs/TASK_BOARD.md` — every task, its worker, its state and its evidence.
+> 3. `docs/build-log.md` — what was built, what failed, and how it was verified.
+>
+> As of September 22, 2026 the app is at commit `1cff24c`: three wings with a floor plan, chained endings, and the visitor's ticket at `/your-future`. Gates: 157 unit, 17 e2e. Still no production deploy.
+
 Date: September 21, 2026
 
 ## Current state

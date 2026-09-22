@@ -104,3 +104,83 @@ test("visitor journey remains usable at a mobile viewport", async ({ page }) => 
     page.getByRole("heading", { name: "The forecast forgets your name" }),
   ).toBeVisible();
 });
+
+const wings = [
+  {
+    title: "The Civic Time Expansion Era",
+    slug: "civic-time-expansion-era",
+    summary:
+      "A near future in which cities treated spare hours as public infrastructure, issuing extra weekdays through experimental municipal machines.",
+    exhibitTitle: "The Vending Machine That Sells Extra Mondays",
+  },
+  {
+    title: "The Counterfactual Communications Boom",
+    slug: "counterfactual-communications-boom",
+    summary:
+      "An optimistic communications age when public telephone networks briefly connected callers to plausible lives they had chosen not to live.",
+    exhibitTitle: "The Telephone for Calling Roads Not Taken",
+  },
+  {
+    title: "The Domestic Weather Memory Era",
+    slug: "domestic-weather-memory-era",
+    summary:
+      "A short-lived domestic design movement that taught everyday objects to store weather, mood, and the private history of sheltering together.",
+    exhibitTitle: "The Umbrella That Remembers Every Storm",
+  },
+] as const;
+
+test("home shows all three wing placards with their titles and summaries", async ({ page }) => {
+  await page.goto("/");
+
+  for (const wing of wings) {
+    const heading = page.getByRole("heading", { name: wing.title, level: 2 });
+    await expect(heading).toBeVisible();
+
+    const placard = page.locator("section", { has: heading });
+    await expect(placard.getByText(wing.summary, { exact: true })).toBeVisible();
+  }
+});
+
+test("the floor plan links to a wing page and that wing lists its exhibit", async ({ page }) => {
+  await page.goto("/");
+
+  const floorPlan = page.getByRole("group", { name: "Museum floor plan" });
+  await expect(floorPlan).toBeVisible();
+
+  const civic = wings[0];
+  await floorPlan
+    .getByRole("link", { name: new RegExp(civic.title) })
+    .click();
+
+  await expect(page).toHaveURL(new RegExp(`/eras/${civic.slug}$`));
+  await expect(
+    page.getByRole("heading", { name: civic.title, level: 1 }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("heading", { name: civic.exhibitTitle }),
+  ).toBeVisible();
+});
+
+test("a wing page's exhibit link reaches the exhibit page", async ({ page }) => {
+  const domestic = wings[2];
+  await page.goto(`/eras/${domestic.slug}`);
+
+  await page
+    .getByRole("link", { name: new RegExp(domestic.exhibitTitle) })
+    .click();
+
+  await expect(page).toHaveURL(/\/exhibits\/memory-umbrella$/);
+  await expect(
+    page.getByRole("heading", { name: domestic.exhibitTitle }),
+  ).toBeVisible();
+});
+
+test("missing wing returns a noindex 404", async ({ page }) => {
+  const response = await page.goto("/eras/does-not-exist");
+
+  expect(response?.status()).toBe(404);
+  await expect(page.locator('meta[name="robots"]')).toHaveAttribute(
+    "content",
+    /noindex/,
+  );
+});

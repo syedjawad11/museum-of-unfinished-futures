@@ -7,8 +7,10 @@ type PlaqueProps = {
   summary: string;
   children?: ReactNode;
   /** Heading level for `title`. Defaults to "h2" (a wall label beside a
-   * case). Pass "h1" when the plaque carries the page's primary heading. */
-  as?: "h1" | "h2";
+   * case). Pass "h1" when the plaque carries the page's primary heading, or
+   * "h3" when the plaque nests beneath another heading already at "h2"
+   * (e.g. an exhibit card inside a wing's `h2` section on the home page). */
+  as?: "h1" | "h2" | "h3";
 };
 
 /**

@@ -1,0 +1,92 @@
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import type { CSSProperties } from "react";
+import { sanityExhibitRepository } from "@/content/sanity-repository";
+import { loadPlateMarkup } from "@/content/plate-markup";
+import { caseCountLabel } from "@/domain/wings";
+import { Doorway } from "@/components/Doorway";
+import { Plaque } from "@/components/Plaque";
+import { Vitrine } from "@/components/Vitrine";
+
+type WingPageProps = {
+  params: Promise<{ slug: string }>;
+};
+
+export const dynamic = "force-dynamic";
+
+type AccentStyle = CSSProperties & { "--accent"?: string };
+
+const HEX_ACCENT_PATTERN = /^#[0-9a-fA-F]{6}$/;
+
+export default async function WingPage({ params }: WingPageProps) {
+  const { slug } = await params;
+  const wing = await sanityExhibitRepository.getEraBySlug(slug);
+
+  if (!wing) {
+    notFound();
+  }
+
+  const plateMarkups = await Promise.all(
+    wing.exhibits.map((exhibit) =>
+      loadPlateMarkup({ slug: exhibit.slug, imageUrl: exhibit.image?.url }),
+    ),
+  );
+
+  const style: AccentStyle | undefined =
+    wing.accentColor && HEX_ACCENT_PATTERN.test(wing.accentColor)
+      ? { "--accent": wing.accentColor }
+      : undefined;
+
+  return (
+    <div className="mx-auto flex w-full max-w-6xl flex-col gap-8 px-6 py-10 sm:px-10">
+      <Doorway href="/" label="Back to the hall" />
+
+      <header className="max-w-3xl border-l-4 border-accent/60 pl-6 sm:pl-8" style={style}>
+        <p className="font-mono text-xs uppercase tracking-[0.24em] text-brass">
+          Wing · {caseCountLabel(wing.exhibits.length)}
+        </p>
+        <h1 className="mt-2 font-display text-4xl text-spotlight sm:text-5xl">
+          {wing.title}
+        </h1>
+        <p className="mt-4 text-lg leading-8 text-ink-muted">{wing.summary}</p>
+      </header>
+
+      <section aria-label={`${wing.title} exhibits`} style={style}>
+        {wing.exhibits.length > 0 ? (
+          <div className="grid gap-8 sm:grid-cols-2">
+            {wing.exhibits.map((exhibit, exhibitIndex) => (
+              <Link
+                className="group rounded-lg"
+                href={`/exhibits/${exhibit.slug}`}
+                key={exhibit.slug}
+              >
+                <div className="flex h-full flex-col gap-4">
+                  <Vitrine
+                    accent={exhibit.era.accentColor}
+                    description={exhibit.visualDescription}
+                    label={exhibit.artifactLabel}
+                    plateMarkup={plateMarkups[exhibitIndex]}
+                    title={exhibit.title}
+                  />
+                  <Plaque
+                    accessionNote={exhibit.accessionNote}
+                    summary={exhibit.summary}
+                    title={exhibit.title}
+                  >
+                    <span className="font-mono text-sm uppercase tracking-[0.18em] text-brass motion-safe:transition group-hover:text-accent">
+                      Enter exhibit →
+                    </span>
+                  </Plaque>
+                </div>
+              </Link>
+            ))}
+          </div>
+        ) : (
+          <p className="font-mono text-sm uppercase tracking-[0.18em] text-ink-muted">
+            This wing is still being hung.
+          </p>
+        )}
+      </section>
+    </div>
+  );
+}

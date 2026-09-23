@@ -1,0 +1,58 @@
+{
+  "mode": "executed",
+  "published": [
+    "artifact-future-self-toaster",
+    "artifact-unfinished-conversations-switchboard",
+    "artifact-weather-of-visits-kettle",
+    "outcome-note-in-your-handwriting",
+    "outcome-message-under-the-butter",
+    "outcome-sentence-resumes",
+    "outcome-exchange-goes-quiet",
+    "outcome-blank-jack-rings",
+    "outcome-afternoon-comes-indoors",
+    "outcome-kettle-stays-cold"
+  ],
+  "draftsRemaining": 0,
+  "leadsToVerified": 10,
+  "artifacts": [
+    {
+      "artifactId": "artifact-future-self-toaster",
+      "assetId": "image-f264b1f250a5b6644770c79b0c2edef59c0e41ab-800x600-svg",
+      "assetUrl": "https://cdn.sanity.io/images/wa27n68e/production_1/f264b1f250a5b6644770c79b0c2edef59c0e41ab-800x600.svg",
+      "dimensions": {
+        "_type": "sanity.imageDimensions",
+        "aspectRatio": 1.3333333333333333,
+        "height": 600,
+        "width": 800
+      },
+      "reviewId": "artifactReview.artifact-future-self-toaster",
+      "approvedRevision": "5h6FyZinaruU6QbliFra2I"
+    },
+    {
+      "artifactId": "artifact-unfinished-conversations-switchboard",
+      "assetId": "image-7f9aedf65367d6145e3368f37917dde8735a36b0-800x600-svg",
+      "assetUrl": "https://cdn.sanity.io/images/wa27n68e/production_1/7f9aedf65367d6145e3368f37917dde8735a36b0-800x600.svg",
+      "dimensions": {
+        "_type": "sanity.imageDimensions",
+        "aspectRatio": 1.3333333333333333,
+        "height": 600,
+        "width": 800
+      },
+      "reviewId": "artifactReview.artifact-unfinished-conversations-switchboard",
+      "approvedRevision": "hlh1vcrzg3ToE6vxANRKGY"
+    },
+    {
+      "artifactId": "artifact-weather-of-visits-kettle",
+      "assetId": "image-492f4f6a8a1a7c4c190917df1f365c8283bed4c4-800x600-svg",
+      "assetUrl": "https://cdn.sanity.io/images/wa27n68e/production_1/492f4f6a8a1a7c4c190917df1f365c8283bed4c4-800x600.svg",
+      "dimensions": {
+        "_type": "sanity.imageDimensions",
+        "aspectRatio": 1.3333333333333333,
+        "height": 600,
+        "width": 800
+      },
+      "reviewId": "artifactReview.artifact-weather-of-visits-kettle",
+      "approvedRevision": "hlh1vcrzg3ToE6vxANRPf0"
+    }
+  ]
+}

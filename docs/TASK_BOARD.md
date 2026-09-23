@@ -23,13 +23,18 @@ States: BACKLOG → READY → RUNNING → REVIEW → DONE (BLOCKED / CANCELLED a
 | T-010a-ticket-logic | parseTrace + composeTicket, deterministic, pure; outcomes-by-id query | 2 | Codex gpt-5.5 | DONE (Sep 22; unit 157) | docs/task-packets/T-010-ticket.md |
 | T-010b-ticket-page | /your-future ticket page, OG image, trace threading through the walk, e2e | 2 | frontend-designer (Sonnet) | DONE (Sep 22; e2e 17/17, mutation-proved; OG image not trace-specific - Next 16.3.5 constraint) | docs/task-packets/T-010-ticket.md |
 | T-010c-ticket-lines | Openings, era lines, 14 tag phrases, closings in the museum voice | 2 | content-writer (Opus) | DONE (Sep 22) | docs/content/ticket-lines.json |
+| T-011a-new-exhibits-content | 3 new exhibits (one per wing) + outcomes, tags, chain rewires, ticket phrases, plate briefs, as a JSON proposal | 2 | content-writer (Opus) | DONE (Sep 23; validator 0 errors, walk strongly connected; founder approved text + 3 rewires) | docs/task-packets/T-011a-new-exhibits-content.md |
+| T-011b-plates-004-006 | Blueprint plates 004 toaster, 005 switchboard, 006 kettle | 1–2 | frontend-designer (Sonnet) | DONE (Sep 23; 004 accepted first pass; 005/006 after one polish round; renders inspected) | docs/task-packets/T-011b-plates-004-006.md |
+| T-011c-publish-new-exhibits | Dry-run-first publish script: 7 outcomes, 3 artifacts via review flow with plates, 3 rewires; 8 ticket phrases | 2 | Codex gpt-5.5 + orchestrator run | DONE via T-011c2 (Sep 23; run 1 stopped part-way on review strong-ref, fixed; resume run published 3 artifacts + 7 outcomes, 10 leadsTo verified, 0 drafts; 28 docs valid) | docs/task-packets/T-011c-publish-new-exhibits.md |
+| T-011c2-resume-preflight-fix | Fix resume preflight (index misalignment + key-order equality); review fixes for race + resume invariants | 2 | builder (Sonnet), reviewed by Codex gpt-5.6-sol | DONE (Sep 23; gpt-5.6-sol review fail → 3 fixes → pass; unit 187) | docs/task-packets/T-011c2-resume-preflight-fix.md |
+| T-011d-new-exhibits-e2e | Browser tests + screenshots for the three new exhibits, rewired doors, ticket phrases | 2 | builder (Sonnet) | DONE (Sep 23; +25 e2e, full e2e 42/42 re-run by orchestrator; screenshots read) | docs/task-packets/T-011d-new-exhibits-e2e.md |
 
 ## Backlog (to be turned into packets, in this order; T-007 done on the founder's instruction on Sep 21 night)
 
 | Candidate | imp.md § | Likely worker | Size |
 |---|---|---|---|
-| T-011: 3–5 new exhibits + outcomes (voice) + one plate each, published through the review workflow | 2 | content-writer (Opus) + frontend-designer (Sonnet) | 1½ days |
-| T-012: per-exhibit metadata, opengraph-image, favicon, `/about` colophon, sitemap/robots; vitrine-height cosmetic fix | 1, 6 | frontend-designer / builder (Sonnet) | ½ day |
+| ~~T-011~~ DONE Sep 23 as T-011a–d (6 exhibits live) | 2 | content-writer (Opus) + frontend-designer (Sonnet) | 1½ days |
+| T-012: per-exhibit metadata, opengraph-image, favicon, `/about` colophon, sitemap/robots; vitrine-height fix, SELECTED badge spacing, Continue-to wrap, ticket stem repetition | 1, 6 | frontend-designer / builder (Sonnet) | ½ day |
 | T-013: official Sanity Workflows spike (4 h box) → migrate or document | 3 | Codex gpt-5.5, reviewed by reviewer (Sonnet/Opus) | 4 h |
 | T-014: App SDK Curator's Desk (1 day box, SHOULD) | 4 | builder (Sonnet) | 1 day |
 | T-015: ISR (`revalidate = 60`) + optional webhook revalidation | 5 | Codex gpt-5.5 | small |

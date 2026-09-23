@@ -1,0 +1,361 @@
+{
+  "mode": "resume-dry-run",
+  "executeWith": "PUBLISH_RESUME=1 PUBLISH_EXECUTE=1 npx sanity exec scripts/publish-new-exhibits.ts --with-user-token",
+  "resumePlan": {
+    "blockers": [],
+    "outcomeActions": [
+      {
+        "id": "outcome-note-in-your-handwriting",
+        "action": "skip"
+      },
+      {
+        "id": "outcome-message-under-the-butter",
+        "action": "skip"
+      },
+      {
+        "id": "outcome-sentence-resumes",
+        "action": "skip"
+      },
+      {
+        "id": "outcome-exchange-goes-quiet",
+        "action": "skip"
+      },
+      {
+        "id": "outcome-blank-jack-rings",
+        "action": "skip"
+      },
+      {
+        "id": "outcome-afternoon-comes-indoors",
+        "action": "skip"
+      },
+      {
+        "id": "outcome-kettle-stays-cold",
+        "action": "skip"
+      }
+    ],
+    "artifactActions": [
+      {
+        "id": "artifact-future-self-toaster",
+        "action": "reuse-draft",
+        "assetId": "image-f264b1f250a5b6644770c79b0c2edef59c0e41ab-800x600-svg"
+      },
+      {
+        "id": "artifact-unfinished-conversations-switchboard",
+        "action": "upload-create"
+      },
+      {
+        "id": "artifact-weather-of-visits-kettle",
+        "action": "upload-create"
+      }
+    ]
+  },
+  "writes": [
+    {
+      "step": "A",
+      "action": "transaction.create",
+      "documents": []
+    },
+    {
+      "step": "B",
+      "artifactId": "artifact-future-self-toaster",
+      "action": "reuse existing draft and asset",
+      "draftId": "drafts.artifact-future-self-toaster",
+      "assetId": "image-f264b1f250a5b6644770c79b0c2edef59c0e41ab-800x600-svg"
+    },
+    {
+      "step": "B",
+      "artifactId": "artifact-future-self-toaster",
+      "action": "create draft, submit review, approve review, guarded publish",
+      "draftDocument": {
+        "_id": "drafts.artifact-future-self-toaster",
+        "_type": "artifact",
+        "title": "The Toaster That Prints Notes From Your Future Self",
+        "slug": {
+          "_type": "slug",
+          "current": "future-self-toaster"
+        },
+        "era": {
+          "_type": "reference",
+          "_ref": "era-near-future-civic-time"
+        },
+        "accessionNote": "Recovered from the staff kitchen of the Municipal Bureau of Advance Notice.",
+        "summary": "A two-slot municipal toaster browns short messages onto each slice, written and signed by whoever you will be a year from now. Citizens were advised to read before buttering, and never to reply.",
+        "artifactLabel": "The browning dial is marked in weeks rather than shades. The crumb tray still holds three unread slices, each stamped with an official date of issue.",
+        "visualDescription": "A rounded chrome toaster sits on a folded tea towel. Two slices stand half-risen in its slots, darkened with small handwriting, and its browning dial is marked in weeks instead of shades.",
+        "image": {
+          "_type": "image",
+          "asset": {
+            "_type": "reference",
+            "_ref": "<asset-after-upload>"
+          },
+          "alt": "Blueprint drawing of a two-slot toaster with a browning dial marked in weeks, and a detail view of a slice of toast carrying a short handwritten note."
+        },
+        "choices": [
+          {
+            "_key": "read-the-note",
+            "_type": "object",
+            "label": "Read the note while it is warm",
+            "outcome": {
+              "_type": "reference",
+              "_ref": "outcome-note-in-your-handwriting"
+            }
+          },
+          {
+            "_key": "butter-it-unread",
+            "_type": "object",
+            "label": "Butter it without reading",
+            "outcome": {
+              "_type": "reference",
+              "_ref": "outcome-message-under-the-butter"
+            }
+          }
+        ]
+      },
+      "draftId": "drafts.artifact-future-self-toaster",
+      "reviewId": "artifactReview.artifact-future-self-toaster"
+    },
+    {
+      "step": "B",
+      "artifactId": "artifact-unfinished-conversations-switchboard",
+      "action": "assets.upload",
+      "file": "public/illustrations/unfinished-conversations-switchboard.svg",
+      "filename": "unfinished-conversations-switchboard.svg",
+      "contentType": "image/svg+xml",
+      "bytes": 14219,
+      "imageAlt": "Blueprint drawing of an upright switchboard with rows of labelled jacks and looped cords, and a detail view of a single lit jack labelled WAIT.",
+      "svgDesc": "A wooden operator's switchboard stands upright, its face covered in rows of brass jacks with tiny word labels, one left blank. Braided cords hang in loops below, and a small lamp glows beside the one connected cord.",
+      "altNote": "SVG desc differs; JSON imageAlt will be used for Sanity image alt."
+    },
+    {
+      "step": "B",
+      "artifactId": "artifact-unfinished-conversations-switchboard",
+      "action": "create draft, submit review, approve review, guarded publish",
+      "draftDocument": {
+        "_id": "drafts.artifact-unfinished-conversations-switchboard",
+        "_type": "artifact",
+        "title": "The Switchboard for Conversations That Ended Too Soon",
+        "slug": {
+          "_type": "slug",
+          "current": "unfinished-conversations-switchboard"
+        },
+        "era": {
+          "_type": "reference",
+          "_ref": "era-counterfactual-communications"
+        },
+        "accessionNote": "Removed intact from the night exchange at Counterfactual Relay Station Four.",
+        "summary": "An operator's switchboard once routed calls to conversations that had ended mid-sentence, reconnecting both parties at the exact word where they stopped. Operators wore two headsets and were trained never to finish anyone's sentence for them.",
+        "artifactLabel": "Nearly every jack is labelled with the last word spoken before a line went quiet: because, anyway, actually, wait. One cord is still plugged in, and its lamp has not gone out.",
+        "visualDescription": "A wooden operator's switchboard stands upright, its face covered in rows of brass jacks with tiny word labels, one left blank. Braided cords hang in loops below, and a small lamp glows beside the one connected cord.",
+        "image": {
+          "_type": "image",
+          "asset": {
+            "_type": "reference",
+            "_ref": "<asset-after-upload>"
+          },
+          "alt": "Blueprint drawing of an upright switchboard with rows of labelled jacks and looped cords, and a detail view of a single lit jack labelled WAIT."
+        },
+        "choices": [
+          {
+            "_key": "answer-the-lit-line",
+            "_type": "object",
+            "label": "Answer the line that is still lit",
+            "outcome": {
+              "_type": "reference",
+              "_ref": "outcome-sentence-resumes"
+            }
+          },
+          {
+            "_key": "pull-every-cord",
+            "_type": "object",
+            "label": "Pull every cord at once",
+            "outcome": {
+              "_type": "reference",
+              "_ref": "outcome-exchange-goes-quiet"
+            }
+          },
+          {
+            "_key": "try-the-blank-jack",
+            "_type": "object",
+            "label": "Plug a cord into the blank jack",
+            "outcome": {
+              "_type": "reference",
+              "_ref": "outcome-blank-jack-rings"
+            }
+          }
+        ]
+      },
+      "draftId": "drafts.artifact-unfinished-conversations-switchboard",
+      "reviewId": "artifactReview.artifact-unfinished-conversations-switchboard"
+    },
+    {
+      "step": "B",
+      "artifactId": "artifact-weather-of-visits-kettle",
+      "action": "assets.upload",
+      "file": "public/illustrations/weather-of-visits-kettle.svg",
+      "filename": "weather-of-visits-kettle.svg",
+      "contentType": "image/svg+xml",
+      "bytes": 12742,
+      "imageAlt": "Blueprint drawing of a domed stovetop kettle on a trivet with a small cloud rising from its spout, and a detail view of tally marks painted around its base.",
+      "svgDesc": "A pale blue enamel kettle sits on a cast-iron trivet. A thin curl of grey cloud hangs above its spout, faint frost rims the spout's edge, and rows of small painted tally marks circle its base.",
+      "altNote": "SVG desc differs; JSON imageAlt will be used for Sanity image alt."
+    },
+    {
+      "step": "B",
+      "artifactId": "artifact-weather-of-visits-kettle",
+      "action": "create draft, submit review, approve review, guarded publish",
+      "draftDocument": {
+        "_id": "drafts.artifact-weather-of-visits-kettle",
+        "_type": "artifact",
+        "title": "The Kettle That Brews the Weather of Past Visits",
+        "slug": {
+          "_type": "slug",
+          "current": "weather-of-visits-kettle"
+        },
+        "era": {
+          "_type": "reference",
+          "_ref": "era-domestic-weather-memory"
+        },
+        "accessionNote": "Donated by a lodging house that kept its guest book in steam instead of ink.",
+        "summary": "An enamel kettle records the weather outside each time a visitor was offered tea. When boiled, it releases a small cloud of that afternoon into the room, along with the smell of wet coats drying by the door.",
+        "artifactLabel": "The spout is lightly frosted, though the kettle has not been cold in years. Painted around the base are small tallies, one for every guest who stayed for a second cup.",
+        "visualDescription": "A pale blue enamel kettle sits on a cast-iron trivet. A thin curl of grey cloud hangs above its spout, faint frost rims the spout's edge, and rows of small painted tally marks circle its base.",
+        "image": {
+          "_type": "image",
+          "asset": {
+            "_type": "reference",
+            "_ref": "<asset-after-upload>"
+          },
+          "alt": "Blueprint drawing of a domed stovetop kettle on a trivet with a small cloud rising from its spout, and a detail view of tally marks painted around its base."
+        },
+        "choices": [
+          {
+            "_key": "put-the-kettle-on",
+            "_type": "object",
+            "label": "Put the kettle on",
+            "outcome": {
+              "_type": "reference",
+              "_ref": "outcome-afternoon-comes-indoors"
+            }
+          },
+          {
+            "_key": "leave-it-on-the-trivet",
+            "_type": "object",
+            "label": "Leave it on the trivet",
+            "outcome": {
+              "_type": "reference",
+              "_ref": "outcome-kettle-stays-cold"
+            }
+          }
+        ]
+      },
+      "draftId": "drafts.artifact-weather-of-visits-kettle",
+      "reviewId": "artifactReview.artifact-weather-of-visits-kettle"
+    },
+    {
+      "step": "C",
+      "action": "transaction.patch.ifRevisionId.set",
+      "patches": [
+        {
+          "id": "outcome-note-in-your-handwriting",
+          "ifRevisionId": "created-in-step-A",
+          "set": {
+            "leadsTo": {
+              "_type": "reference",
+              "_ref": "artifact-weather-of-visits-kettle"
+            }
+          }
+        },
+        {
+          "id": "outcome-message-under-the-butter",
+          "ifRevisionId": "created-in-step-A",
+          "set": {
+            "leadsTo": {
+              "_type": "reference",
+              "_ref": "artifact-unfinished-conversations-switchboard"
+            }
+          }
+        },
+        {
+          "id": "outcome-sentence-resumes",
+          "ifRevisionId": "created-in-step-A",
+          "set": {
+            "leadsTo": {
+              "_type": "reference",
+              "_ref": "artifact-memory-umbrella"
+            }
+          }
+        },
+        {
+          "id": "outcome-exchange-goes-quiet",
+          "ifRevisionId": "created-in-step-A",
+          "set": {
+            "leadsTo": {
+              "_type": "reference",
+              "_ref": "artifact-extra-mondays-vending-machine"
+            }
+          }
+        },
+        {
+          "id": "outcome-blank-jack-rings",
+          "ifRevisionId": "created-in-step-A",
+          "set": {
+            "leadsTo": {
+              "_type": "reference",
+              "_ref": "artifact-future-self-toaster"
+            }
+          }
+        },
+        {
+          "id": "outcome-afternoon-comes-indoors",
+          "ifRevisionId": "created-in-step-A",
+          "set": {
+            "leadsTo": {
+              "_type": "reference",
+              "_ref": "artifact-unfinished-conversations-switchboard"
+            }
+          }
+        },
+        {
+          "id": "outcome-kettle-stays-cold",
+          "ifRevisionId": "created-in-step-A",
+          "set": {
+            "leadsTo": {
+              "_type": "reference",
+              "_ref": "artifact-roads-not-taken-telephone"
+            }
+          }
+        },
+        {
+          "id": "outcome-missed-call-self",
+          "ifRevisionId": "u3MMk9EkwEQM5L686CP9ig",
+          "set": {
+            "leadsTo": {
+              "_type": "reference",
+              "_ref": "artifact-future-self-toaster"
+            }
+          }
+        },
+        {
+          "id": "outcome-soft-refusal",
+          "ifRevisionId": "u3MMk9EkwEQM5L686CP9ig",
+          "set": {
+            "leadsTo": {
+              "_type": "reference",
+              "_ref": "artifact-weather-of-visits-kettle"
+            }
+          }
+        },
+        {
+          "id": "outcome-room-rains-back",
+          "ifRevisionId": "u3MMk9EkwEQM5L686CP9ig",
+          "set": {
+            "leadsTo": {
+              "_type": "reference",
+              "_ref": "artifact-unfinished-conversations-switchboard"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -12,6 +12,7 @@ export type ArtifactReview = {
   artifact: {
     _type: "reference";
     _ref: string;
+    _weak: true;
   };
   state: ArtifactReviewState;
   submittedRevision?: string;
@@ -107,7 +108,7 @@ export function submitDraftRevision(input: {
     review: {
       _id: getArtifactReviewId(input.artifactId),
       _type: "artifactReview",
-      artifact: { _type: "reference", _ref: input.artifactId },
+      artifact: { _type: "reference", _ref: input.artifactId, _weak: true },
       state: "submitted",
       submittedRevision: input.draftRevision,
       submittedAt: input.now,

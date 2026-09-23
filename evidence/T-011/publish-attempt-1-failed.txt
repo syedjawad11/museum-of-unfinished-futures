@@ -1,0 +1,30 @@
+{
+  "error": "Step failed (B: artifact-future-self-toaster): Step failed (artifact-future-self-toaster: submit review): Mutation failed: Document \"artifactReview.artifact-future-self-toaster\" references non-existent document \"artifact-future-self-toaster\" (traceId: 9cb900163a1db8730a0162eccfc659fc):\n- Document \"artifactReview.artifact-future-self-toaster\" references non-existent document \"artifact-future-self-toaster\"",
+  "partialRun": {
+    "completedSteps": [
+      "preflight",
+      "A: create outcome documents",
+      "artifact-future-self-toaster: upload asset",
+      "artifact-future-self-toaster: create draft",
+      "artifact-future-self-toaster: read draft"
+    ],
+    "createdIds": {
+      "outcomes": [
+        "outcome-note-in-your-handwriting",
+        "outcome-message-under-the-butter",
+        "outcome-sentence-resumes",
+        "outcome-exchange-goes-quiet",
+        "outcome-blank-jack-rings",
+        "outcome-afternoon-comes-indoors",
+        "outcome-kettle-stays-cold"
+      ],
+      "assets": [
+        "image-f264b1f250a5b6644770c79b0c2edef59c0e41ab-800x600-svg"
+      ],
+      "reviews": [],
+      "artifacts": []
+    },
+    "note": "Completed through: artifact-future-self-toaster: read draft. Re-run will stop at preflight if created documents, reviews, drafts, or rewired outcomes need manual cleanup."
+  }
+}
+    Error: Script exited with code: 1

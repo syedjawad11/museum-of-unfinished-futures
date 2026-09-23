@@ -10,6 +10,7 @@ export const artifactReviewType = defineType({
       title: "Artifact",
       type: "reference",
       to: [{ type: "artifact" }],
+      weak: true,
       readOnly: true,
       validation: (rule) => rule.required(),
     }),

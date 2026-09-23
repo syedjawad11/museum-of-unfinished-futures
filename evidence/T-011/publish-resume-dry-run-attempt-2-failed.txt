@@ -1,0 +1,14 @@
+{
+  "error": "Step failed (preflight): Preflight blocked publication:\nPublished outcome outcome-exchange-goes-quiet differs from the planned document.\nPublished outcome outcome-blank-jack-rings differs from the planned document.\nPublished outcome outcome-afternoon-comes-indoors differs from the planned document.\nPublished outcome outcome-kettle-stays-cold differs from the planned document.\nPublished artifact artifact-future-self-toaster already exists.\nPublished artifact artifact-unfinished-conversations-switchboard already exists.\nPublished artifact artifact-weather-of-visits-kettle already exists.",
+  "partialRun": {
+    "completedSteps": [],
+    "createdIds": {
+      "outcomes": [],
+      "assets": [],
+      "reviews": [],
+      "artifacts": []
+    },
+    "note": "No write step completed."
+  }
+}
+    Error: Script exited with code: 1

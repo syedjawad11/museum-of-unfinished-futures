@@ -23,7 +23,15 @@
     "apology-not-required": "released from an apology you had prepared",
     "weather-you-can-re-enter": "able to step back into weather that has already passed",
     "shelter-returned": "given back a hallway you were once called into",
-    "unlisted-by-the-sky": "unlisted by every forecast above you"
+    "unlisted-by-the-sky": "unlisted by every forecast above you",
+    "advised-in-advance": "advised in advance by someone who writes like you",
+    "thursday-rearranged": "with one Thursday already rearranged",
+    "unadvised": "unadvised by anyone, including yourself",
+    "sentence-finished": "with an old sentence finally allowed to end",
+    "left-unfinished-on-purpose": "leaving several things unfinished on purpose",
+    "conversation-pending": "with a conversation waiting for you further on",
+    "counted-as-a-guest": "counted among the guests who stayed for a second cup",
+    "visits-without-weather": "visited by friends who leave no weather behind"
   },
   "closings": [
     "The lights go down one room at a time, in the order you walked them.",

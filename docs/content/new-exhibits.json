@@ -1,0 +1,197 @@
+{
+  "_note": "Proposal only (T-011a). Not published. Three new artifacts, one per wing; seven new outcomes; three rewires of existing outcomes' leadsTo. Existing tags are untouched.",
+  "artifacts": [
+    {
+      "_id": "artifact-future-self-toaster",
+      "title": "The Toaster That Prints Notes From Your Future Self",
+      "slug": "future-self-toaster",
+      "era": "era-near-future-civic-time",
+      "accessionNote": "Recovered from the staff kitchen of the Municipal Bureau of Advance Notice.",
+      "summary": "A two-slot municipal toaster browns short messages onto each slice, written and signed by whoever you will be a year from now. Citizens were advised to read before buttering, and never to reply.",
+      "artifactLabel": "The browning dial is marked in weeks rather than shades. The crumb tray still holds three unread slices, each stamped with an official date of issue.",
+      "visualDescription": "A rounded chrome toaster sits on a folded tea towel. Two slices stand half-risen in its slots, darkened with small handwriting, and its browning dial is marked in weeks instead of shades.",
+      "imageAlt": "Blueprint drawing of a two-slot toaster with a browning dial marked in weeks, and a detail view of a slice of toast carrying a short handwritten note.",
+      "choices": [
+        {
+          "_key": "read-the-note",
+          "label": "Read the note while it is warm",
+          "outcome": "outcome-note-in-your-handwriting"
+        },
+        {
+          "_key": "butter-it-unread",
+          "label": "Butter it without reading",
+          "outcome": "outcome-message-under-the-butter"
+        }
+      ]
+    },
+    {
+      "_id": "artifact-unfinished-conversations-switchboard",
+      "title": "The Switchboard for Conversations That Ended Too Soon",
+      "slug": "unfinished-conversations-switchboard",
+      "era": "era-counterfactual-communications",
+      "accessionNote": "Removed intact from the night exchange at Counterfactual Relay Station Four.",
+      "summary": "An operator's switchboard once routed calls to conversations that had ended mid-sentence, reconnecting both parties at the exact word where they stopped. Operators wore two headsets and were trained never to finish anyone's sentence for them.",
+      "artifactLabel": "Nearly every jack is labelled with the last word spoken before a line went quiet: because, anyway, actually, wait. One cord is still plugged in, and its lamp has not gone out.",
+      "visualDescription": "A wooden operator's switchboard stands upright, its face covered in rows of brass jacks with tiny word labels, one left blank. Braided cords hang in loops below, and a small lamp glows beside the one connected cord.",
+      "imageAlt": "Blueprint drawing of an upright switchboard with rows of labelled jacks and looped cords, and a detail view of a single lit jack labelled WAIT.",
+      "choices": [
+        {
+          "_key": "answer-the-lit-line",
+          "label": "Answer the line that is still lit",
+          "outcome": "outcome-sentence-resumes"
+        },
+        {
+          "_key": "pull-every-cord",
+          "label": "Pull every cord at once",
+          "outcome": "outcome-exchange-goes-quiet"
+        },
+        {
+          "_key": "try-the-blank-jack",
+          "label": "Plug a cord into the blank jack",
+          "outcome": "outcome-blank-jack-rings"
+        }
+      ]
+    },
+    {
+      "_id": "artifact-weather-of-visits-kettle",
+      "title": "The Kettle That Brews the Weather of Past Visits",
+      "slug": "weather-of-visits-kettle",
+      "era": "era-domestic-weather-memory",
+      "accessionNote": "Donated by a lodging house that kept its guest book in steam instead of ink.",
+      "summary": "An enamel kettle records the weather outside each time a visitor was offered tea. When boiled, it releases a small cloud of that afternoon into the room, along with the smell of wet coats drying by the door.",
+      "artifactLabel": "The spout is lightly frosted, though the kettle has not been cold in years. Painted around the base are small tallies, one for every guest who stayed for a second cup.",
+      "visualDescription": "A pale blue enamel kettle sits on a cast-iron trivet. A thin curl of grey cloud hangs above its spout, faint frost rims the spout's edge, and rows of small painted tally marks circle its base.",
+      "imageAlt": "Blueprint drawing of a domed stovetop kettle on a trivet with a small cloud rising from its spout, and a detail view of tally marks painted around its base.",
+      "choices": [
+        {
+          "_key": "put-the-kettle-on",
+          "label": "Put the kettle on",
+          "outcome": "outcome-afternoon-comes-indoors"
+        },
+        {
+          "_key": "leave-it-on-the-trivet",
+          "label": "Leave it on the trivet",
+          "outcome": "outcome-kettle-stays-cold"
+        }
+      ]
+    }
+  ],
+  "outcomes": [
+    {
+      "_id": "outcome-note-in-your-handwriting",
+      "title": "The note is in your handwriting",
+      "body": "It says: Leave earlier on Thursday. Nothing else. The crumbs settle into a date three weeks from now, and the stamp on the crust reads Advice Issued, Not Binding.",
+      "era": "era-near-future-civic-time",
+      "consequenceTags": ["advised-in-advance", "thursday-rearranged"],
+      "leadsTo": "artifact-weather-of-visits-kettle",
+      "why": "The note implies you will be arriving somewhere early on Thursday, and the kettle is where this museum keeps the weather of arriving at someone's door."
+    },
+    {
+      "_id": "outcome-message-under-the-butter",
+      "title": "The message goes under the butter",
+      "body": "The words soften and disappear. The toaster clicks once, politely, and raises a second slice that says only Understood. Somewhere ahead of you, a version of you stops drafting advice.",
+      "era": "era-near-future-civic-time",
+      "consequenceTags": ["quiet-refusal", "unadvised"],
+      "leadsTo": "artifact-unfinished-conversations-switchboard",
+      "why": "Your future self now holds a message it never delivered, and the switchboard is where undelivered conversations wait to be connected."
+    },
+    {
+      "_id": "outcome-sentence-resumes",
+      "title": "A sentence resumes mid-word",
+      "body": "A voice finishes saying because, then pauses, surprised that anyone is still there. It explains the rest in under a minute. It was not about you, and it was never as bad as it sounded.",
+      "era": "era-counterfactual-communications",
+      "consequenceTags": ["sentence-finished", "apology-not-required"],
+      "leadsTo": "artifact-memory-umbrella",
+      "why": "An old conversation has just ended kindly, and the umbrella keeps the shelter that conversations like it were once held under."
+    },
+    {
+      "_id": "outcome-exchange-goes-quiet",
+      "title": "The exchange goes quiet",
+      "body": "Two hundred conversations stop on the same word. In the silence, the operator's chair turns slightly toward you, and a card drops from the ledger: Service suspended at the caller's request.",
+      "era": "era-counterfactual-communications",
+      "consequenceTags": ["left-unfinished-on-purpose", "room-to-breathe"],
+      "leadsTo": "artifact-extra-mondays-vending-machine",
+      "why": "Silencing two hundred conversations leaves an unexpected gap in the afternoon, and the vending machine sells days to anyone holding a gap like that."
+    },
+    {
+      "_id": "outcome-blank-jack-rings",
+      "title": "The blank jack rings back",
+      "body": "The unlabelled jack connects to a conversation that has not happened yet. You hear yourself say anyway, someone laughs, and the line holds its breath, waiting for the rest.",
+      "era": "era-counterfactual-communications",
+      "consequenceTags": ["conversation-pending", "line-left-open"],
+      "leadsTo": "artifact-future-self-toaster",
+      "why": "You have just overheard yourself in a future conversation, and the toaster is the exhibit that lets that future self leave you a note."
+    },
+    {
+      "_id": "outcome-afternoon-comes-indoors",
+      "title": "An afternoon comes back indoors",
+      "body": "Steam gathers under the ceiling into a low, patient drizzle. A coat is drying by a door that is not there, and a voice asks whether you are staying for a second cup. You are counted.",
+      "era": "era-domestic-weather-memory",
+      "consequenceTags": ["shelter-returned", "counted-as-a-guest"],
+      "leadsTo": "artifact-unfinished-conversations-switchboard",
+      "why": "A question has been asked in a kitchen and left waiting for your answer, and the switchboard holds conversations that stopped before anyone replied."
+    },
+    {
+      "_id": "outcome-kettle-stays-cold",
+      "title": "The kettle stays cold",
+      "body": "Nothing boils. For a while afterwards, your visitors arrive in perfectly ordinary weather and leave before the rain, and none of them can say later what the sky was doing while you talked.",
+      "era": "era-domestic-weather-memory",
+      "consequenceTags": ["quiet-refusal", "visits-without-weather"],
+      "leadsTo": "artifact-roads-not-taken-telephone",
+      "why": "Conversations that leave no trace are the telephone's specialty; it connects callers to the talk they did not have."
+    }
+  ],
+  "rewire": [
+    {
+      "outcome": "outcome-missed-call-self",
+      "from": "artifact-extra-mondays-vending-machine",
+      "to": "artifact-future-self-toaster",
+      "why": "A missed call from your own number, eleven years ahead, is followed naturally by the one exhibit that prints what your future self wanted to say."
+    },
+    {
+      "outcome": "outcome-soft-refusal",
+      "from": "artifact-memory-umbrella",
+      "to": "artifact-weather-of-visits-kettle",
+      "why": "A weekend kept intact is a weekend for visitors, and the kettle records the weather of every afternoon someone stayed for tea."
+    },
+    {
+      "outcome": "outcome-room-rains-back",
+      "from": "artifact-roads-not-taken-telephone",
+      "to": "artifact-unfinished-conversations-switchboard",
+      "why": "A voice calling everyone inside before the thunder never finished its sentence, and the switchboard reconnects sentences at the word where they stopped."
+    }
+  ],
+  "newTagPhrases": {
+    "advised-in-advance": "advised in advance by someone who writes like you",
+    "thursday-rearranged": "with one Thursday already rearranged",
+    "unadvised": "unadvised by anyone, including yourself",
+    "sentence-finished": "with an old sentence finally allowed to end",
+    "left-unfinished-on-purpose": "leaving several things unfinished on purpose",
+    "conversation-pending": "with a conversation waiting for you further on",
+    "counted-as-a-guest": "counted among the guests who stayed for a second cup",
+    "visits-without-weather": "visited by friends who leave no weather behind"
+  },
+  "plateBriefs": [
+    {
+      "artifact": "artifact-future-self-toaster",
+      "patentNo": "PLATE NO. 004",
+      "figures": "fig. 1 — three-quarter elevation of a rounded two-slot toaster, two slices half-risen, side lever and browning dial visible. fig. 2 — circled detail of one slice face-on, three short ruled lines of handwriting and a small square date stamp at the crust.",
+      "labelledParts": ["BROWNING DIAL (WEEKS)", "SLOT 1 / SLOT 2", "CARRIAGE LEVER", "CRUMB TRAY", "DATE-OF-ISSUE STAMP"],
+      "motif": "Dial ticks read 1 WK to 52 WK where shades would be; the slice in fig. 2 may carry class=\"slice\" for a gentle rise later."
+    },
+    {
+      "artifact": "artifact-unfinished-conversations-switchboard",
+      "patentNo": "PLATE NO. 005",
+      "figures": "fig. 1 — front elevation of an upright operator's switchboard: grid of jacks, a shelf of cord plugs, three cords hanging in loops, one cord plugged in. fig. 2 — rounded-box detail of a single jack with its tiny word label (WAIT) and the lamp beside it.",
+      "labelledParts": ["JACK FIELD", "WORD LABEL", "SUPERVISORY LAMP", "CORD PAIR", "BLANK JACK"],
+      "motif": "Jack labels are single words (BECAUSE, ANYWAY, ACTUALLY, WAIT) with one left empty; the lit lamp may carry class=\"lamp\" for a slow glow later."
+    },
+    {
+      "artifact": "artifact-weather-of-visits-kettle",
+      "patentNo": "PLATE NO. 006",
+      "figures": "fig. 1 — side elevation of a domed stovetop kettle on a three-legged trivet, a small outlined cloud rising from the spout. fig. 2 — circled detail of the base band showing rows of tally marks in groups of five.",
+      "labelledParts": ["SPOUT (FROSTED)", "WEATHER VENT", "HANDLE", "TALLY BAND", "TRIVET"],
+      "motif": "The cloud is drawn in the same line weight as the kettle, as if it were part of the appliance; it may carry class=\"cloud\" for a slow drift later."
+    }
+  ]
+}

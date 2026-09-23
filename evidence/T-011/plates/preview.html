@@ -1,0 +1,676 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>T-011 Blueprint Plate Preview — Toaster, Switchboard &amp; Kettle</title>
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #07090d;
+    color: #e8e8e8;
+    font-family: ui-monospace, 'IBM Plex Mono', Menlo, Consolas, monospace;
+  }
+  main {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px;
+    padding: 32px;
+  }
+  figure {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  figcaption {
+    font-size: 13px;
+    letter-spacing: 0.05em;
+    max-width: 800px;
+  }
+  .frame {
+    width: 800px;
+    height: 600px;
+    display: block;
+  }
+  /* Variant A: <img> tag reference only; currentColor resolves inside the
+     image document, not against the page cascade, so strokes stay
+     un-tinted (browser default black). */
+  .img-wrapper {
+    color: #f2b65a;
+    filter: drop-shadow(0 0 6px currentColor);
+    background: #07090d;
+  }
+
+  /* Variant B: inline SVG markup pasted directly into this document
+     inherits currentColor from the wrapper, so strokes pick up the tint
+     and the drop-shadow glows in that colour. This matches production. */
+  .inline-wrapper {
+    color: #f2b65a;
+    filter: drop-shadow(0 0 6px currentColor);
+    background: #07090d;
+  }
+  .inline-wrapper svg {
+    width: 800px;
+    height: 600px;
+    display: block;
+  }
+</style>
+</head>
+<body>
+<main>
+  <figure>
+    <figcaption>PLATE 004 Variant A — &lt;img src="..."&gt; (reference only; does not inherit currentColor, strokes render un-tinted)</figcaption>
+    <div class="frame img-wrapper">
+      <img class="frame" src="../../../public/illustrations/future-self-toaster.svg" width="800" height="600" alt="Blueprint plate: the toaster that prints notes from your future self" />
+    </div>
+  </figure>
+  <figure>
+    <figcaption>PLATE 004 Variant B — SVG markup inlined directly in this page (inherits currentColor; tinted amber + glowing, matches production rendering)</figcaption>
+    <div class="frame inline-wrapper">
+<!-- INLINE_SVG_004_START -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-labelledby="plate-title plate-desc" fill="currentColor" stroke-linecap="round" stroke-linejoin="round" font-family="ui-monospace, 'IBM Plex Mono', Menlo, Consolas, monospace" letter-spacing="0.08em">
+  <title id="plate-title">The Toaster That Prints Notes From Your Future Self</title>
+  <desc id="plate-desc">A rounded chrome toaster sits on a folded tea towel. Two slices stand half-risen in its slots, darkened with small handwriting, and its browning dial is marked in weeks instead of shades.</desc>
+
+  <defs>
+    <pattern id="grid-fine-4" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M20,0 L0,0 0,20" fill="none" stroke="currentColor" stroke-width="0.5" opacity="0.12"/>
+    </pattern>
+    <pattern id="grid-major-4" width="100" height="100" patternUnits="userSpaceOnUse">
+      <rect width="100" height="100" fill="url(#grid-fine-4)"/>
+      <path d="M100,0 L0,0 0,100" fill="none" stroke="currentColor" stroke-width="1" opacity="0.12"/>
+    </pattern>
+    <clipPath id="grid-clip-4">
+      <rect x="1" y="1" width="798" height="598"/>
+    </clipPath>
+  </defs>
+
+  <g clip-path="url(#grid-clip-4)">
+    <rect x="1" y="1" width="798" height="598" fill="url(#grid-major-4)"/>
+  </g>
+  <rect x="1" y="1" width="798" height="598" fill="none" stroke="currentColor" stroke-width="1" opacity="0.12"/>
+
+  <!-- FIG. 1 — main elevation -->
+  <g id="fig-1">
+    <text x="90" y="536" font-size="11" opacity="1">FIG. 1 — ELEVATION, FRONT</text>
+
+    <!-- body -->
+    <rect x="90" y="210" width="240" height="180" rx="24" fill="none" stroke="currentColor" stroke-width="1.5" opacity="1"/>
+
+    <!-- slot mouths -->
+    <rect x="140" y="196" width="34" height="20" rx="4" fill="none" stroke="currentColor" stroke-width="1" opacity="1"/>
+    <rect x="226" y="196" width="34" height="20" rx="4" fill="none" stroke="currentColor" stroke-width="1" opacity="1"/>
+
+    <!-- slices, half-risen -->
+    <rect x="144" y="96" width="26" height="108" rx="3" fill="none" stroke="currentColor" stroke-width="1.5" opacity="1"/>
+    <rect x="230" y="96" width="26" height="108" rx="3" fill="none" stroke="currentColor" stroke-width="1.5" opacity="1"/>
+
+    <!-- handwriting on slices -->
+    <line x1="148" y1="130" x2="166" y2="130" stroke="currentColor" stroke-width="0.75" opacity="0.55" fill="none"/>
+    <line x1="148" y1="145" x2="166" y2="145" stroke="currentColor" stroke-width="0.75" opacity="0.55" fill="none"/>
+    <line x1="148" y1="160" x2="163" y2="160" stroke="currentColor" stroke-width="0.75" opacity="0.55" fill="none"/>
+    <line x1="234" y1="130" x2="252" y2="130" stroke="currentColor" stroke-width="0.75" opacity="0.55" fill="none"/>
+    <line x1="234" y1="145" x2="252" y2="145" stroke="currentColor" stroke-width="0.75" opacity="0.55" fill="none"/>
+    <line x1="234" y1="160" x2="249" y2="160" stroke="currentColor" stroke-width="0.75" opacity="0.55" fill="none"/>
+
+    <!-- browning dial -->
+    <circle cx="210" cy="320" r="28" fill="none" stroke="currentColor" stroke-width="1.5" opacity="1"/>
+    <line x1="210" y1="286" x2="210" y2="292" stroke="currentColor" stroke-width="0.75" opacity="0.55" fill="none"/>
+    <line x1="210" y1="348" x2="210" y2="354" stroke="currentColor" stroke-width="0.75" opacity="0.55" fill="none"/>
+    <line x1="176" y1="320" x2="182" y2="320" stroke="currentColor" stroke-width="0.75" opacity="0.55" fill="none"/>
+    <line x1="238" y1="320" x2="244" y2="320" stroke="currentColor" stroke-width="0.75" opacity="0.55" fill="none"/>
+    <line x1="210" y1="320" x2="227" y2="302" stroke="currentColor" stroke-width="1" opacity="1" fill="none"/>
+    <text x="210" y="281" font-size="9" text-anchor="middle" opacity="0.55">1 WK</text>
+    <text x="210" y="368" font-size="9" text-anchor="middle" opacity="0.55">52 WK</text>
+
+    <!-- carriage lever -->
+    <path d="M330,320 L348,320 L348,270" fill="none" stroke="currentColor" stroke-width="1.5" opacity="1"/>
+    <circle cx="348" cy="266" r="6" fill="none" stroke="currentColor" stroke-width="1" opacity="1"/>
+
+    <!-- crumb tray -->
+    <rect x="100" y="372" width="220" height="18" rx="2" fill="none" stroke="currentColor" stroke-width="1" opacity="1"/>
+    <rect x="195" y="386" width="30" height="6" rx="3" fill="none" stroke="currentColor" stroke-width="1" opacity="1"/>
+
+    <!-- folded tea towel -->
+    <path d="M70,410 Q90,398 110,410 T150,410 T190,410 T230,410 T270,410 T310,410 T350,410" fill="none" stroke="currentColor" stroke-width="1" opacity="0.55"/>
+    <path d="M75,424 Q95,414 115,424 T155,424 T195,424 T235,424 T275,424 T315,424 T345,424" fill="none" stroke="currentColor" stroke-width="0.75" opacity="0.55"/>
+  </g>
+
+  <!-- FIG. 2 — detail view -->
+  <g id="fig-2">
+    <text x="620" y="64" font-size="13" text-anchor="middle" opacity="1">FIG. 2</text>
+    <circle cx="620" cy="190" r="110" fill="none" stroke="currentColor" stroke-width="1.5" opacity="1"/>
+    <text x="620" y="316" font-size="10" text-anchor="middle" opacity="0.55">DETAIL — SLICE FACE, SCALE 2:1</text>
+
+    <g class="slice">
+      <rect x="585" y="110" width="70" height="150" rx="6" fill="none" stroke="currentColor" stroke-width="1.5" opacity="1"/>
+      <line x1="595" y1="150" x2="645" y2="150" stroke="currentColor" stroke-width="0.75" opacity="0.55" fill="none"/>
+      <line x1="595" y1="170" x2="645" y2="170" stroke="currentColor" stroke-width="0.75" opacity="0.55" fill="none"/>
+      <line x1="595" y1="190" x2="640" y2="190" stroke="currentColor" stroke-width="0.75" opacity="0.55" fill="none"/>
+      <rect x="605" y="232" width="30" height="16" fill="none" stroke="currentColor" stroke-width="1" opacity="1"/>
+      <text x="620" y="244" font-size="9" text-anchor="middle" opacity="1">12 WK</text>
+    </g>
+  </g>
+
+  <!-- zoom leader linking fig. 1 to fig. 2 -->
+  <g opacity="0.55">
+    <line x1="256" y1="150" x2="513" y2="150" stroke="currentColor" stroke-width="0.75" fill="none"/>
+    <line x1="256" y1="180" x2="513" y2="234" stroke="currentColor" stroke-width="0.75" fill="none"/>
+    <circle cx="256" cy="165" r="3" fill="currentColor" stroke="none"/>
+  </g>
+
+  <!-- callouts -->
+  <g id="callouts">
+    <line x1="256" y1="196" x2="356" y2="100" stroke="currentColor" stroke-width="0.75" opacity="0.55" fill="none"/>
+    <circle cx="365" cy="95" r="9" fill="none" stroke="currentColor" stroke-width="1" opacity="1"/>
+    <text x="365" y="99" font-size="10" text-anchor="middle" opacity="1">1</text>
+    <text x="380" y="99" font-size="10" opacity="1">SLOT 1 / SLOT 2</text>
+
+    <line x1="222" y1="296" x2="356" y2="182" stroke="currentColor" stroke-width="0.75" opacity="0.55" fill="none"/>
+    <circle cx="365" cy="180" r="9" fill="none" stroke="currentColor" stroke-width="1" opacity="1"/>
+    <text x="365" y="184" font-size="10" text-anchor="middle" opacity="1">2</text>
+    <text x="380" y="184" font-size="10" opacity="1">BROWNING DIAL (WEEKS)</text>
+
+    <line x1="348" y1="286" x2="356" y2="264" stroke="currentColor" stroke-width="0.75" opacity="0.55" fill="none"/>
+    <circle cx="365" cy="264" r="9" fill="none" stroke="currentColor" stroke-width="1" opacity="1"/>
+    <text x="365" y="268" font-size="10" text-anchor="middle" opacity="1">3</text>
+    <text x="380" y="268" font-size="10" opacity="1">CARRIAGE LEVER</text>
+
+    <line x1="300" y1="381" x2="391" y2="335" stroke="currentColor" stroke-width="0.75" opacity="0.55" fill="none"/>
+    <circle cx="400" cy="335" r="9" fill="none" stroke="currentColor" stroke-width="1" opacity="1"/>
+    <text x="400" y="339" font-size="10" text-anchor="middle" opacity="1">4</text>
+    <text x="414" y="339" font-size="10" opacity="1">CRUMB TRAY</text>
+  </g>
+
+  <!-- dimensions -->
+  <g id="dimensions" opacity="0.55">
+    <line x1="90" y1="76" x2="90" y2="56" stroke="currentColor" stroke-width="0.75" fill="none"/>
+    <line x1="330" y1="76" x2="330" y2="56" stroke="currentColor" stroke-width="0.75" fill="none"/>
+    <line x1="90" y1="60" x2="330" y2="60" stroke="currentColor" stroke-width="0.75" fill="none"/>
+    <text x="210" y="52" font-size="10" text-anchor="middle">254 MM</text>
+
+    <line x1="66" y1="96" x2="50" y2="96" stroke="currentColor" stroke-width="0.75" fill="none"/>
+    <line x1="66" y1="424" x2="50" y2="424" stroke="currentColor" stroke-width="0.75" fill="none"/>
+    <line x1="58" y1="96" x2="58" y2="424" stroke="currentColor" stroke-width="0.75" fill="none"/>
+    <text x="34" y="264" font-size="10" text-anchor="middle" transform="rotate(-90 34 264)">328 MM</text>
+
+    <line x1="244" y1="292" x2="260" y2="292" stroke="currentColor" stroke-width="0.75" fill="none"/>
+    <line x1="244" y1="348" x2="260" y2="348" stroke="currentColor" stroke-width="0.75" fill="none"/>
+    <line x1="252" y1="292" x2="252" y2="348" stroke="currentColor" stroke-width="0.75" fill="none"/>
+    <text x="268" y="320" font-size="10" text-anchor="middle" transform="rotate(-90 268 320)">56 MM</text>
+  </g>
+
+  <!-- compass / scale -->
+  <g id="compass-scale">
+    <line x1="60" y1="560" x2="200" y2="560" stroke="currentColor" stroke-width="1" opacity="1" fill="none"/>
+    <line x1="60" y1="554" x2="60" y2="566" stroke="currentColor" stroke-width="1" opacity="1" fill="none"/>
+    <line x1="107" y1="554" x2="107" y2="566" stroke="currentColor" stroke-width="1" opacity="1" fill="none"/>
+    <line x1="153" y1="554" x2="153" y2="566" stroke="currentColor" stroke-width="1" opacity="1" fill="none"/>
+    <line x1="200" y1="554" x2="200" y2="566" stroke="currentColor" stroke-width="1" opacity="1" fill="none"/>
+    <text x="60" y="580" font-size="10" text-anchor="middle" opacity="1">0</text>
+    <text x="107" y="580" font-size="10" text-anchor="middle" opacity="1">50</text>
+    <text x="153" y="580" font-size="10" text-anchor="middle" opacity="1">100</text>
+    <text x="200" y="580" font-size="10" text-anchor="middle" opacity="1">MM</text>
+
+    <circle cx="350" cy="553" r="16" fill="none" stroke="currentColor" stroke-width="1" opacity="1"/>
+    <line x1="350" y1="539" x2="350" y2="567" stroke="currentColor" stroke-width="0.75" opacity="0.55" fill="none"/>
+    <line x1="334" y1="553" x2="366" y2="553" stroke="currentColor" stroke-width="0.75" opacity="0.55" fill="none"/>
+    <text x="350" y="533" font-size="10" text-anchor="middle" opacity="1">N</text>
+  </g>
+
+  <!-- UNFINISHED stamp -->
+  <g transform="rotate(-8 460 390)" opacity="1">
+    <rect x="385" y="365" width="150" height="50" rx="8" fill="none" stroke="currentColor" stroke-width="1" opacity="1"/>
+    <rect x="391" y="371" width="138" height="38" rx="5" fill="none" stroke="currentColor" stroke-width="0.75" opacity="1"/>
+    <text x="460" y="396" font-size="14" text-anchor="middle" opacity="1">UNFINISHED</text>
+  </g>
+
+  <!-- title block -->
+  <g id="title-block">
+    <rect x="555" y="478" width="225" height="104" fill="none" stroke="currentColor" stroke-width="1.5" opacity="1"/>
+    <line x1="555" y1="500" x2="780" y2="500" stroke="currentColor" stroke-width="0.75" opacity="0.55" fill="none"/>
+    <line x1="555" y1="518" x2="780" y2="518" stroke="currentColor" stroke-width="0.75" opacity="0.55" fill="none"/>
+    <line x1="555" y1="560" x2="780" y2="560" stroke="currentColor" stroke-width="0.75" opacity="0.55" fill="none"/>
+    <text x="567" y="493" font-size="10" opacity="1">MUSEUM OF UNFINISHED FUTURES</text>
+    <text x="567" y="513" font-size="10" opacity="1">PLATE NO. 004</text>
+    <text x="773" y="513" font-size="10" text-anchor="end" opacity="1">SHEET 1/1</text>
+    <text x="567" y="528" font-size="10" opacity="1">THE TOASTER THAT</text>
+    <text x="567" y="540" font-size="10" opacity="1">PRINTS NOTES FROM</text>
+    <text x="567" y="552" font-size="10" opacity="1">YOUR FUTURE SELF</text>
+    <text x="567" y="574" font-size="10" opacity="1">DRAWN — NEVER BUILT</text>
+  </g>
+</svg>
+
+<!-- INLINE_SVG_004_END -->
+    </div>
+  </figure>
+  <figure>
+    <figcaption>PLATE 005 Variant A — &lt;img src="..."&gt; (reference only; does not inherit currentColor, strokes render un-tinted)</figcaption>
+    <div class="frame img-wrapper">
+      <img class="frame" src="../../../public/illustrations/unfinished-conversations-switchboard.svg" width="800" height="600" alt="Blueprint plate: the switchboard for conversations that ended too soon" />
+    </div>
+  </figure>
+  <figure>
+    <figcaption>PLATE 005 Variant B — SVG markup inlined directly in this page (inherits currentColor; tinted amber + glowing, matches production rendering)</figcaption>
+    <div class="frame inline-wrapper">
+<!-- INLINE_SVG_005_START -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-labelledby="plate-title plate-desc" fill="currentColor" stroke-linecap="round" stroke-linejoin="round" font-family="ui-monospace, 'IBM Plex Mono', Menlo, Consolas, monospace" letter-spacing="0.08em">
+  <title id="plate-title">The Switchboard for Conversations That Ended Too Soon</title>
+  <desc id="plate-desc">A wooden operator's switchboard stands upright, its face covered in rows of brass jacks with tiny word labels, one left blank. Braided cords hang in loops below, and a small lamp glows beside the one connected cord.</desc>
+
+  <defs>
+    <pattern id="grid-fine-5" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M20,0 L0,0 0,20" fill="none" stroke="currentColor" stroke-width="0.5" opacity="0.12"/>
+    </pattern>
+    <pattern id="grid-major-5" width="100" height="100" patternUnits="userSpaceOnUse">
+      <rect width="100" height="100" fill="url(#grid-fine-5)"/>
+      <path d="M100,0 L0,0 0,100" fill="none" stroke="currentColor" stroke-width="1" opacity="0.12"/>
+    </pattern>
+    <clipPath id="grid-clip-5">
+      <rect x="1" y="1" width="798" height="598"/>
+    </clipPath>
+  </defs>
+
+  <g clip-path="url(#grid-clip-5)">
+    <rect x="1" y="1" width="798" height="598" fill="url(#grid-major-5)"/>
+  </g>
+  <rect x="1" y="1" width="798" height="598" fill="none" stroke="currentColor" stroke-width="1" opacity="0.12"/>
+
+  <!-- FIG. 1 — main elevation -->
+  <g id="fig-1">
+    <text x="90" y="536" font-size="11" opacity="1">FIG. 1 — ELEVATION, FRONT</text>
+
+    <!-- cabinet -->
+    <rect x="90" y="90" width="240" height="330" rx="6" fill="none" stroke="currentColor" stroke-width="1.5" opacity="1"/>
+    <line x1="90" y1="116" x2="330" y2="116" stroke="currentColor" stroke-width="1" opacity="0.55" fill="none"/>
+
+    <!-- jack field, 4 columns x 5 rows -->
+    <g id="jack-field">
+      <circle cx="128" cy="140" r="7" fill="none" stroke="currentColor" stroke-width="1" opacity="1"/>
+      <circle cx="185" cy="140" r="7" fill="none" stroke="currentColor" stroke-width="1" opacity="1"/>
+      <circle cx="242" cy="140" r="7" fill="none" stroke="currentColor" stroke-width="1" opacity="1"/>
+      <circle cx="299" cy="140" r="7" fill="none" stroke="currentColor" stroke-width="1" opacity="1"/>
+      <text x="128" y="158" font-size="8" text-anchor="middle" opacity="0.55">BECAUSE</text>
+      <text x="185" y="158" font-size="8" text-anchor="middle" opacity="0.55">ANYWAY</text>
+      <text x="242" y="158" font-size="8" text-anchor="middle" opacity="0.55">ACTUALLY</text>
+      <text x="299" y="158" font-size="8" text-anchor="middle" opacity="0.55">WAIT</text>
+
+      <circle cx="128" cy="176" r="7" fill="none" stroke="currentColor" stroke-width="1" opacity="1"/>
+      <circle cx="185" cy="176" r="7" fill="none" stroke="currentColor" stroke-width="1" opacity="1"/>
+      <circle cx="242" cy="176" r="7" fill="none" stroke="currentColor" stroke-width="1" opacity="1"/>
+      <circle cx="299" cy="176" r="7" fill="none" stroke="currentColor" stroke-width="1" opacity="1"/>
+      <text x="128" y="194" font-size="8" text-anchor="middle" opacity="0.55">SORRY</text>
+      <text x="185" y="194" font-size="8" text-anchor="middle" opacity="0.55">MAYBE</text>
+      <text x="242" y="194" font-size="8" text-anchor="middle" opacity="0.55">LATER</text>
+      <text x="299" y="194" font-size="8" text-anchor="middle" opacity="0.55">STILL</text>
+
+      <circle cx="128" cy="212" r="7" fill="none" stroke="currentColor" stroke-width="1" opacity="1"/>
+      <circle cx="185" cy="212" r="7" fill="none" stroke="currentColor" stroke-width="1" opacity="1"/>
+      <circle cx="242" cy="212" r="7" fill="none" stroke="currentColor" stroke-width="1" opacity="1"/>
+      <circle cx="299" cy="212" r="7" fill="none" stroke="currentColor" stroke-width="1" opacity="1"/>
+      <text x="128" y="230" font-size="8" text-anchor="middle" opacity="0.55">NEVER</text>
+      <text x="185" y="230" font-size="8" text-anchor="middle" opacity="0.55">ALMOST</text>
+      <text x="242" y="230" font-size="8" text-anchor="middle" opacity="0.55">ONCE</text>
+      <text x="299" y="230" font-size="8" text-anchor="middle" opacity="0.55">ALWAYS</text>
+
+      <circle cx="128" cy="248" r="7" fill="none" stroke="currentColor" stroke-width="1" opacity="1"/>
+      <circle cx="185" cy="248" r="7" fill="none" stroke="currentColor" stroke-width="1" opacity="1"/>
+      <circle cx="242" cy="248" r="7" fill="none" stroke="currentColor" stroke-width="1" opacity="1"/>
+      <circle cx="299" cy="248" r="7" fill="none" stroke="currentColor" stroke-width="1" opacity="1"/>
+      <text x="128" y="266" font-size="8" text-anchor="middle" opacity="0.55">HOME</text>
+      <text x="185" y="266" font-size="8" text-anchor="middle" opacity="0.55">IF</text>
+      <text x="242" y="266" font-size="8" text-anchor="middle" opacity="0.55">STAY</text>
+      <text x="299" y="266" font-size="8" text-anchor="middle" opacity="0.55">GO</text>
+
+      <circle cx="128" cy="284" r="7" fill="none" stroke="currentColor" stroke-width="1" opacity="1"/>
+      <circle cx="185" cy="284" r="7" fill="none" stroke="currentColor" stroke-width="1" opacity="1"/>
+      <circle cx="242" cy="284" r="7" fill="none" stroke="currentColor" stroke-width="1" opacity="1"/>
+      <circle cx="299" cy="284" r="7" fill="none" stroke="currentColor" stroke-width="1" opacity="1"/>
+      <text x="128" y="302" font-size="8" text-anchor="middle" opacity="0.55">CALL</text>
+      <text x="185" y="302" font-size="8" text-anchor="middle" opacity="0.55">SO</text>
+      <text x="242" y="302" font-size="8" text-anchor="middle" opacity="0.55">THEN</text>
+    </g>
+    <!-- jack at 299,284 is left blank on purpose: no word label -->
+
+    <!-- supervisory lamp beside the connected cord, clear of the WAIT label below -->
+    <circle cx="299" cy="140" r="3" fill="currentColor" stroke="none" opacity="1"/>
+    <circle cx="320" cy="140" r="5" fill="none" stroke="currentColor" stroke-width="0.75" opacity="1"/>
+    <line x1="314" y1="134" x2="326" y2="146" stroke="currentColor" stroke-width="0.75" opacity="0.55" fill="none"/>
+    <line x1="326" y1="134" x2="314" y2="146" stroke="currentColor" stroke-width="0.75" opacity="0.55" fill="none"/>
+
+    <!-- cord plug shelf -->
+    <rect x="100" y="330" width="220" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="1" opacity="1"/>
+
+    <!-- connected cord, plugged into the WAIT jack, routed clear of the lamp and every jack below it -->
+    <path d="M299,147 L310,156 L310,320 L260,320 L260,330" fill="none" stroke="currentColor" stroke-width="1" opacity="1"/>
+
+    <!-- loose looped cords, hanging unconnected -->
+    <path d="M180,344 Q170,375 190,390 Q210,405 195,420 Q182,432 200,344" fill="none" stroke="currentColor" stroke-width="0.75" opacity="0.55"/>
+    <path d="M230,344 Q218,380 240,398 Q258,412 240,344" fill="none" stroke="currentColor" stroke-width="0.75" opacity="0.55"/>
+    <path d="M280,344 Q268,372 288,386 Q305,398 288,344" fill="none" stroke="currentColor" stroke-width="0.75" opacity="0.55"/>
+
+    <!-- cabinet feet -->
+    <rect x="100" y="420" width="18" height="14" fill="none" stroke="currentColor" stroke-width="1" opacity="1"/>
+    <rect x="302" y="420" width="18" height="14" fill="none" stroke="currentColor" stroke-width="1" opacity="1"/>
+  </g>
+
+  <!-- FIG. 2 — detail view -->
+  <g id="fig-2">
+    <text x="620" y="64" font-size="13" text-anchor="middle" opacity="1">FIG. 2</text>
+    <circle cx="620" cy="190" r="110" fill="none" stroke="currentColor" stroke-width="1.5" opacity="1"/>
+    <text x="620" y="316" font-size="10" text-anchor="middle" opacity="0.55">DETAIL — LIT JACK, SCALE 3:1</text>
+
+    <circle cx="600" cy="180" r="26" fill="none" stroke="currentColor" stroke-width="1.5" opacity="1"/>
+    <text x="600" y="185" font-size="10" text-anchor="middle" opacity="1">WAIT</text>
+    <g class="lamp">
+      <circle cx="655" cy="150" r="14" fill="none" stroke="currentColor" stroke-width="1" opacity="1"/>
+      <line x1="646" y1="141" x2="664" y2="159" stroke="currentColor" stroke-width="0.75" opacity="0.55" fill="none"/>
+      <line x1="664" y1="141" x2="646" y2="159" stroke="currentColor" stroke-width="0.75" opacity="0.55" fill="none"/>
+    </g>
+    <line x1="624" y1="170" x2="642" y2="156" stroke="currentColor" stroke-width="0.75" opacity="0.55" fill="none"/>
+  </g>
+
+  <!-- zoom leader linking fig. 1 to fig. 2, anchored left/bottom of the WAIT jack, clear of the lamp -->
+  <g opacity="0.55">
+    <line x1="292" y1="140" x2="513" y2="150" stroke="currentColor" stroke-width="0.75" fill="none"/>
+    <line x1="299" y1="147" x2="513" y2="234" stroke="currentColor" stroke-width="0.75" fill="none"/>
+    <circle cx="299" cy="147" r="3" fill="currentColor" stroke="none"/>
+  </g>
+
+  <!-- callouts -->
+  <g id="callouts">
+    <line x1="304" y1="134" x2="356" y2="100" stroke="currentColor" stroke-width="0.75" opacity="0.55" fill="none"/>
+    <circle cx="365" cy="95" r="9" fill="none" stroke="currentColor" stroke-width="1" opacity="1"/>
+    <text x="365" y="99" font-size="10" text-anchor="middle" opacity="1">1</text>
+    <text x="380" y="99" font-size="10" opacity="1">JACK FIELD</text>
+
+    <line x1="242" y1="158" x2="356" y2="182" stroke="currentColor" stroke-width="0.75" opacity="0.55" fill="none"/>
+    <circle cx="365" cy="180" r="9" fill="none" stroke="currentColor" stroke-width="1" opacity="1"/>
+    <text x="365" y="184" font-size="10" text-anchor="middle" opacity="1">2</text>
+    <text x="380" y="184" font-size="10" opacity="1">WORD LABEL</text>
+
+    <line x1="320" y1="135" x2="356" y2="264" stroke="currentColor" stroke-width="0.75" opacity="0.55" fill="none"/>
+    <circle cx="365" cy="264" r="9" fill="none" stroke="currentColor" stroke-width="1" opacity="1"/>
+    <text x="365" y="268" font-size="10" text-anchor="middle" opacity="1">3</text>
+    <text x="380" y="268" font-size="10" opacity="1">SUPERVISORY LAMP</text>
+
+    <line x1="230" y1="344" x2="391" y2="335" stroke="currentColor" stroke-width="0.75" opacity="0.55" fill="none"/>
+    <circle cx="400" cy="335" r="9" fill="none" stroke="currentColor" stroke-width="1" opacity="1"/>
+    <text x="400" y="339" font-size="10" text-anchor="middle" opacity="1">4</text>
+    <text x="414" y="339" font-size="10" opacity="1">CORD PAIR</text>
+
+    <line x1="299" y1="284" x2="391" y2="459" stroke="currentColor" stroke-width="0.75" opacity="0.55" fill="none"/>
+    <circle cx="400" cy="459" r="9" fill="none" stroke="currentColor" stroke-width="1" opacity="1"/>
+    <text x="400" y="463" font-size="10" text-anchor="middle" opacity="1">5</text>
+    <text x="414" y="463" font-size="10" opacity="1">BLANK JACK</text>
+  </g>
+
+  <!-- dimensions -->
+  <g id="dimensions" opacity="0.55">
+    <line x1="90" y1="86" x2="90" y2="66" stroke="currentColor" stroke-width="0.75" fill="none"/>
+    <line x1="330" y1="86" x2="330" y2="66" stroke="currentColor" stroke-width="0.75" fill="none"/>
+    <line x1="90" y1="70" x2="330" y2="70" stroke="currentColor" stroke-width="0.75" fill="none"/>
+    <text x="210" y="62" font-size="10" text-anchor="middle">460 MM</text>
+
+    <line x1="66" y1="90" x2="50" y2="90" stroke="currentColor" stroke-width="0.75" fill="none"/>
+    <line x1="66" y1="420" x2="50" y2="420" stroke="currentColor" stroke-width="0.75" fill="none"/>
+    <line x1="58" y1="90" x2="58" y2="420" stroke="currentColor" stroke-width="0.75" fill="none"/>
+    <text x="34" y="255" font-size="10" text-anchor="middle" transform="rotate(-90 34 255)">610 MM</text>
+
+    <line x1="97" y1="133" x2="113" y2="133" stroke="currentColor" stroke-width="0.75" fill="none"/>
+    <line x1="97" y1="169" x2="113" y2="169" stroke="currentColor" stroke-width="0.75" fill="none"/>
+    <line x1="105" y1="133" x2="105" y2="169" stroke="currentColor" stroke-width="0.75" fill="none"/>
+    <text x="89" y="151" font-size="10" text-anchor="middle" transform="rotate(-90 89 151)">36 MM</text>
+  </g>
+
+  <!-- compass / scale -->
+  <g id="compass-scale">
+    <line x1="60" y1="560" x2="200" y2="560" stroke="currentColor" stroke-width="1" opacity="1" fill="none"/>
+    <line x1="60" y1="554" x2="60" y2="566" stroke="currentColor" stroke-width="1" opacity="1" fill="none"/>
+    <line x1="107" y1="554" x2="107" y2="566" stroke="currentColor" stroke-width="1" opacity="1" fill="none"/>
+    <line x1="153" y1="554" x2="153" y2="566" stroke="currentColor" stroke-width="1" opacity="1" fill="none"/>
+    <line x1="200" y1="554" x2="200" y2="566" stroke="currentColor" stroke-width="1" opacity="1" fill="none"/>
+    <text x="60" y="580" font-size="10" text-anchor="middle" opacity="1">0</text>
+    <text x="107" y="580" font-size="10" text-anchor="middle" opacity="1">50</text>
+    <text x="153" y="580" font-size="10" text-anchor="middle" opacity="1">100</text>
+    <text x="200" y="580" font-size="10" text-anchor="middle" opacity="1">MM</text>
+
+    <circle cx="350" cy="553" r="16" fill="none" stroke="currentColor" stroke-width="1" opacity="1"/>
+    <line x1="350" y1="539" x2="350" y2="567" stroke="currentColor" stroke-width="0.75" opacity="0.55" fill="none"/>
+    <line x1="334" y1="553" x2="366" y2="553" stroke="currentColor" stroke-width="0.75" opacity="0.55" fill="none"/>
+    <text x="350" y="533" font-size="10" text-anchor="middle" opacity="1">N</text>
+  </g>
+
+  <!-- UNFINISHED stamp -->
+  <g transform="rotate(-8 460 390)" opacity="1">
+    <rect x="385" y="365" width="150" height="50" rx="8" fill="none" stroke="currentColor" stroke-width="1" opacity="1"/>
+    <rect x="391" y="371" width="138" height="38" rx="5" fill="none" stroke="currentColor" stroke-width="0.75" opacity="1"/>
+    <text x="460" y="396" font-size="14" text-anchor="middle" opacity="1">UNFINISHED</text>
+  </g>
+
+  <!-- title block -->
+  <g id="title-block">
+    <rect x="555" y="478" width="225" height="104" fill="none" stroke="currentColor" stroke-width="1.5" opacity="1"/>
+    <line x1="555" y1="500" x2="780" y2="500" stroke="currentColor" stroke-width="0.75" opacity="0.55" fill="none"/>
+    <line x1="555" y1="518" x2="780" y2="518" stroke="currentColor" stroke-width="0.75" opacity="0.55" fill="none"/>
+    <line x1="555" y1="560" x2="780" y2="560" stroke="currentColor" stroke-width="0.75" opacity="0.55" fill="none"/>
+    <text x="567" y="493" font-size="10" opacity="1">MUSEUM OF UNFINISHED FUTURES</text>
+    <text x="567" y="513" font-size="10" opacity="1">PLATE NO. 005</text>
+    <text x="773" y="513" font-size="10" text-anchor="end" opacity="1">SHEET 1/1</text>
+    <text x="567" y="528" font-size="10" opacity="1">THE SWITCHBOARD FOR</text>
+    <text x="567" y="540" font-size="10" opacity="1">CONVERSATIONS THAT</text>
+    <text x="567" y="552" font-size="10" opacity="1">ENDED TOO SOON</text>
+    <text x="567" y="574" font-size="10" opacity="1">DRAWN — NEVER BUILT</text>
+  </g>
+</svg>
+
+<!-- INLINE_SVG_005_END -->
+    </div>
+  </figure>
+  <figure>
+    <figcaption>PLATE 006 Variant A — &lt;img src="..."&gt; (reference only; does not inherit currentColor, strokes render un-tinted)</figcaption>
+    <div class="frame img-wrapper">
+      <img class="frame" src="../../../public/illustrations/weather-of-visits-kettle.svg" width="800" height="600" alt="Blueprint plate: the kettle that brews the weather of past visits" />
+    </div>
+  </figure>
+  <figure>
+    <figcaption>PLATE 006 Variant B — SVG markup inlined directly in this page (inherits currentColor; tinted amber + glowing, matches production rendering)</figcaption>
+    <div class="frame inline-wrapper">
+<!-- INLINE_SVG_006_START -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-labelledby="plate-title plate-desc" fill="currentColor" stroke-linecap="round" stroke-linejoin="round" font-family="ui-monospace, 'IBM Plex Mono', Menlo, Consolas, monospace" letter-spacing="0.08em">
+  <title id="plate-title">The Kettle That Brews the Weather of Past Visits</title>
+  <desc id="plate-desc">A pale blue enamel kettle sits on a cast-iron trivet. A thin curl of grey cloud hangs above its spout, faint frost rims the spout's edge, and rows of small painted tally marks circle its base.</desc>
+
+  <defs>
+    <pattern id="grid-fine-6" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M20,0 L0,0 0,20" fill="none" stroke="currentColor" stroke-width="0.5" opacity="0.12"/>
+    </pattern>
+    <pattern id="grid-major-6" width="100" height="100" patternUnits="userSpaceOnUse">
+      <rect width="100" height="100" fill="url(#grid-fine-6)"/>
+      <path d="M100,0 L0,0 0,100" fill="none" stroke="currentColor" stroke-width="1" opacity="0.12"/>
+    </pattern>
+    <clipPath id="grid-clip-6">
+      <rect x="1" y="1" width="798" height="598"/>
+    </clipPath>
+  </defs>
+
+  <g clip-path="url(#grid-clip-6)">
+    <rect x="1" y="1" width="798" height="598" fill="url(#grid-major-6)"/>
+  </g>
+  <rect x="1" y="1" width="798" height="598" fill="none" stroke="currentColor" stroke-width="1" opacity="0.12"/>
+
+  <!-- FIG. 1 — main elevation -->
+  <g id="fig-1">
+    <text x="90" y="536" font-size="11" opacity="1">FIG. 1 — ELEVATION, SIDE</text>
+
+    <!-- rising cloud above spout -->
+    <g class="cloud">
+      <path d="M262,150 Q248,138 260,126 Q252,110 270,104 Q280,90 298,100 Q314,94 318,110 Q332,112 328,128 Q336,142 320,148 Q322,158 306,158 Q296,168 282,158 Q266,164 262,150 Z" fill="none" stroke="currentColor" stroke-width="1" opacity="0.55"/>
+    </g>
+
+    <!-- kettle dome body -->
+    <path d="M150,260 Q150,190 210,190 Q270,190 270,260 L270,300 Q270,330 210,330 Q150,330 150,300 Z" fill="none" stroke="currentColor" stroke-width="1.5" opacity="1"/>
+
+    <!-- lid + knob -->
+    <ellipse cx="210" cy="190" rx="30" ry="8" fill="none" stroke="currentColor" stroke-width="1" opacity="1"/>
+    <line x1="210" y1="182" x2="210" y2="170" stroke="currentColor" stroke-width="1" opacity="1" fill="none"/>
+    <circle cx="210" cy="164" r="6" fill="none" stroke="currentColor" stroke-width="1" opacity="1"/>
+
+    <!-- spout -->
+    <path d="M262,220 Q296,210 306,180 Q310,168 300,166 Q292,176 284,196 Q272,214 254,232" fill="none" stroke="currentColor" stroke-width="1.5" opacity="1"/>
+    <!-- frost rim at spout edge -->
+    <path d="M296,168 Q300,164 304,168" fill="none" stroke="currentColor" stroke-width="0.75" opacity="0.55"/>
+    <path d="M292,176 Q296,172 300,176" fill="none" stroke="currentColor" stroke-width="0.75" opacity="0.55"/>
+
+    <!-- handle -->
+    <path d="M158,220 Q118,220 118,258 Q118,296 158,296" fill="none" stroke="currentColor" stroke-width="1.5" opacity="1"/>
+
+    <!-- tally band around base -->
+    <g id="tally-band">
+      <line x1="160" y1="308" x2="160" y2="322" stroke="currentColor" stroke-width="0.75" opacity="0.55" fill="none"/>
+      <line x1="167" y1="309" x2="167" y2="323" stroke="currentColor" stroke-width="0.75" opacity="0.55" fill="none"/>
+      <line x1="174" y1="310" x2="174" y2="324" stroke="currentColor" stroke-width="0.75" opacity="0.55" fill="none"/>
+      <line x1="181" y1="310" x2="181" y2="324" stroke="currentColor" stroke-width="0.75" opacity="0.55" fill="none"/>
+      <line x1="159" y1="315" x2="184" y2="309" stroke="currentColor" stroke-width="0.75" opacity="0.55" fill="none"/>
+
+      <line x1="196" y1="311" x2="196" y2="325" stroke="currentColor" stroke-width="0.75" opacity="0.55" fill="none"/>
+      <line x1="203" y1="311" x2="203" y2="325" stroke="currentColor" stroke-width="0.75" opacity="0.55" fill="none"/>
+      <line x1="210" y1="311" x2="210" y2="325" stroke="currentColor" stroke-width="0.75" opacity="0.55" fill="none"/>
+      <line x1="217" y1="311" x2="217" y2="325" stroke="currentColor" stroke-width="0.75" opacity="0.55" fill="none"/>
+      <line x1="195" y1="317" x2="220" y2="317" stroke="currentColor" stroke-width="0.75" opacity="0.55" fill="none"/>
+
+      <line x1="232" y1="310" x2="232" y2="324" stroke="currentColor" stroke-width="0.75" opacity="0.55" fill="none"/>
+      <line x1="239" y1="309" x2="239" y2="323" stroke="currentColor" stroke-width="0.75" opacity="0.55" fill="none"/>
+      <line x1="246" y1="308" x2="246" y2="322" stroke="currentColor" stroke-width="0.75" opacity="0.55" fill="none"/>
+    </g>
+
+    <!-- trivet -->
+    <line x1="130" y1="340" x2="290" y2="340" stroke="currentColor" stroke-width="1.5" opacity="1" fill="none"/>
+    <line x1="140" y1="340" x2="120" y2="366" stroke="currentColor" stroke-width="1" opacity="1" fill="none"/>
+    <line x1="210" y1="340" x2="210" y2="368" stroke="currentColor" stroke-width="1" opacity="1" fill="none"/>
+    <line x1="280" y1="340" x2="300" y2="366" stroke="currentColor" stroke-width="1" opacity="1" fill="none"/>
+  </g>
+
+  <!-- FIG. 2 — detail view -->
+  <g id="fig-2">
+    <text x="620" y="64" font-size="13" text-anchor="middle" opacity="1">FIG. 2</text>
+    <circle cx="620" cy="190" r="110" fill="none" stroke="currentColor" stroke-width="1.5" opacity="1"/>
+    <text x="620" y="316" font-size="10" text-anchor="middle" opacity="0.55">DETAIL — TALLY BAND, SCALE 3:1</text>
+
+    <path d="M552,190 Q620,146 688,190" fill="none" stroke="currentColor" stroke-width="1" opacity="0.55"/>
+
+    <line x1="590" y1="176" x2="590" y2="204" stroke="currentColor" stroke-width="1" opacity="1" fill="none"/>
+    <line x1="602" y1="174" x2="602" y2="202" stroke="currentColor" stroke-width="1" opacity="1" fill="none"/>
+    <line x1="614" y1="172" x2="614" y2="200" stroke="currentColor" stroke-width="1" opacity="1" fill="none"/>
+    <line x1="626" y1="172" x2="626" y2="200" stroke="currentColor" stroke-width="1" opacity="1" fill="none"/>
+    <line x1="588" y1="190" x2="628" y2="184" stroke="currentColor" stroke-width="1" opacity="1" fill="none"/>
+
+    <line x1="646" y1="176" x2="646" y2="204" stroke="currentColor" stroke-width="1" opacity="1" fill="none"/>
+    <line x1="658" y1="174" x2="658" y2="202" stroke="currentColor" stroke-width="1" opacity="1" fill="none"/>
+    <line x1="670" y1="172" x2="670" y2="200" stroke="currentColor" stroke-width="1" opacity="1" fill="none"/>
+    <line x1="682" y1="174" x2="682" y2="202" stroke="currentColor" stroke-width="1" opacity="1" fill="none"/>
+    <line x1="644" y1="190" x2="684" y2="184" stroke="currentColor" stroke-width="1" opacity="1" fill="none"/>
+    <text x="618" y="234" font-size="9" text-anchor="middle" opacity="1">GROUPS OF 5</text>
+  </g>
+
+  <!-- zoom leader linking fig. 1 to fig. 2 -->
+  <g opacity="0.55">
+    <line x1="220" y1="317" x2="513" y2="150" stroke="currentColor" stroke-width="0.75" fill="none"/>
+    <line x1="220" y1="324" x2="513" y2="234" stroke="currentColor" stroke-width="0.75" fill="none"/>
+    <circle cx="220" cy="320" r="3" fill="currentColor" stroke="none"/>
+  </g>
+
+  <!-- callouts -->
+  <g id="callouts">
+    <line x1="300" y1="168" x2="356" y2="100" stroke="currentColor" stroke-width="0.75" opacity="0.55" fill="none"/>
+    <circle cx="365" cy="95" r="9" fill="none" stroke="currentColor" stroke-width="1" opacity="1"/>
+    <text x="365" y="99" font-size="10" text-anchor="middle" opacity="1">1</text>
+    <text x="380" y="99" font-size="10" opacity="1">SPOUT (FROSTED)</text>
+
+    <line x1="298" y1="100" x2="356" y2="182" stroke="currentColor" stroke-width="0.75" opacity="0.55" fill="none"/>
+    <circle cx="365" cy="180" r="9" fill="none" stroke="currentColor" stroke-width="1" opacity="1"/>
+    <text x="365" y="184" font-size="10" text-anchor="middle" opacity="1">2</text>
+    <text x="380" y="184" font-size="10" opacity="1">WEATHER VENT</text>
+
+    <line x1="210" y1="368" x2="356" y2="264" stroke="currentColor" stroke-width="0.75" opacity="0.55" fill="none"/>
+    <circle cx="365" cy="264" r="9" fill="none" stroke="currentColor" stroke-width="1" opacity="1"/>
+    <text x="365" y="268" font-size="10" text-anchor="middle" opacity="1">3</text>
+    <text x="380" y="268" font-size="10" opacity="1">TRIVET</text>
+
+    <line x1="246" y1="315" x2="391" y2="335" stroke="currentColor" stroke-width="0.75" opacity="0.55" fill="none"/>
+    <circle cx="400" cy="335" r="9" fill="none" stroke="currentColor" stroke-width="1" opacity="1"/>
+    <text x="400" y="339" font-size="10" text-anchor="middle" opacity="1">4</text>
+    <text x="414" y="339" font-size="10" opacity="1">TALLY BAND</text>
+
+    <line x1="118" y1="296" x2="391" y2="459" stroke="currentColor" stroke-width="0.75" opacity="0.55" fill="none"/>
+    <circle cx="400" cy="459" r="9" fill="none" stroke="currentColor" stroke-width="1" opacity="1"/>
+    <text x="400" y="463" font-size="10" text-anchor="middle" opacity="1">5</text>
+    <text x="414" y="463" font-size="10" opacity="1">HANDLE</text>
+  </g>
+
+  <!-- dimensions -->
+  <g id="dimensions" opacity="0.55">
+    <line x1="118" y1="76" x2="118" y2="56" stroke="currentColor" stroke-width="0.75" fill="none"/>
+    <line x1="306" y1="76" x2="306" y2="56" stroke="currentColor" stroke-width="0.75" fill="none"/>
+    <line x1="118" y1="60" x2="306" y2="60" stroke="currentColor" stroke-width="0.75" fill="none"/>
+    <text x="212" y="52" font-size="10" text-anchor="middle">210 MM</text>
+
+    <line x1="98" y1="190" x2="82" y2="190" stroke="currentColor" stroke-width="0.75" fill="none"/>
+    <line x1="98" y1="368" x2="82" y2="368" stroke="currentColor" stroke-width="0.75" fill="none"/>
+    <line x1="90" y1="190" x2="90" y2="368" stroke="currentColor" stroke-width="0.75" fill="none"/>
+    <text x="66" y="279" font-size="10" text-anchor="middle" transform="rotate(-90 66 279)">198 MM</text>
+
+    <line x1="150" y1="336" x2="150" y2="404" stroke="currentColor" stroke-width="0.75" fill="none"/>
+    <line x1="270" y1="336" x2="270" y2="404" stroke="currentColor" stroke-width="0.75" fill="none"/>
+    <line x1="150" y1="400" x2="270" y2="400" stroke="currentColor" stroke-width="0.75" fill="none"/>
+    <text x="210" y="416" font-size="10" text-anchor="middle">140 MM</text>
+  </g>
+
+  <!-- compass / scale -->
+  <g id="compass-scale">
+    <line x1="60" y1="560" x2="200" y2="560" stroke="currentColor" stroke-width="1" opacity="1" fill="none"/>
+    <line x1="60" y1="554" x2="60" y2="566" stroke="currentColor" stroke-width="1" opacity="1" fill="none"/>
+    <line x1="107" y1="554" x2="107" y2="566" stroke="currentColor" stroke-width="1" opacity="1" fill="none"/>
+    <line x1="153" y1="554" x2="153" y2="566" stroke="currentColor" stroke-width="1" opacity="1" fill="none"/>
+    <line x1="200" y1="554" x2="200" y2="566" stroke="currentColor" stroke-width="1" opacity="1" fill="none"/>
+    <text x="60" y="580" font-size="10" text-anchor="middle" opacity="1">0</text>
+    <text x="107" y="580" font-size="10" text-anchor="middle" opacity="1">50</text>
+    <text x="153" y="580" font-size="10" text-anchor="middle" opacity="1">100</text>
+    <text x="200" y="580" font-size="10" text-anchor="middle" opacity="1">MM</text>
+
+    <circle cx="350" cy="553" r="16" fill="none" stroke="currentColor" stroke-width="1" opacity="1"/>
+    <line x1="350" y1="539" x2="350" y2="567" stroke="currentColor" stroke-width="0.75" opacity="0.55" fill="none"/>
+    <line x1="334" y1="553" x2="366" y2="553" stroke="currentColor" stroke-width="0.75" opacity="0.55" fill="none"/>
+    <text x="350" y="533" font-size="10" text-anchor="middle" opacity="1">N</text>
+  </g>
+
+  <!-- UNFINISHED stamp -->
+  <g transform="rotate(-8 460 390)" opacity="1">
+    <rect x="385" y="365" width="150" height="50" rx="8" fill="none" stroke="currentColor" stroke-width="1" opacity="1"/>
+    <rect x="391" y="371" width="138" height="38" rx="5" fill="none" stroke="currentColor" stroke-width="0.75" opacity="1"/>
+    <text x="460" y="396" font-size="14" text-anchor="middle" opacity="1">UNFINISHED</text>
+  </g>
+
+  <!-- title block -->
+  <g id="title-block">
+    <rect x="555" y="478" width="225" height="104" fill="none" stroke="currentColor" stroke-width="1.5" opacity="1"/>
+    <line x1="555" y1="500" x2="780" y2="500" stroke="currentColor" stroke-width="0.75" opacity="0.55" fill="none"/>
+    <line x1="555" y1="518" x2="780" y2="518" stroke="currentColor" stroke-width="0.75" opacity="0.55" fill="none"/>
+    <line x1="555" y1="560" x2="780" y2="560" stroke="currentColor" stroke-width="0.75" opacity="0.55" fill="none"/>
+    <text x="567" y="493" font-size="10" opacity="1">MUSEUM OF UNFINISHED FUTURES</text>
+    <text x="567" y="513" font-size="10" opacity="1">PLATE NO. 006</text>
+    <text x="773" y="513" font-size="10" text-anchor="end" opacity="1">SHEET 1/1</text>
+    <text x="567" y="528" font-size="10" opacity="1">THE KETTLE THAT</text>
+    <text x="567" y="540" font-size="10" opacity="1">BREWS THE WEATHER</text>
+    <text x="567" y="552" font-size="10" opacity="1">OF PAST VISITS</text>
+    <text x="567" y="574" font-size="10" opacity="1">DRAWN — NEVER BUILT</text>
+  </g>
+</svg>
+
+<!-- INLINE_SVG_006_END -->
+    </div>
+  </figure>
+</main>
+</body>
+</html>

@@ -18,7 +18,7 @@ function submittedReview(overrides: Partial<ArtifactReview> = {}): ArtifactRevie
   return {
     _id: getArtifactReviewId(artifactId),
     _type: "artifactReview",
-    artifact: { _type: "reference", _ref: artifactId },
+    artifact: { _type: "reference", _ref: artifactId, _weak: true },
     state: "submitted",
     submittedRevision: "draft-rev-1",
     submittedAt: NOW,

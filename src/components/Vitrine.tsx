@@ -32,7 +32,8 @@ export function Vitrine({
 
   return (
     <div
-      className="group relative overflow-hidden rounded-lg border border-brass-dim/60 bg-floor/70 p-4 shadow-[0_0_45px_-18px_rgba(0,0,0,0.9)]"
+      className="group relative self-start overflow-hidden rounded-lg border border-brass-dim/60 bg-floor/70 p-4 shadow-[0_0_45px_-18px_rgba(0,0,0,0.9)]"
+      data-testid="vitrine-frame"
       style={style}
     >
       <div
@@ -45,25 +46,28 @@ export function Vitrine({
       />
       <div
         aria-label={description}
-        className="relative mx-auto flex aspect-[4/3] max-w-xl items-center justify-center overflow-hidden rounded-md border border-glass/25 bg-hall/80 p-6"
+        className="relative mx-auto aspect-[4/3] max-w-xl overflow-hidden rounded-md border border-glass/25 bg-hall/80"
+        data-testid="vitrine-case"
         role="img"
       >
-        {plateMarkup ? (
-          <Plate markup={plateMarkup.markup} source={plateMarkup.source} />
-        ) : (
-          <div className="relative flex h-full w-full flex-col justify-between rounded-sm border border-brass-dim/50 p-4">
-            <div
-              aria-hidden
-              className="animate-plate-glow pointer-events-none absolute inset-0 rounded-sm bg-[length:24px_24px] opacity-90 [background-image:linear-gradient(var(--brass-dim)_1px,transparent_1px),linear-gradient(90deg,var(--brass-dim)_1px,transparent_1px)]"
-            />
-            <p className="relative font-mono text-[10px] uppercase tracking-[0.2em] text-ink-muted">
-              PLATE PENDING · {title}
-            </p>
-            <p className="relative line-clamp-4 font-display text-lg italic text-spotlight">
-              {label}
-            </p>
-          </div>
-        )}
+        <div className="absolute inset-0 flex items-center justify-center p-6">
+          {plateMarkup ? (
+            <Plate markup={plateMarkup.markup} source={plateMarkup.source} />
+          ) : (
+            <div className="relative flex h-full w-full flex-col justify-between rounded-sm border border-brass-dim/50 p-4">
+              <div
+                aria-hidden
+                className="animate-plate-glow pointer-events-none absolute inset-0 rounded-sm bg-[length:24px_24px] opacity-90 [background-image:linear-gradient(var(--brass-dim)_1px,transparent_1px),linear-gradient(90deg,var(--brass-dim)_1px,transparent_1px)]"
+              />
+              <p className="relative font-mono text-[10px] uppercase tracking-[0.2em] text-ink-muted">
+                PLATE PENDING · {title}
+              </p>
+              <p className="relative line-clamp-4 font-display text-lg italic text-spotlight">
+                {label}
+              </p>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

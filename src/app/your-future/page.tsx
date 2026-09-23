@@ -23,16 +23,20 @@ export async function generateMetadata({
   const { trace } = await searchParams;
   const parsed = parseTrace(trace);
 
+  // The root layout now applies a "%s — Museum of Unfinished Futures" title
+  // template (T-012d), so `title` below is the short, page-specific part —
+  // the template supplies the suffix for the <title> tag. openGraph/twitter
+  // titles aren't templated, so those are still built as full strings.
   if ("error" in parsed) {
     return {
-      title: `Ticket unreadable — ${SITE_TITLE}`,
+      title: "Ticket unreadable",
       description: UNREADABLE_DESCRIPTION,
     };
   }
 
   if (parsed.ids.length === 0) {
     return {
-      title: `Print your ticket — ${SITE_TITLE}`,
+      title: "Print your ticket",
       description: NO_TRACE_DESCRIPTION,
     };
   }
@@ -44,20 +48,21 @@ export async function generateMetadata({
     ticketLines,
   });
 
-  const title = `Your Unfinished Future — ${SITE_TITLE}`;
+  const shortTitle = "Your Unfinished Future";
+  const fullTitle = `${shortTitle} — ${SITE_TITLE}`;
   const description = ticket.summary;
 
   return {
-    title,
+    title: shortTitle,
     description,
     openGraph: {
-      title,
+      title: fullTitle,
       description,
       type: "website",
     },
     twitter: {
       card: "summary_large_image",
-      title,
+      title: fullTitle,
       description,
     },
   };

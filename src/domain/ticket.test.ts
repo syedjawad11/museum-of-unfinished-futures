@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import type { ArtifactOutcome } from "@/content/types";
+import realTicketLines from "../content/ticket-lines.json";
 import {
   composeTicket,
   parseTrace,
@@ -37,6 +38,12 @@ const ticketLines: TicketLinesContent = {
     "Nothing is settled, but the ink has decided to stay.",
   ],
 };
+
+const tagSentenceStems = [
+  "You leave here",
+  "You also go out",
+  "And you walk on",
+];
 
 function outcome(
   id: string,
@@ -181,7 +188,7 @@ describe("composeTicket", () => {
       "The museum prints a receipt for the future you almost entered.",
     );
     expect(ticket.tagSentence).toBe(
-      "You leave here carrying a day that was never yours to keep, amended in a record you were never shown, and declining something without ever raising your voice. You leave here with more room around you than the corridor promised and known by something that cannot quite place your name.",
+      "You leave here carrying a day that was never yours to keep, amended in a record you were never shown, and declining something without ever raising your voice. You also go out with more room around you than the corridor promised and known by something that cannot quite place your name.",
     );
     expect(ticket.eraLines).toEqual([
       "In civic time, borrowed hours become public infrastructure.",
@@ -323,8 +330,134 @@ describe("composeTicket", () => {
     });
 
     expect(ticket.tagSentence).toBe(
-      "You leave here carrying a day that was never yours to keep, quietly owing more than you agreed to spend, and amended in a record you were never shown. You leave here known by something that cannot quite place your name, answered by a life you decided not to live, and with a line still open behind you.",
+      "You leave here carrying a day that was never yours to keep, quietly owing more than you agreed to spend, and amended in a record you were never shown. You also go out known by something that cannot quite place your name, answered by a life you decided not to live, and with a line still open behind you.",
     );
+  });
+
+  it("does not repeat a tag sentence stem for six-tag and nine-tag traces", () => {
+    const sixTagTicket = composeTicket({
+      traceIds: ["six-tag-trace"],
+      outcomes: [
+        outcome("six-tag-trace", [
+          "borrowed-time",
+          "accruing-interest",
+          "edited-without-asking",
+          "quiet-refusal",
+          "weekend-intact",
+          "room-to-breathe",
+        ]),
+      ],
+      ticketLines: realTicketLines,
+    });
+    const nineTagTicket = composeTicket({
+      traceIds: ["nine-tag-trace"],
+      outcomes: [
+        outcome("nine-tag-trace", [
+          "borrowed-time",
+          "accruing-interest",
+          "edited-without-asking",
+          "quiet-refusal",
+          "weekend-intact",
+          "room-to-breathe",
+          "almost-recognized",
+          "another-life-answering",
+          "line-left-open",
+        ]),
+      ],
+      ticketLines: realTicketLines,
+    });
+
+    for (const ticket of [sixTagTicket, nineTagTicket]) {
+      const repeatedStems = tagSentenceStems.filter(
+        (stem) => ticket.tagSentence.split(stem).length - 1 > 1,
+      );
+
+      expect(repeatedStems).toEqual([]);
+      expect(ticket.tagSentence).not.toContain("undefined");
+    }
+  });
+
+  it("caps a 12-outcome trace at three distinct tag sentences", () => {
+    const allTags = Object.keys(realTicketLines.tagPhrases);
+    const outcomes = Array.from({ length: 12 }, (_, index) =>
+      outcome(`outcome-${index + 1}`, allTags.slice(index * 2, index * 2 + 2)),
+    );
+    const ticket = composeTicket({
+      traceIds: outcomes.map(({ id }) => id),
+      outcomes,
+      ticketLines: realTicketLines,
+    });
+    const sentences = ticket.tagSentence.match(/[^.]+\./g) ?? [];
+
+    expect(allTags.length).toBeGreaterThan(20);
+    expect(sentences).toHaveLength(3);
+    expect(
+      sentences.map((sentence) =>
+        sentence.trim().split(/\s+/).slice(0, 5).join(" "),
+      ),
+    ).toEqual([
+      "You leave here carrying a",
+      "You also go out declining",
+      "And you walk on known",
+    ]);
+    for (const stem of tagSentenceStems) {
+      expect(ticket.tagSentence.split(stem).length - 1).toBe(1);
+    }
+    expect(ticket.tagSentence).not.toMatch(/\blater\b/i);
+    expect(ticket.tagSentence).not.toMatch(/\d/);
+    expect(ticket.tagSentence).not.toContain("undefined");
+  });
+
+  it("renders every real tag phrase verbatim when it is in the first nine", () => {
+    const tagEntries = Object.entries(realTicketLines.tagPhrases);
+
+    for (const [tag, phrase] of tagEntries) {
+      for (let position = 0; position < 9; position += 1) {
+        const fillerTags = tagEntries
+          .map(([fillerTag]) => fillerTag)
+          .filter((fillerTag) => fillerTag !== tag)
+          .slice(0, position);
+        const ticket = composeTicket({
+          traceIds: [`${tag}-trace`],
+          outcomes: [outcome(`${tag}-trace`, [...fillerTags, tag])],
+          ticketLines: realTicketLines,
+        });
+
+        expect(ticket.tagSentence).toContain(phrase);
+      }
+    }
+  });
+
+  it("does not double a word at any stem and phrase boundary", () => {
+    const tagEntries = Object.entries(realTicketLines.tagPhrases);
+
+    for (let stemIndex = 0; stemIndex < tagSentenceStems.length; stemIndex += 1) {
+      const stem = tagSentenceStems[stemIndex];
+
+      for (const [tag, phrase] of tagEntries) {
+        const fillerTags = tagEntries
+          .map(([fillerTag]) => fillerTag)
+          .filter((fillerTag) => fillerTag !== tag)
+          .slice(0, stemIndex * 3);
+        const ticket = composeTicket({
+          traceIds: [`${tag}-trace`],
+          outcomes: [outcome(`${tag}-trace`, [...fillerTags, tag])],
+          ticketLines: realTicketLines,
+        });
+        const sentence = (ticket.tagSentence.match(/[^.]+\./g) ?? [])[
+          stemIndex
+        ];
+        const stemLastWord = stem
+          .match(/\b[\w']+\b(?=\W*$)/)?.[0]
+          .toLowerCase();
+        const phraseFirstWord = phrase.match(/^\W*([\w']+)/)?.[1].toLowerCase();
+
+        expect(sentence).toContain(stem);
+        expect(sentence).toContain(phrase);
+        expect(sentence).not.toContain("undefined");
+        expect(stemLastWord).not.toBe(phraseFirstWord);
+      }
+    }
   });
 
   it("does not repeat a phrase when quiet-refusal appears on two endings", () => {

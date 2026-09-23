@@ -1,7 +1,9 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { sanityExhibitRepository } from "@/content/sanity-repository";
 import { loadPlateMarkup } from "@/content/plate-markup";
+import { buildFullTitle, trimDescription } from "@/content/og-card";
 import { formatConsequenceTag, nextStep } from "@/domain/outcome-chain";
 import { parseTrace } from "@/domain/ticket";
 import { resolveLinkedOutcome } from "@/domain/visitor-trace";
@@ -19,6 +21,46 @@ type ExhibitPageProps = {
 };
 
 export const dynamic = "force-dynamic";
+
+const NOT_FOUND_TITLE = "Exhibit not found";
+
+/**
+ * Per-exhibit title/description/social metadata. `title` is the short,
+ * page-specific string — the root layout's title template appends the
+ * " — Museum of Unfinished Futures" suffix. An unknown slug (or a Sanity
+ * failure) falls back to generic, non-throwing metadata; the page itself
+ * still 404s via `notFound()` in the default export below.
+ */
+export async function generateMetadata({
+  params,
+}: Pick<ExhibitPageProps, "params">): Promise<Metadata> {
+  const { slug } = await params;
+  const exhibit = await sanityExhibitRepository
+    .getExhibitBySlug(slug)
+    .catch(() => null);
+
+  if (!exhibit) {
+    return { title: NOT_FOUND_TITLE };
+  }
+
+  const description = trimDescription(exhibit.summary);
+  const fullTitle = buildFullTitle(exhibit.title);
+
+  return {
+    title: exhibit.title,
+    description,
+    openGraph: {
+      title: fullTitle,
+      description,
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: fullTitle,
+      description,
+    },
+  };
+}
 
 /**
  * Parses the incoming `?trace=`, dropping it silently if malformed — a
@@ -111,15 +153,23 @@ export default async function ExhibitPage({
                   href={`/exhibits/${exhibit.slug}?choice=${artifactChoice.id}${incomingTraceParam ? `&trace=${incomingTraceParam}` : ""}`}
                   key={artifactChoice.id}
                 >
-                  <span aria-hidden className="mr-2 inline-block w-3">
-                    {isSelected ? "●" : ""}
-                  </span>
-                  {artifactChoice.label}
-                  {isSelected ? (
-                    <span aria-hidden className="ml-2 font-mono text-xs text-accent">
-                      SELECTED
+                  <span className="flex items-start justify-between gap-x-3">
+                    <span data-testid="choice-label">
+                      <span aria-hidden className="mr-2 inline-block w-3">
+                        {isSelected ? "●" : ""}
+                      </span>
+                      {artifactChoice.label}
                     </span>
-                  ) : null}
+                    {isSelected ? (
+                      <span
+                        aria-hidden
+                        className="mt-0.5 shrink-0 font-mono text-xs text-accent"
+                        data-testid="choice-selected-badge"
+                      >
+                        SELECTED
+                      </span>
+                    ) : null}
+                  </span>
                 </Link>
               );
             })}
@@ -149,14 +199,25 @@ export default async function ExhibitPage({
               {onwardStep ? (
                 <Link
                   aria-label={`Continue to ${onwardStep.title}`}
-                  className="group inline-flex w-fit items-center gap-2 font-mono text-sm uppercase tracking-[0.2em] text-brass motion-safe:transition hover:text-accent"
+                  className="group inline-flex w-fit max-w-full items-start gap-2 font-mono text-sm uppercase tracking-[0.2em] text-brass motion-safe:transition hover:text-accent"
                   href={`/exhibits/${onwardStep.slug}${traceParam ? `?trace=${traceParam}` : ""}`}
                 >
                   <span
                     aria-hidden
-                    className="h-2 w-2 rounded-full bg-accent shadow-[0_0_6px_1px_var(--accent)] transition-shadow duration-300 motion-reduce:transition-none group-hover:shadow-[0_0_14px_4px_var(--accent)]"
+                    className="mt-1 h-2 w-2 shrink-0 rounded-full bg-accent shadow-[0_0_6px_1px_var(--accent)] transition-shadow duration-300 motion-reduce:transition-none group-hover:shadow-[0_0_14px_4px_var(--accent)]"
                   />
-                  Continue to <span aria-hidden>→</span> {onwardStep.title}
+                  <span className="flex min-w-0 items-baseline gap-2">
+                    <span
+                      className="shrink-0 whitespace-nowrap"
+                      data-testid="continue-to-prefix"
+                    >
+                      Continue to{" "}
+                      <span aria-hidden data-testid="continue-to-arrow">
+                        →
+                      </span>
+                    </span>
+                    <span className="min-w-0">{onwardStep.title}</span>
+                  </span>
                 </Link>
               ) : null}
 

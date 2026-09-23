@@ -1,8 +1,10 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { CSSProperties } from "react";
 import { sanityExhibitRepository } from "@/content/sanity-repository";
 import { loadPlateMarkup } from "@/content/plate-markup";
+import { buildFullTitle, trimDescription } from "@/content/og-card";
 import { caseCountLabel } from "@/domain/wings";
 import { Doorway } from "@/components/Doorway";
 import { Plaque } from "@/components/Plaque";
@@ -13,6 +15,44 @@ type WingPageProps = {
 };
 
 export const dynamic = "force-dynamic";
+
+const NOT_FOUND_TITLE = "Wing not found";
+
+/**
+ * Per-wing title/description/social metadata, mirroring the exhibit page's
+ * generateMetadata (T-012d). Unknown slug or a Sanity failure falls back to
+ * generic metadata that never throws; the page itself 404s below.
+ */
+export async function generateMetadata({
+  params,
+}: WingPageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const wing = await sanityExhibitRepository
+    .getEraBySlug(slug)
+    .catch(() => null);
+
+  if (!wing) {
+    return { title: NOT_FOUND_TITLE };
+  }
+
+  const description = trimDescription(wing.summary);
+  const fullTitle = buildFullTitle(wing.title);
+
+  return {
+    title: wing.title,
+    description,
+    openGraph: {
+      title: fullTitle,
+      description,
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: fullTitle,
+      description,
+    },
+  };
+}
 
 type AccentStyle = CSSProperties & { "--accent"?: string };
 

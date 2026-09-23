@@ -3,6 +3,13 @@ import type { ArtifactOutcome } from "@/content/types";
 const TRACE_ID_PATTERN = /^[a-z0-9-]{3,64}$/;
 const MAX_TRACE_IDS = 12;
 const MAX_TAG_PHRASES_PER_SENTENCE = 3;
+const TAG_SENTENCE_STEMS = [
+  "You leave here",
+  "You also go out",
+  "And you walk on",
+] as const;
+const MAX_RENDERED_TAG_PHRASES =
+  TAG_SENTENCE_STEMS.length * MAX_TAG_PHRASES_PER_SENTENCE;
 const EMPTY_TAG_SENTENCE =
   "Your trace is quiet; no consequence has settled yet.";
 const EMPTY_SUMMARY = "Your unfinished future is still waiting for its first trace.";
@@ -228,14 +235,18 @@ function formatReadableList(values: string[]): string {
 
 function formatTagSentences(values: string[]): string {
   const sentences: string[] = [];
+  const renderedValues = values.slice(0, MAX_RENDERED_TAG_PHRASES);
 
   for (
     let index = 0;
-    index < values.length;
+    index < renderedValues.length;
     index += MAX_TAG_PHRASES_PER_SENTENCE
   ) {
-    const chunk = values.slice(index, index + MAX_TAG_PHRASES_PER_SENTENCE);
-    sentences.push(`You leave here ${formatReadableList(chunk)}.`);
+    const sentenceIndex = index / MAX_TAG_PHRASES_PER_SENTENCE;
+    const stem = TAG_SENTENCE_STEMS[sentenceIndex]!;
+    const chunk = renderedValues.slice(index, index + MAX_TAG_PHRASES_PER_SENTENCE);
+
+    sentences.push(`${stem} ${formatReadableList(chunk)}.`);
   }
 
   return sentences.join(" ");

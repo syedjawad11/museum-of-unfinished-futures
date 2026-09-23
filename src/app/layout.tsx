@@ -3,13 +3,29 @@ import { display, mono } from "@/fonts/fonts";
 import { Hall } from "@/components/Hall";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
+import { SITE_TITLE } from "@/content/og-card";
 import "./globals.css";
+
+const SITE_DESCRIPTION =
+  "An interactive museum of fictional inventions from futures that never happened.";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://museum-of-unfinished-futures.netlify.app"),
-  title: "Museum of Unfinished Futures",
-  description:
-    "An interactive museum of fictional inventions from futures that never happened.",
+  title: {
+    template: `%s — ${SITE_TITLE}`,
+    default: SITE_TITLE,
+  },
+  description: SITE_DESCRIPTION,
+  openGraph: {
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

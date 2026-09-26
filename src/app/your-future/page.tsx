@@ -5,7 +5,16 @@ import { composeTicket, parseTrace } from "@/domain/ticket";
 import { Doorway } from "@/components/Doorway";
 import { Ticket } from "@/components/Ticket";
 
-export const dynamic = "force-dynamic";
+// ISR (T-015): this page reads `searchParams.trace` (in generateMetadata
+// and in the component below) to compose one visitor's ticket. Reading
+// `searchParams` is a Request-time API and forces the whole route to
+// render dynamically on every visit — see
+// node_modules/next/dist/docs/01-app/03-api-reference/03-file-conventions/page.md
+// ("searchParams (optional)"). That is required: a ticket built from one
+// visitor's `?trace=` must never be served from a shared cache to another
+// visitor (see docs/isr.md). No `dynamic`/`revalidate` export is needed —
+// `searchParams` usage alone keeps this dynamic, the same outcome
+// `force-dynamic` produced.
 
 type YourFuturePageProps = {
   searchParams: Promise<{ trace?: string | string[] }>;

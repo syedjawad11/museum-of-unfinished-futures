@@ -3,25 +3,27 @@ import { sanityExhibitRepository } from "@/content/sanity-repository";
 
 const SITE_URL = "https://museum-of-unfinished-futures.netlify.app";
 
-// Without this, sitemap.xml is a statically-optimized route (see
-// node_modules/next/dist/docs/.../metadata/sitemap.md) generated once at
-// build time and cached — new exhibits or wings published after the build
-// would silently stay off the sitemap. Every other Sanity-backed route in
-// this app (home, exhibit, wing pages) already opts out of that caching the
-// same way.
-export const dynamic = "force-dynamic";
+// ISR (T-015): `sitemap.ts` reads no Request-time API, so — like the home
+// page — it is a cacheable route that is regenerated at most every 60s
+// instead of on every request; see
+// node_modules/next/dist/docs/01-app/03-api-reference/03-file-conventions/01-metadata/sitemap.md
+// ("sitemap.js is a special Route Handler that is cached by default unless
+// it uses a Request-time API or dynamic config option"). New exhibits or
+// wings published in Sanity appear in the sitemap within ~60s.
+export const revalidate = 60;
 
-// A single-URL fallback (the home page only) keeps the sitemap valid — and
-// keeps this route from ever throwing — if Sanity is unreachable, mirroring
-// the "never a 500" rule the OG images follow.
-const FALLBACK_ROUTES: MetadataRoute.Sitemap = [{ url: SITE_URL }];
-
+// T-015: this used to catch a Sanity failure and fall back to a single-URL
+// sitemap so the route would never throw under `force-dynamic` (recomputed,
+// uncached, on every request). Under ISR that fallback would itself get
+// cached as the "successfully generated" sitemap for the next 60s, wiping
+// out the real one for every visitor and crawler until the next
+// revalidation — exactly the outage behaviour this task must prevent (see
+// docs/isr.md). So `listEras()` is left to throw here: Next.js then keeps
+// serving the last successfully generated sitemap instead — see
+// node_modules/next/dist/docs/01-app/02-guides/incremental-static-regeneration.md
+// ("Handling uncaught exceptions").
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const wings = await sanityExhibitRepository.listEras().catch(() => null);
-
-  if (!wings) {
-    return FALLBACK_ROUTES;
-  }
+  const wings = await sanityExhibitRepository.listEras();
 
   const wingUrls: MetadataRoute.Sitemap = wings.map((wing) => ({
     url: `${SITE_URL}/eras/${wing.slug}`,

@@ -20,7 +20,25 @@ type ExhibitPageProps = {
   }>;
 };
 
-export const dynamic = "force-dynamic";
+// ISR (T-015): unlike the home/wing pages, this page reads `searchParams`
+// (`choice`, `trace`) directly in the component below to render the chosen
+// outcome and the incoming ticket trace. `searchParams` is a Request-time
+// API — reading it opts the *whole* route into dynamic (per-request)
+// rendering, for every visit to this route regardless of whether a query
+// string is actually present — see
+// node_modules/next/dist/docs/01-app/03-api-reference/03-file-conventions/page.md
+// ("searchParams (optional)") and .../01-app/04-glossary.md ("Request-time
+// APIs"). That is intentional and required here: a chosen outcome or
+// visitor trace must never be served from a shared cache to a different
+// visitor (see docs/isr.md). There is therefore no safe way to give this
+// route a `revalidate` window without either serving one visitor's choice
+// to another or restructuring the page around Cache Components/PPR, which
+// is out of scope for this change (no JSX changes; cacheComponents is not
+// enabled in next.config.ts). No `dynamic`/`revalidate` export is needed:
+// leaving both unset (`dynamic` defaults to `'auto'`) lets Next.js's own
+// Request-time API detection force the dynamic render, the same outcome
+// `force-dynamic` produced, but for the actual reason rather than a blanket
+// override.
 
 const NOT_FOUND_TITLE = "Exhibit not found";
 

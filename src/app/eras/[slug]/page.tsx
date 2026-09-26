@@ -14,7 +14,21 @@ type WingPageProps = {
   params: Promise<{ slug: string }>;
 };
 
-export const dynamic = "force-dynamic";
+// ISR (T-015): wing pages read only `params` (not searchParams/cookies/
+// headers), so they can be cached per slug and revalidated every 60s — see
+// docs/isr.md. `generateStaticParams` must return an array (an empty one is
+// fine here) for a `[slug]` route to be eligible for ISR at all; otherwise
+// it is always dynamically rendered — see
+// node_modules/next/dist/docs/01-app/03-api-reference/04-functions/generate-static-params.md
+// ("All paths at runtime"). `dynamicParams` stays at its default (`true`),
+// so a slug not yet cached is rendered on first visit and an unknown slug
+// still reaches `notFound()` below, giving a real 404 — see
+// node_modules/next/dist/docs/01-app/03-api-reference/03-file-conventions/02-route-segment-config/dynamicParams.md.
+export const revalidate = 60;
+
+export async function generateStaticParams(): Promise<{ slug: string }[]> {
+  return [];
+}
 
 const NOT_FOUND_TITLE = "Wing not found";
 

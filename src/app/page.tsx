@@ -8,7 +8,16 @@ import { Plaque } from "@/components/Plaque";
 import { Vitrine } from "@/components/Vitrine";
 import { WingMap } from "@/components/WingMap";
 
-export const dynamic = "force-dynamic";
+// ISR (T-015): the home page reads no Request-time API (no searchParams,
+// cookies, or headers), so it can be cached and revalidated every 60s
+// instead of rendered fresh on every request. New wings/exhibits published
+// in Sanity appear within ~60s + the Sanity CDN's own propagation delay —
+// see docs/isr.md. If `listEras()` throws (a Sanity outage during a
+// revalidation), Next.js keeps serving the last successfully generated
+// page rather than caching an empty museum — see
+// node_modules/next/dist/docs/01-app/02-guides/incremental-static-regeneration.md
+// ("Handling uncaught exceptions").
+export const revalidate = 60;
 
 type AccentStyle = CSSProperties & { "--accent"?: string };
 

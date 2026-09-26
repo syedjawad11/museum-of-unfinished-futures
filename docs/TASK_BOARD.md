@@ -34,6 +34,8 @@ States: BACKLOG → READY → RUNNING → REVIEW → DONE (BLOCKED / CANCELLED a
 | T-012d-metadata-seo | Per-exhibit/era titles, link-preview images, icon, sitemap/robots | 6 | builder (Sonnet) | DONE (Sep 23; +11 e2e, +6 unit; orchestrator re-ran unit 197/197, typecheck, lint, e2e 61/61; OG cards read; plate not in OG image — Satori limit) | docs/task-packets/T-012d-metadata-seo.md |
 | T-012e-about-page | Render /about from approved copy + footer repo link | 1, 6 | frontend-designer (Sonnet) | DONE (Sep 26; orchestrator re-ran unit 197, typecheck, lint, e2e 69/69; not committed yet) | docs/task-packets/T-012e-about-page.md |
 | T-013a-workflows-definition | Official Sanity Workflows: definition, in-memory tests, Studio plugin, offline deploy check (spike part 1 of the 4 h box) | 3 | Codex gpt-5.5 | DONE (Sep 26; live definition deployed, demo run completed; review pass-with-fixes) | docs/task-packets/T-013a-workflows-definition.md |
+| T-015-isr | 60-second ISR instead of force-dynamic, outage-safe | 5 | builder (Sonnet; needs network for the build) | DONE (Sep 26; orchestrator re-ran unit 206, typecheck, lint, e2e 77/77; exhibit pages stay dynamic by design) | docs/task-packets/T-015-isr.md |
+| T-016a-dev-post-draft | Draft the DEV submission post from the build log (not published) | 6 | content-writer (Opus) | REVIEW (Sep 26; draft accepted by orchestrator, waits for founder read + go-live placeholders) | docs/task-packets/T-016a-dev-post-draft.md |
 
 ## Backlog (to be turned into packets, in this order; T-007 done on the founder's instruction on Sep 21 night)
 

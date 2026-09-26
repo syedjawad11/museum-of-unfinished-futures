@@ -170,4 +170,41 @@ describe("createSanityExhibitRepository", () => {
       slug: "civic-time-expansion-era",
     });
   });
+
+  // T-015 (ISR outage safety): the home, wing and exhibit pages are now
+  // cached with `revalidate = 60` (see docs/isr.md). Per
+  // node_modules/next/dist/docs/01-app/02-guides/incremental-static-regeneration.md
+  // ("Handling uncaught exceptions"), Next.js keeps serving the last
+  // successfully generated page when a revalidation throws — but only if
+  // the repository actually throws. If any of these methods instead
+  // swallowed a Sanity fetch failure and returned an empty list, Next.js
+  // would treat that as a *successful* render and cache an empty museum for
+  // the next 60 seconds. These tests lock in the "throw, don't swallow"
+  // contract these methods already have.
+  it("propagates a Sanity fetch failure from listEras instead of returning an empty list", async () => {
+    const fetch = vi.fn().mockRejectedValue(new Error("Sanity is unreachable"));
+    const repository = createSanityExhibitRepository({ fetch });
+
+    await expect(repository.listEras()).rejects.toThrow(
+      "Sanity is unreachable",
+    );
+  });
+
+  it("propagates a Sanity fetch failure from listExhibits instead of returning an empty list", async () => {
+    const fetch = vi.fn().mockRejectedValue(new Error("Sanity is unreachable"));
+    const repository = createSanityExhibitRepository({ fetch });
+
+    await expect(repository.listExhibits()).rejects.toThrow(
+      "Sanity is unreachable",
+    );
+  });
+
+  it("propagates a Sanity fetch failure from getEraBySlug instead of returning null", async () => {
+    const fetch = vi.fn().mockRejectedValue(new Error("Sanity is unreachable"));
+    const repository = createSanityExhibitRepository({ fetch });
+
+    await expect(
+      repository.getEraBySlug("civic-time-expansion-era"),
+    ).rejects.toThrow("Sanity is unreachable");
+  });
 });

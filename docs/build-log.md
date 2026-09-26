@@ -487,3 +487,10 @@ The museum grows from three exhibits to six, two per wing. The founder chose thr
 - Review (Claude reviewer): pass with fixes. High finding on privacy refuted with the official IDs doc and live anonymous queries.
 - Live: definition `production.exhibit-review.v1` deployed to `production_1`. Demo run on the vending machine exhibit walked every stage, including a refused empty-reason change request. Anonymous API and CDN return nothing for workflow documents. Evidence: `evidence/T-013/`.
 - Decision: run both. The custom `artifactReview` flow stays the hard publish gate (revision pinning, validation-gated publish); Workflows coordinates the curator's stages in Studio. Workflows' checks are advisory in early access.
+
+## Sep 26 — 60-second page caching (T-015) and the DEV post draft (T-016a)
+
+- T-015 (builder, Sonnet): home, wing pages and sitemap are now cached and refreshed at most every 60 seconds instead of rebuilt on every visit. Exhibit pages and the ticket page stay live per visit because they read the visitor's choice from the address; caching them could show one visitor's choice to another. The sitemap's "just the home page" fallback was removed, because under caching it would have been stored as the real sitemap during a Sanity outage; now an outage keeps the last good version. Unit tests lock in that the content reader fails loudly rather than returning an empty museum (mutation-proved).
+- Orchestrator re-ran: unit 206/206, typecheck, lint, e2e 77 passed, build route table (`/` and `/sitemap.xml` 1m revalidate, `/eras/[slug]` ●). The worker briefly used `git stash` for its RED run; nothing was lost.
+- T-016a (content-writer, Opus): first DEV post draft in `docs/submission/`, not published. Orchestrator read it against this log and verified the public query URL logged out.
+- Founder approved going live on Netlify (not DEV) after seeing the site; the three production-deploy deny rules were lifted for this deploy and will be restored afterwards.

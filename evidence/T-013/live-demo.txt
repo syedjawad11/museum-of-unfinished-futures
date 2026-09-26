@@ -1,0 +1,115 @@
+# T-013 live demo on artifact-extra-mondays-vending-machine, 2026-09-26T14:49:43+02:00
+$ start
+{
+  "instanceId": "production.wf-instance.a7f0811d53de",
+  "definition": "exhibit-review",
+  "version": 1,
+  "currentStage": "drafting"
+}
+$ npx sanity-workflows fire-action production.wf-instance.a7f0811d53de
+exhibit-review v1  production.wf-instance.a7f0811d53de
+  Stage:     drafting
+  Started:   2026-09-26 14:49:45
+  Completed: —
+  Tag:       production
+
+Actions on stage 'drafting':
+
+  ✔ draft → submit  (Submit for curatorial review) [activity active]
+
+Fire one with:
+  fire-action production.wf-instance.a7f0811d53de --activity <activity> --action <action>
+exit 0
+$ npx sanity-workflows fire-action production.wf-instance.a7f0811d53de --activity draft --action submit
+- Firing submit on draft…
+✔ Fired submit on draft — now at curatorial-review, then cascaded 1 auto-transition(s)
+
+ops applied:
+  ℹ field.unset → workflow.reviewDecision
+  ℹ status.set
+exit 0
+$ npx sanity-workflows fire-action production.wf-instance.a7f0811d53de --activity review --action request-changes
+- Firing request-changes on review…
+✖ Action rejected
+✖ fire-action error:
+  Action "request-changes" on activity "review" rejected: invalid params
+    - reason: required but missing
+exit 1
+$ npx sanity-workflows fire-action production.wf-instance.a7f0811d53de --activity review --action request-changes --param reason=
+- Firing request-changes on review…
+✖ Action rejected
+✖ fire-action error:
+  Action "request-changes" on activity "review" rejected: invalid params
+    - reason: length must be greater than or equal to 1
+exit 1
+$ npx sanity-workflows fire-action production.wf-instance.a7f0811d53de --activity review --action request-changes --param reason=Plaque says 'Tuesday' where the machine sells Mondays; fix the date line.
+- Firing request-changes on review…
+✔ Fired request-changes on review — now at drafting, then cascaded 1 auto-transition(s)
+
+ops applied:
+  ℹ field.set → workflow.reviewDecision
+  ℹ field.set → workflow.changeRequestReason
+  ℹ status.set
+exit 0
+$ npx sanity-workflows fire-action production.wf-instance.a7f0811d53de --activity draft --action submit
+- Firing submit on draft…
+✔ Fired submit on draft — now at curatorial-review, then cascaded 1 auto-transition(s)
+
+ops applied:
+  ℹ field.unset → workflow.reviewDecision
+  ℹ status.set
+exit 0
+$ npx sanity-workflows fire-action production.wf-instance.a7f0811d53de --activity review --action approve
+- Firing approve on review…
+✔ Fired approve on review — now at approved, then cascaded 1 auto-transition(s)
+
+ops applied:
+  ℹ field.set → workflow.reviewDecision
+  ℹ status.set
+exit 0
+$ npx sanity-workflows fire-action production.wf-instance.a7f0811d53de --activity display --action put-on-display
+- Firing put-on-display on display…
+✔ Fired put-on-display on display — now at on-display, then cascaded 1 auto-transition(s)
+
+ops applied:
+  ℹ status.set
+exit 0
+$ npx sanity-workflows show production.wf-instance.a7f0811d53de
+exhibit-review v1  production.wf-instance.a7f0811d53de
+  Stage:     on-display
+  Started:   2026-09-26 14:49:45
+  Completed: 2026-09-26 14:50:49
+  Tag:       production
+
+Stages:
+  • drafting (exited 2026-09-26 14:50:04)
+      ✔ draft  [done]
+  • curatorial-review (exited 2026-09-26 14:50:21)
+      ✔ review  [done]
+  • drafting (exited 2026-09-26 14:50:31)
+      ✔ draft  [done]
+  • curatorial-review (exited 2026-09-26 14:50:40)
+      ✔ review  [done]
+  • approved (exited 2026-09-26 14:50:49)
+      ✔ display  [done]
+  • on-display (current)
+exit 0
+
+# post-demo checks 2026-09-26T14:51:01+02:00
+Authenticated: engine docs + guards + drafts
+{
+  "artifactRev": "2026-09-21T19:00:04Z",
+  "drafts": 0,
+  "engine": [
+    {
+      "_id": "production.exhibit-review.v1",
+      "_type": "sanity.workflow.definition"
+    },
+    {
+      "_id": "production.wf-instance.a7f0811d53de",
+      "_type": "sanity.workflow.instance"
+    }
+  ]
+}
+Anonymous:
+{"query":"*[_id match \"production.*\" || _type match \"sanity.workflow*\"]{_id}","result":[],"syncTags":["s1:ifxvXw"],"ms":3}

@@ -1,0 +1,252 @@
+- Diffing 1 definition(s) against wa27n68e.production_1…
+✔ Diffed 1 definition(s) · production (production) → wa27n68e.production_1
+
+Summary:
+  + create    exhibit-review v1  (production.exhibit-review.v1)
+
+── exhibit-review v1 ──
+- {}
++ {
++   "description": "Moves an artifact from drafting through curatorial review, approval, and display.",
++   "fields": [
++     {
++       "initialValue": {
++         "type": "input"
++       },
++       "name": "subject",
++       "required": true,
++       "title": "Artifact",
++       "type": "subject",
++       "types": [
++         "artifact"
++       ]
++     },
++     {
++       "name": "reviewDecision",
++       "options": {
++         "list": [
++           {
++             "title": "Request changes",
++             "value": "request-changes"
++           },
++           {
++             "title": "Approve",
++             "value": "approve"
++           }
++         ]
++       },
++       "title": "Review decision",
++       "type": "string"
++     },
++     {
++       "name": "changeRequestReason",
++       "title": "Change request reason",
++       "type": "string",
++       "validation": {
++         "max": 500,
++         "min": 1
++       }
++     }
++   ],
++   "initialStage": "drafting",
++   "minReaderModel": 10,
++   "modelVersion": 10,
++   "name": "exhibit-review",
++   "stages": [
++     {
++       "activities": [
++         {
++           "actions": [
++             {
++               "name": "submit",
++               "ops": [
++                 {
++                   "target": {
++                     "field": "reviewDecision",
++                     "scope": "workflow"
++                   },
++                   "type": "field.unset"
++                 },
++                 {
++                   "activity": "draft",
++                   "status": "done",
++                   "type": "status.set"
++                 }
++               ],
++               "title": "Submit for curatorial review"
++             }
++           ],
++           "name": "draft",
++           "title": "Prepare the artifact"
++         }
++       ],
++       "guards": [
++         {
++           "match": {
++             "actions": [
++               "publish"
++             ],
++             "idRefs": [
++               "$fields.subject"
++             ]
++           },
++           "name": "hold-publish-drafting",
++           "title": "Hold publishing"
++         }
++       ],
++       "name": "drafting",
++       "title": "Drafting",
++       "transitions": [
++         {
++           "name": "submit",
++           "title": "Submit",
++           "to": "curatorial-review",
++           "when": "$allActivitiesDone"
++         }
++       ]
++     },
++     {
++       "activities": [
++         {
++           "actions": [
++             {
++               "name": "request-changes",
++               "ops": [
++                 {
++                   "target": {
++                     "field": "reviewDecision",
++                     "scope": "workflow"
++                   },
++                   "type": "field.set",
++                   "value": {
++                     "type": "literal",
++                     "value": "request-changes"
++                   }
++                 },
++                 {
++                   "target": {
++                     "field": "changeRequestReason",
++                     "scope": "workflow"
++                   },
++                   "type": "field.set",
++                   "value": {
++                     "param": "reason",
++                     "type": "param"
++                   }
++                 },
++                 {
++                   "activity": "review",
++                   "status": "done",
++                   "type": "status.set"
++                 }
++               ],
++               "params": [
++                 {
++                   "name": "reason",
++                   "required": true,
++                   "title": "Reason",
++                   "type": "string",
++                   "validation": {
++                     "max": 500,
++                     "min": 1
++                   }
++                 }
++               ],
++               "title": "Request changes"
++             },
++             {
++               "name": "approve",
++               "ops": [
++                 {
++                   "target": {
++                     "field": "reviewDecision",
++                     "scope": "workflow"
++                   },
++                   "type": "field.set",
++                   "value": {
++                     "type": "literal",
++                     "value": "approve"
++                   }
++                 },
++                 {
++                   "activity": "review",
++                   "status": "done",
++                   "type": "status.set"
++                 }
++               ],
++               "title": "Approve"
++             }
++           ],
++           "name": "review",
++           "title": "Review the artifact"
++         }
++       ],
++       "guards": [
++         {
++           "match": {
++             "actions": [
++               "publish"
++             ],
++             "idRefs": [
++               "$fields.subject"
++             ]
++           },
++           "name": "hold-publish-review",
++           "title": "Hold publishing during review"
++         }
++       ],
++       "name": "curatorial-review",
++       "title": "Curatorial review",
++       "transitions": [
++         {
++           "name": "request-changes",
++           "title": "Request changes",
++           "to": "drafting",
++           "when": "$allActivitiesDone && $fields.reviewDecision == 'request-changes'"
++         },
++         {
++           "name": "approve",
++           "title": "Approve",
++           "to": "approved",
++           "when": "$allActivitiesDone && $fields.reviewDecision == 'approve'"
++         }
++       ]
++     },
++     {
++       "activities": [
++         {
++           "actions": [
++             {
++               "name": "put-on-display",
++               "ops": [
++                 {
++                   "activity": "display",
++                   "status": "done",
++                   "type": "status.set"
++                 }
++               ],
++               "title": "Put on display"
++             }
++           ],
++           "name": "display",
++           "title": "Put on display"
++         }
++       ],
++       "name": "approved",
++       "title": "Approved",
++       "transitions": [
++         {
++           "name": "put-on-display",
++           "title": "Put on display",
++           "to": "on-display",
++           "when": "$allActivitiesDone"
++         }
++       ]
++     },
++     {
++       "name": "on-display",
++       "title": "On display"
++     }
++   ],
++   "title": "Exhibit review"
++ }

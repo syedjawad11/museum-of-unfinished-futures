@@ -478,3 +478,12 @@ The museum grows from three exhibits to six, two per wing. The founder chose thr
 - T-012a closed: founder answers — keep the Hermes wording for now, model name "Opus 5.5", link the repository.
 - T-012e (frontend-designer, Sonnet): `/about` renders the approved colophon; footer "Source on GitHub" now points at the repository. RED 7 failed → GREEN 8 passed; mutation proof failed as expected. Orchestrator re-ran unit 197/197, typecheck, lint, e2e 69 passed, `git diff --check`. The full e2e run rewrites `evidence/T-011/screens/*.png` as a side effect; restored from git.
 - Sanity Workflows docs (early access, packages 0.35.0) saved under `docs/reference/sanity-workflows/` for the offline builder. No plan gate or charge found in the docs; the engine's checks are advisory during early access.
+
+## Sep 26 — official Sanity Workflows (T-013a)
+
+- Orchestrator installed `@sanity/workflow-*` 0.35.0 (+ `@sanity/sdk` 3.5, test bench as dev dependency). Two overrides: `@sanity/mutate` 0.18.2 under `@sanity/sdk` (documented by Sanity), and `@sanity/workflow-blueprint`'s optional TypeScript ^6 peer pinned to our TypeScript 5.9 (blueprint generation is experimental and unused). `npm ls` valid.
+- Codex gpt-5.5 wrote `workflows/exhibit-review.ts` (drafting → curatorial-review → approved → on-display; request changes needs a reason; publishing held in drafting and review), `sanity.workflow.ts`, the Studio plugin registration, and `docs/workflows-spike.md`. Attempt 1 rejected: shape-only tests. Attempt 2: six behavioural tests on the real engine, mutation-proved.
+- Gates re-run by the orchestrator: unit 203/203, typecheck, lint, e2e 69 passed, workflow `deploy --check`.
+- Review (Claude reviewer): pass with fixes. High finding on privacy refuted with the official IDs doc and live anonymous queries.
+- Live: definition `production.exhibit-review.v1` deployed to `production_1`. Demo run on the vending machine exhibit walked every stage, including a refused empty-reason change request. Anonymous API and CDN return nothing for workflow documents. Evidence: `evidence/T-013/`.
+- Decision: run both. The custom `artifactReview` flow stays the hard publish gate (revision pinning, validation-gated publish); Workflows coordinates the curator's stages in Studio. Workflows' checks are advisory in early access.

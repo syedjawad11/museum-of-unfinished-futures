@@ -13,7 +13,15 @@
     "sanity:check": "node scripts/sanity-check.mjs"
   },
   "dependencies": {
+    "@sanity/sdk": "3.5.0",
     "@sanity/vision": "6.15.0",
+    "@sanity/workflow-components": "0.35.0",
+    "@sanity/workflow-diagram": "0.35.0",
+    "@sanity/workflow-engine": "0.35.0",
+    "@sanity/workflow-react": "0.35.0",
+    "@sanity/workflow-sdk": "0.35.0",
+    "@sanity/workflow-studio": "0.35.0",
+    "@sanity/workflow-studio-plugin": "0.35.0",
     "next": "16.3.5",
     "next-sanity": "13.3.4",
     "react": "19.2.8",
@@ -24,6 +32,9 @@
   },
   "devDependencies": {
     "@playwright/test": "1.63.0",
+    "@sanity/workflow-blueprint": "0.35.0",
+    "@sanity/workflow-cli": "0.35.0",
+    "@sanity/workflow-engine-test": "0.35.0",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^26.6.2",
     "@types/react": "^19",
@@ -33,5 +44,13 @@
     "tailwindcss": "^4",
     "typescript": "^5",
     "vitest": "^5.0.1"
+  },
+  "overrides": {
+    "@sanity/sdk": {
+      "@sanity/mutate": "0.18.2"
+    },
+    "@sanity/workflow-blueprint": {
+      "typescript": "$typescript"
+    }
   }
 }

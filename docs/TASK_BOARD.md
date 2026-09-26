@@ -33,7 +33,7 @@ States: BACKLOG → READY → RUNNING → REVIEW → DONE (BLOCKED / CANCELLED a
 | T-012c-ticket-stem | Ticket stops repeating "You leave here" | 1 | Codex gpt-5.5 | DONE (Sep 23; 3rd attempt accepted after 2 orchestrator-rejected repairs; unit 191/191) | docs/task-packets/T-012c-ticket-stem.md |
 | T-012d-metadata-seo | Per-exhibit/era titles, link-preview images, icon, sitemap/robots | 6 | builder (Sonnet) | DONE (Sep 23; +11 e2e, +6 unit; orchestrator re-ran unit 197/197, typecheck, lint, e2e 61/61; OG cards read; plate not in OG image — Satori limit) | docs/task-packets/T-012d-metadata-seo.md |
 | T-012e-about-page | Render /about from approved copy + footer repo link | 1, 6 | frontend-designer (Sonnet) | DONE (Sep 26; orchestrator re-ran unit 197, typecheck, lint, e2e 69/69; not committed yet) | docs/task-packets/T-012e-about-page.md |
-| T-013a-workflows-definition | Official Sanity Workflows: definition, in-memory tests, Studio plugin, offline deploy check (spike part 1 of the 4 h box) | 3 | Codex gpt-5.5 | READY (Sep 26; waits for T-012e to finish, then orchestrator installs packages) | docs/task-packets/T-013a-workflows-definition.md |
+| T-013a-workflows-definition | Official Sanity Workflows: definition, in-memory tests, Studio plugin, offline deploy check (spike part 1 of the 4 h box) | 3 | Codex gpt-5.5 | DONE (Sep 26; live definition deployed, demo run completed; review pass-with-fixes) | docs/task-packets/T-013a-workflows-definition.md |
 
 ## Backlog (to be turned into packets, in this order; T-007 done on the founder's instruction on Sep 21 night)
 

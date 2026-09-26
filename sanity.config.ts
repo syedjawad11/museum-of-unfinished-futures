@@ -1,4 +1,8 @@
 import { visionTool } from "@sanity/vision";
+import {
+  workflowDefaultDocumentNode,
+  workflowStudioPlugin,
+} from "@sanity/workflow-studio-plugin";
 import { defineConfig, type DocumentActionComponent } from "sanity";
 import { structureTool } from "sanity/structure";
 import { schemaTypes } from "./schemas";
@@ -19,7 +23,19 @@ export default defineConfig({
   dataset: sanityDataset,
   basePath: "/studio",
   plugins: [
-    structureTool(),
+    structureTool({
+      defaultDocumentNode: workflowDefaultDocumentNode(),
+    }),
+    workflowStudioPlugin({
+      tag: "production",
+      mappings: [
+        {
+          docType: "artifact",
+          definition: "exhibit-review",
+          label: "Exhibit review",
+        },
+      ],
+    }),
     visionTool({
       defaultApiVersion: sanityApiVersion,
       defaultDataset: sanityDataset,

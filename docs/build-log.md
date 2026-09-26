@@ -494,3 +494,8 @@ The museum grows from three exhibits to six, two per wing. The founder chose thr
 - Orchestrator re-ran: unit 206/206, typecheck, lint, e2e 77 passed, build route table (`/` and `/sitemap.xml` 1m revalidate, `/eras/[slug]` ●). The worker briefly used `git stash` for its RED run; nothing was lost.
 - T-016a (content-writer, Opus): first DEV post draft in `docs/submission/`, not published. Orchestrator read it against this log and verified the public query URL logged out.
 - Founder approved going live on Netlify (not DEV) after seeing the site; the three production-deploy deny rules were lifted for this deploy and will be restored afterwards.
+
+## Sep 26 — first production deploy (T-017)
+
+- Deployed commit `7b83620` to production: deploy `6ab7e00cee525798fc0c5281`, https://museum-of-unfinished-futures.netlify.app. Deny rules restored straight after.
+- The site sits behind Netlify's team-login protection for all deploys (`password_context: all`), so logged-out visitors get a 401 login redirect. The founder can review it while logged in. Turning protection off (founder approval) and the logged-out visitor checks come before the DEV submission. Evidence: `evidence/T-017/production-deploy.txt`.

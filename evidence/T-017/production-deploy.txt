@@ -1,0 +1,12 @@
+Production deploy — Sep 26 2026 (founder approved going live on Netlify; not DEV)
+Commit: 7b83620
+Command: npx netlify-cli deploy --build --prod
+Result: "Deploy is live!"; build 3m 52.7s
+Production URL: https://museum-of-unfinished-futures.netlify.app
+Deploy ID: 6ab7e00cee525798fc0c5281 (state ready, context production, published 2026-09-26T15:12:50Z)
+Deny rules for --prod were lifted for this one deploy and restored immediately after (3 rules back).
+
+Logged-out check (curl): every route returns HTTP 401 "Login Redirect" to app.netlify.com/edge-access.
+Site setting read-back: password_context "all", has_password false -> Netlify team-login protection covers every deploy, including production.
+Meaning: the founder can view it while logged in to Netlify; the public cannot yet.
+Before DEV submission the protection must be switched off (founder approval, account setting), then the logged-out visitor checks repeated.

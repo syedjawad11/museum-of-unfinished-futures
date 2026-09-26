@@ -471,3 +471,10 @@ The museum grows from three exhibits to six, two per wing. The founder chose thr
 - **T-012d metadata (builder, Sonnet):** per-exhibit and per-wing titles, descriptions, and 1200×630 link-preview cards; icon.svg; sitemap.xml; robots.txt (disallows /studio). +11 browser tests, +6 unit tests, mutation proof (4 over-long summaries went red). Real bug caught: the sitemap was prerendered at build time from a stale Sanity response that listed only the 3 older exhibits. It is now dynamic like every other Sanity route. Limitation: the preview cards are text only, because Satori cannot draw the raw SVG plates.
 - Orchestrator re-ran everything: unit 197/197, typecheck, lint, e2e 61/61 (port 3100 free before the run). The e2e run rewrites evidence/T-011/screens, so those were restored from git.
 - Lesson: a test that says "no word appears in both" invites a worker to change the words. Say what must stay fixed, not only what must differ.
+
+## Sep 26 — public repository and the /about page (T-012a, T-012e)
+
+- Founder approved a public GitHub repository. Before pushing, the orchestrator scanned the whole history for keys/tokens/private keys (none) and checked tracked files and screenshots for credentials (none). Created https://github.com/syedjawad11/museum-of-unfinished-futures and pushed `main` at `87ca9d6`.
+- T-012a closed: founder answers — keep the Hermes wording for now, model name "Opus 5.5", link the repository.
+- T-012e (frontend-designer, Sonnet): `/about` renders the approved colophon; footer "Source on GitHub" now points at the repository. RED 7 failed → GREEN 8 passed; mutation proof failed as expected. Orchestrator re-ran unit 197/197, typecheck, lint, e2e 69 passed, `git diff --check`. The full e2e run rewrites `evidence/T-011/screens/*.png` as a side effect; restored from git.
+- Sanity Workflows docs (early access, packages 0.35.0) saved under `docs/reference/sanity-workflows/` for the offline builder. No plan gate or charge found in the docs; the engine's checks are advisory during early access.

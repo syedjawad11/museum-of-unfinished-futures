@@ -18,7 +18,7 @@ Your ticket lives entirely in the page address (`/your-future?trace=…`). There
 
 ## Who built it
 
-One founder, directing AI workers. From the evening of September 21, 2026, Claude Code (Claude Opus 5) orchestrated: it wrote a task packet for each job, handed it to a worker and reran the checks itself. Code and scripts came from OpenAI Codex (gpt-5.5). Interface work, the blueprint plates and browser tests came from Claude Sonnet 5 agents. The newer fiction came from a Claude Opus writer. Most work was reviewed by a different model family than the one that built it: Codex gpt-5.6-sol or a Claude reviewer. Before that, a different setup built the first version, including the Sanity connection and the review flow. Deploys waited for the founder's approval.
+One founder, directing AI workers. From the evening of September 21, 2026, Claude Code (Claude Opus 5.5) orchestrated: it wrote a task packet for each job, handed it to a worker and reran the checks itself. Code and scripts came from OpenAI Codex (gpt-5.5). Interface work, the blueprint plates and browser tests came from Claude Sonnet 5 agents. The newer fiction came from a Claude Opus writer. Most work was reviewed by a different model family than the one that built it: Codex gpt-5.6-sol or a Claude reviewer. Before that, a different setup built the first version, including the Sanity connection and the review flow. Deploys waited for the founder's approval.
 
 ## What went wrong
 
@@ -36,7 +36,7 @@ One founder, directing AI workers. From the evening of September 21, 2026, Claud
 - The floor plan on a wing page does not yet light up the room you are in.
 - The Sanity command-line and Studio tooling carries 15 known dependency advisories (12 moderate, 3 high). The only automatic fix is an incompatible Sanity downgrade, so it was not applied.
 
-Source code: {{REPO_URL}} · Sanity project ID `wa27n68e`
+Source code: https://github.com/syedjawad11/museum-of-unfinished-futures · Sanity project ID `wa27n68e`
 
 <!-- sources (all headings refer to docs/build-log.md):
 - Six exhibits, three wings, two per wing -> "T-011 — three new exhibits, published through the review flow (Sep 23)" (intro + T-011d)

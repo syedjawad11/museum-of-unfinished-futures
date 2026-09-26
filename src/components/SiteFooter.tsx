@@ -8,7 +8,12 @@ export function SiteFooter() {
           <Link className="motion-safe:transition hover:text-accent" href="/about">
             How this museum was built
           </Link>
-          <a className="motion-safe:transition hover:text-accent" href="#">
+          <a
+            className="motion-safe:transition hover:text-accent"
+            href="https://github.com/syedjawad11/museum-of-unfinished-futures"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
             Source on GitHub
           </a>
         </div>

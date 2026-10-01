@@ -26,29 +26,35 @@ A visit goes like this:
 
 One real ticket, from a walk past the toaster and the kettle, begins: *"Your walk is over. What follows is only what the rooms noticed."*
 
-There is no chatbot and no AI at runtime. All of the strangeness is written content stored in Sanity, and the content model decides where a visitor goes next.
+There is no chatbot and no AI for visitors. All of the strangeness is written content stored in Sanity, and the content model decides where a visitor goes next.
+
+Behind the scenes, new exhibits can arrive through the **Acquisitions Clerk**, an AI agent that works inside Sanity's official Workflows next to a human curator. A curator gives it a one-line brief and a wing. The Clerk drafts an exhibit with two endings, starts an *Exhibit review* run and submits it. The curator reads it in Studio. If they send it back with a note, the Clerk reads the note, revises and resubmits. The Clerk can't approve, put on display or publish; only a person can. It runs on Sanity's free monthly AI credits or on a model running locally through Ollama, so it costs nothing.
 
 ## Demo
 
-**Live site:** {{DEMO_URL}}
+**Live site:** https://museum-of-unfinished-futures.netlify.app
 
 **Video walkthrough:** {{VIDEO_URL}}
 
-{{SCREENSHOT: The hall on desktop, three wings and six cases — evidence/T-011/screens/01-home-desktop-1280x900.png}}
+{{SCREENSHOT: The hall on desktop, three wings and six cases — evidence/T-021/screens/01-home-desktop.png (production, Oct 1)}}
 
-{{SCREENSHOT: The switchboard before a choice, with its three choices and blueprint plate — evidence/T-011/screens/03-switchboard-before-choice-desktop-1280x900.png}}
+{{SCREENSHOT: The switchboard before a choice, with its three choices and blueprint plate — evidence/T-021/screens/03-switchboard-before-choice-desktop.png (production, Oct 1)}}
 
-{{SCREENSHOT: The switchboard after a choice: the ending "A sentence resumes mid-word", its tags, and the door to the umbrella — evidence/T-011/screens/04-switchboard-after-choice-desktop-1280x900.png (taken before the T-012b badge fix; recapture)}}
+{{SCREENSHOT: The switchboard after a choice: the ending "A sentence resumes mid-word", its tags, and the door to the umbrella — evidence/T-021/screens/04-switchboard-after-choice-desktop.png (production, Oct 1)}}
 
-{{SCREENSHOT: A wing page with its floor plan — evidence/T-008/wing-desktop.png (taken when each wing held one exhibit; recapture)}}
+{{SCREENSHOT: A wing page with its floor plan — evidence/T-021/screens/05-wing-desktop.png (production, Oct 1)}}
 
-{{SCREENSHOT: A visitor's ticket, "Your Unfinished Future" — evidence/T-011/screens/06-ticket-desktop-1280x900.png (taken before the T-012c wording fix; recapture)}}
+{{SCREENSHOT: A visitor's ticket, "Your Unfinished Future" — evidence/T-021/screens/06-ticket-desktop.png (production, Oct 1)}}
 
-{{SCREENSHOT: The hall on a phone — evidence/T-011/screens/07-home-mobile-390x844.png}}
+{{SCREENSHOT: The hall on a phone — evidence/T-021/screens/07-home-mobile.png (production, Oct 1)}}
 
 {{SCREENSHOT: A blueprint plate at full size, plate 005, the switchboard — evidence/T-011/plates/plate-005-preview.png}}
 
 {{SCREENSHOT: Sanity Studio showing the Exhibit review workflow on an artifact — no existing file; new capture needed}}
+
+{{SCREENSHOT: Studio on a Clerk-drafted exhibit in Curatorial review, with the workflow history showing the Clerk's submit — capture on setup day}}
+
+{{SCREENSHOT: The curator's "Request changes" note, and the Clerk's revised draft after it — capture on setup day}}
 
 ## Code
 
@@ -112,7 +118,9 @@ One founder, directing AI agents, in two phases.
 - **A Claude Opus writer** for the newer fiction, the endings' tags and the ticket's language.
 - **Cross-family reviewers.** Codex `gpt-5.6-sol` reviewed Claude's work, and a Claude reviewer (Sonnet or Opus) reviewed Codex's. The family that built something never reviewed it.
 
-Deploys, spending and writes to the live dataset waited for the founder's approval. No money was spent: the Netlify account stayed on the free plan with 0 credits used and no payment method.
+**The final sprint (October 1–4) on a new machine.** Codex wasn't set up on the founder's new MacBook, so the orchestrator built the Acquisitions Clerk itself, under the same rules: tests first, a deliberate break for every new test, and every check re-run before a commit.
+
+Deploys, spending and writes to the live dataset waited for the founder's approval. No money was spent: the Netlify account stayed on the free plan with 0 credits used and no payment method. The founder ruled out paid AI keys entirely, so the Clerk writes with Sanity's free monthly AI credits or with a local model.
 
 ### Prompts that worked
 
@@ -185,12 +193,28 @@ We did **not** retire the custom flow. The spike's write-up (`docs/workflows-spi
 
 So we run both. The custom `artifactReview` flow stays the hard publish gate, and Workflows coordinates the curator's stages in Studio.
 
+### An agent in the workflow: the Acquisitions Clerk
+
+An outside review of an earlier draft of this entry said what was missing: an agent and a person working through the same workflow. The organizers' own phrase for it is an agent moving a draft forward and a person approving it. So we built the Clerk (`src/agents/acquisitions-clerk/`, `scripts/acquisitions-clerk.ts`, `docs/acquisitions-clerk.md`).
+
+Three findings from Sanity's docs shaped it before any code was written:
+
+- **The engine takes the actor from the token.** There is no parameter that says "this was the agent". If the Clerk borrowed the founder's login, the history would say the founder did it. So the Clerk runs on its own Editor robot token.
+- **Workflow role checks are advisory.** Sanity says so plainly. We still pinned `request-changes`, `approve` and `put-on-display` to `roles: ["administrator"]`, and the Clerk's own code refuses anything but `submit`, with a test for each. But we don't claim the agent is *unable* to approve; we claim it doesn't, and show where it's stopped.
+- **Agent Actions Generate can't fill reference fields** without an embeddings index that is deprecated with no replacement, and an exhibit is mostly references. So the Clerk uses Agent Actions **Prompt**, which returns JSON and writes nothing. The Clerk checks that JSON itself and writes the documents.
+
+The Clerk's draft has to pass the same limits as Studio's schema, and more: every consequence tag must already have a sentence on the visitor's ticket, and an ending may only lead to a published exhibit. A rejected answer goes back to the model once, with the reasons. If it fails again, nothing is written. The endings stay drafts until the curator publishes, so no unreviewed text is ever public.
+
+Each Workflows move is mirrored onto the custom gate, which pins the exact revision. If anyone edits the draft after approval, publishing refuses.
+
+{{CONFIRM: first live Clerk run — the exhibit's title, the curator's change-request note, what the Clerk changed, and whether the history labels the Clerk as an agent; from evidence/T-018/clerk-*-executed-*.json}}
+
 ### Test results
 
 The latest numbers the orchestrator re-ran itself:
 
-- **Unit tests: 203/203 passed** (Vitest), including six behavioural tests of the Workflows definition.
-- **Browser tests: 69 passed** (Playwright, against a production build).
+- **Unit tests: 257/257 passed** (Vitest), including ten behavioural tests of the Workflows definition and 47 for the Clerk.
+- **Browser tests: 77 passed** (Playwright, against a production build).
 - **Typecheck and lint:** clean.
 - **`npx sanity-workflows deploy --check`:** passed.
 - **`npx sanity documents validate`:** 28/28 documents valid after the new exhibits went live.
@@ -309,7 +333,7 @@ Review records hold only public-safe fields: no names, emails or private notes. 
 
 ### The official Workflows definition
 
-`workflows/exhibit-review.ts`, deployed to `production_1` as `production.exhibit-review.v1`:
+`workflows/exhibit-review.ts`, deployed to `production_1` as `production.exhibit-review.v1`. Version 2 adds the curator-only roles and a `submittedBy` field for the Clerk. {{CONFIRM: v2 deployed on setup day}}
 
 ```text
 drafting ──submit──▶ curatorial-review ──approve──▶ approved ──put-on-display──▶ on-display

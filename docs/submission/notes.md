@@ -54,3 +54,11 @@ Optional alternates: `evidence/T-012e/about-desktop-1280.png` (the /about coloph
 - The exact number of task packets or commits: not counted anywhere authoritative.
 - The draft deploy URL: it is private (401 to logged-out visitors), so it's not useful in a public post.
 - Prize money, judges, or scoring: excluded per the packet.
+
+## Update, Oct 1 evening (orchestrator)
+
+- `{{DEMO_URL}}` filled: https://museum-of-unfinished-futures.netlify.app (public since Oct 1; every route 200 logged out).
+- Screenshots 1, 3, 4, 5 (wing), 6, 7 recaptured from production, read-only, with `node scripts/capture-submission-screens.mjs` into `evidence/T-021/screens/`. Checked by eye: the SELECTED badge no longer runs into the label, and the ticket no longer says "You leave here" twice. The free-plan "Powered by Netlify" badge sits bottom right in every shot; crop it if wanted.
+- New: an "Acquisitions Clerk" paragraph in What I Built, a sprint paragraph in Who did the work, and a section "An agent in the workflow". Two new screenshot slots and two new `{{CONFIRM}}` markers wait for the live run on setup day.
+- Test numbers updated to unit 257/257, e2e 77. The final numbers get one more pass after the last commit.
+- The founder's setup-day steps are in `docs/submission/setup-day-runbook.md`.

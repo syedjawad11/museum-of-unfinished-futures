@@ -16,6 +16,8 @@ The local fixture **The Vending Machine That Sells Extra Mondays** remains test/
 
 ## Local Commands
 
+Node 26 is pinned in `.nvmrc` (the build's `--no-experimental-webstorage` flag is rejected by Node 20). `fnm`/`nvm` pick it up automatically. `npm run typecheck` relies on route types that `next build` generates, so run it after a build on a fresh clone.
+
 ```bash
 npm run dev
 npm run test:unit

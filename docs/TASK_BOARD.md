@@ -37,7 +37,8 @@ States: BACKLOG → READY → RUNNING → REVIEW → DONE (BLOCKED / CANCELLED a
 | T-015-isr | 60-second ISR instead of force-dynamic, outage-safe | 5 | builder (Sonnet; needs network for the build) | DONE (Sep 26; orchestrator re-ran unit 206, typecheck, lint, e2e 77/77; exhibit pages stay dynamic by design) | docs/task-packets/T-015-isr.md |
 | T-016a-dev-post-draft | Draft the DEV submission post from the build log (not published) | 6 | content-writer (Opus) | REVIEW (Sep 26; draft accepted by orchestrator, waits for founder read + go-live placeholders) | docs/task-packets/T-016a-dev-post-draft.md |
 | T-018-0-preflight | Final-sprint Phase 0: fresh-clone gate baseline, logged-out production check, access audit, re-fetch Sanity docs | 6 | orchestrator | REVIEW (Oct 1; unit 206, e2e 77, schemas 0 errors; site public; CLI logged in as admin; prod CORS verified; waits for founder Studio check) | docs/task-packets/T-018-0-preflight.md |
-| T-018-acquisitions-clerk | Agent drafts an exhibit, starts and submits the exhibit-review run, revises after request-changes; bridged to the revision-pinned gate | 3, 7 | orchestrator + subagents | BUILT OFFLINE (Oct 1 evening; unit 257, e2e 77, workflow v2 `deploy --check` ok; no paid AI: Sanity free credits or local Ollama; live run waits for setup day: robot token, generator, v2 deploy) | docs/task-packets/T-018-acquisitions-clerk.md |
+| T-018-acquisitions-clerk | Agent drafts an exhibit, starts and submits the exhibit-review run, revises after request-changes; bridged to the revision-pinned gate | 3, 7 | orchestrator | BUILT OFFLINE (Oct 1 evening; unit 257, e2e 77, workflow v2 `deploy --check` ok; no paid AI: Sanity free credits or local Ollama; live run waits for setup day: robot token, generator, v2 deploy) | docs/task-packets/T-018-acquisitions-clerk.md |
+| T-019-curators-desk | App SDK app outside Studio: every exhibit incl. drafts, endings/plate/gate status, live Exhibit review panel with engine-evaluated buttons that also sync the gate | 4 | orchestrator | BUILT OFFLINE (Oct 1 evening; 7 unit tests mutation-proved, typecheck, lint, app build ok, logged-out load ok; signed-in screen checked on setup day; deploy needs approval) | docs/curators-desk.md |
 
 ## Backlog (to be turned into packets, in this order; T-007 done on the founder's instruction on Sep 21 night)
 
@@ -46,7 +47,6 @@ States: BACKLOG → READY → RUNNING → REVIEW → DONE (BLOCKED / CANCELLED a
 | ~~T-011~~ DONE Sep 23 as T-011a–d (6 exhibits live) | 2 | content-writer (Opus) + frontend-designer (Sonnet) | 1½ days |
 | T-012: per-exhibit metadata, opengraph-image, favicon, `/about` colophon, sitemap/robots; vitrine-height fix, SELECTED badge spacing, Continue-to wrap, ticket stem repetition | 1, 6 | frontend-designer / builder (Sonnet) | ½ day |
 | T-013: official Sanity Workflows spike (4 h box) → migrate or document | 3 | Codex gpt-5.5, reviewed by reviewer (Sonnet/Opus) | 4 h |
-| T-014: App SDK Curator's Desk (1 day box, SHOULD) | 4 | builder (Sonnet) | 1 day |
 | T-015: ISR (`revalidate = 60`) + optional webhook revalidation | 5 | Codex gpt-5.5 | small |
 | Release: production deploy, logged-out checks, CORS if needed, video, screenshots | 6 | orchestrator with founder approval | ½ day |
 | Submission: DEV post draft, public GitHub push, Agent Session upload, publish by Oct 2 | 6 | content-writer (Opus) + orchestrator + founder | 1 day |

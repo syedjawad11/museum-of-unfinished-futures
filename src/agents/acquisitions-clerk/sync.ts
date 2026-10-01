@@ -54,3 +54,45 @@ export function syncReviewFromWorkflow(input: {
       return noop;
   }
 }
+
+const OPTIONAL_REVIEW_FIELDS = [
+  "submittedRevision",
+  "approvedRevision",
+  "changeRequestReason",
+  "submittedAt",
+  "changeRequestedAt",
+  "approvedAt",
+] as const;
+
+export type ReviewWrite =
+  | { kind: "create"; document: ArtifactReview }
+  | {
+      kind: "patch";
+      id: string;
+      ifRevisionId: string;
+      set: Record<string, unknown>;
+      unset: string[];
+    };
+
+/**
+ * The mutation that turns the stored review into `next`: a create when there
+ * is none, otherwise a revision-guarded patch, so two writers can't silently
+ * overwrite each other.
+ */
+export function reviewWrite(
+  next: ArtifactReview,
+  previous: (ArtifactReview & { _rev?: string }) | null,
+): ReviewWrite {
+  if (!previous?._rev) {
+    return { kind: "create", document: next };
+  }
+
+  const set: Record<string, unknown> = { state: next.state };
+  const unset: string[] = [];
+  for (const field of OPTIONAL_REVIEW_FIELDS) {
+    if (next[field] === undefined) unset.push(field);
+    else set[field] = next[field];
+  }
+
+  return { kind: "patch", id: next._id, ifRevisionId: previous._rev, set, unset };
+}

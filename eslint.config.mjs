@@ -13,6 +13,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Build output of the Curator's Desk app.
+    "apps/curators-desk/dist/**",
   ]),
 ]);
 

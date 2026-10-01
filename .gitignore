@@ -48,3 +48,4 @@ next-env.d.ts
 
 # local copies of third-party docs (not ours to republish)
 docs/reference/
+/apps/curators-desk/dist

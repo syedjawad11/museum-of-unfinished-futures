@@ -46,7 +46,7 @@ import {
   type Generator,
 } from "../src/agents/acquisitions-clerk/generate";
 import type { PromptExample } from "../src/agents/acquisitions-clerk/prompt";
-import { syncReviewFromWorkflow } from "../src/agents/acquisitions-clerk/sync";
+import { reviewWrite, syncReviewFromWorkflow } from "../src/agents/acquisitions-clerk/sync";
 import { clerkDraftJsonSchema } from "../src/agents/acquisitions-clerk/validate";
 import { sanityDataset, sanityProjectId } from "../src/content/sanity-config";
 import ticketLines from "../src/content/ticket-lines.json";
@@ -450,27 +450,17 @@ async function saveReview(
   next: ArtifactReview,
   previous: Stored<ArtifactReview> | null,
 ) {
-  if (!previous) {
-    await client.create(next);
+  const write = reviewWrite(next, previous);
+  if (write.kind === "create") {
+    await client.create(write.document);
     return;
   }
-
-  const optional = [
-    "submittedRevision",
-    "approvedRevision",
-    "changeRequestReason",
-    "submittedAt",
-    "changeRequestedAt",
-    "approvedAt",
-  ] as const;
-  const set: Record<string, unknown> = { state: next.state };
-  const unset: string[] = [];
-  for (const field of optional) {
-    if (next[field] === undefined) unset.push(field);
-    else set[field] = next[field];
-  }
-
-  await client.patch(next._id).ifRevisionId(previous._rev).set(set).unset(unset).commit();
+  await client
+    .patch(write.id)
+    .ifRevisionId(write.ifRevisionId)
+    .set(write.set)
+    .unset(write.unset)
+    .commit();
 }
 
 // ── Helpers ─────────────────────────────────────────────────────────────────
@@ -613,7 +603,7 @@ async function currentUser(client: Client): Promise<{ id: string; roles: string[
     id: string;
     role?: string;
     roles?: Array<{ name: string }>;
-  }>({ uri: "/users/me" });
+  }>({ url: "/users/me" });
   const roles = new Set<string>(me.roles?.map((role) => role.name) ?? []);
   if (me.role) roles.add(me.role);
   return { id: me.id, roles: [...roles] };

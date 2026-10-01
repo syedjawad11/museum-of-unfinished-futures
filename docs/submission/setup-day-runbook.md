@@ -63,6 +63,13 @@ Have a screen recorder running from here. This is the heart of the video.
 
 If the Clerk's draft fails its checks twice, it writes nothing and says why. Run step 2 again, or try the other generator.
 
+## 5b. The Curator's Desk (you, 10 minutes, optional)
+
+1. In Terminal: `cd apps/curators-desk && npm run dev`. It prints a link to the Sanity Dashboard; open it and sign in.
+2. If the page complains about CORS, add `http://localhost:3333` (with credentials) in sanity.io/manage → API → CORS origins, then reload.
+3. You should see every exhibit, the Clerk's draft at the top, and its workflow panel when you click it. Take a screenshot for the post. You can do step 5.5 (Approve) from here instead of Studio.
+4. Tell Claude what you saw. If it misbehaves, skip it; the post will say the Desk was built but not shown.
+
 ## 6. Video (you, 30 minutes)
 
 60–90 seconds: walk an exhibit → make a choice → print a ticket → Studio with the Clerk's draft → your change request → the Clerk's revision → approve → the new exhibit on the site. Upload it (YouTube unlisted works) and keep the link.

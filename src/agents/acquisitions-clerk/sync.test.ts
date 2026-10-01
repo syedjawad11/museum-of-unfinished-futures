@@ -3,7 +3,7 @@ import {
   getPublishEligibility,
   type ArtifactReview,
 } from "../../domain/artifact-review";
-import { syncReviewFromWorkflow } from "./sync";
+import { reviewWrite, syncReviewFromWorkflow } from "./sync";
 
 const artifactId = "artifact-doormat";
 const T1 = "2026-10-01T10:00:00.000Z";
@@ -117,6 +117,39 @@ describe("syncReviewFromWorkflow", () => {
     expect(sync(workflow("approved"), null, "rev-1")).toEqual({
       ok: false,
       code: "reviewRequired",
+    });
+  });
+});
+
+describe("reviewWrite", () => {
+  const submitted: ArtifactReview = {
+    _id: "artifactReview.artifact-doormat",
+    _type: "artifactReview",
+    artifact: { _type: "reference", _ref: artifactId, _weak: true },
+    state: "submitted",
+    submittedRevision: "rev-2",
+    submittedAt: T2,
+  };
+
+  it("creates the review when there is none yet", () => {
+    expect(reviewWrite(submitted, null)).toEqual({ kind: "create", document: submitted });
+  });
+
+  it("patches against the stored revision and clears fields the transition dropped", () => {
+    const previous = {
+      ...submitted,
+      _rev: "stored-rev",
+      state: "changesRequested" as const,
+      changeRequestReason: "Fix it.",
+      changeRequestedAt: T1,
+    };
+
+    expect(reviewWrite(submitted, previous)).toEqual({
+      kind: "patch",
+      id: "artifactReview.artifact-doormat",
+      ifRevisionId: "stored-rev",
+      set: { state: "submitted", submittedRevision: "rev-2", submittedAt: T2 },
+      unset: ["approvedRevision", "changeRequestReason", "changeRequestedAt", "approvedAt"],
     });
   });
 });

@@ -207,13 +207,23 @@ The Clerk's draft has to pass the same limits as Studio's schema, and more: ever
 
 Each Workflows move is mirrored onto the custom gate, which pins the exact revision. If anyone edits the draft after approval, publishing refuses.
 
+### Outside Studio: the Curator's Desk
+
+The organizers asked entries to go beyond the Studio, so the curator also gets a small App SDK app, the **Curator's Desk** (`apps/curators-desk/`). It runs in the Sanity Dashboard. One screen lists every exhibit, including drafts nobody has published, with what a curator checks first: are all the endings there, is the plate there with its alt text, where is it in review? Selecting an exhibit opens its live workflow run. The buttons come from the workflow engine's own evaluation for the person signed in, and every move also updates the revision-pinned gate.
+
+One surprise: inside this repository the Sanity CLI kept building the Studio instead of the app, because it looks for a Studio config in parent folders before it looks for an app. A small script stages the app outside the repository and runs the CLI there.
+
+{{SCREENSHOT: The Curator's Desk with the Clerk's draft selected and its workflow panel — capture on setup day}}
+
+{{CONFIRM: Curator's Desk shown signed in on setup day; if not, say it was built and tested but not shown}}
+
 {{CONFIRM: first live Clerk run — the exhibit's title, the curator's change-request note, what the Clerk changed, and whether the history labels the Clerk as an agent; from evidence/T-018/clerk-*-executed-*.json}}
 
 ### Test results
 
 The latest numbers the orchestrator re-ran itself:
 
-- **Unit tests: 257/257 passed** (Vitest), including ten behavioural tests of the Workflows definition and 47 for the Clerk.
+- **Unit tests: 266/266 passed** (Vitest), including ten behavioural tests of the Workflows definition, 49 for the Clerk and 7 for the Curator's Desk.
 - **Browser tests: 77 passed** (Playwright, against a production build).
 - **Typecheck and lint:** clean.
 - **`npx sanity-workflows deploy --check`:** passed.
@@ -224,7 +234,6 @@ The latest numbers the orchestrator re-ran itself:
 
 ### What was cut, and what isn't finished
 
-- **The App SDK "Curator's Desk"**, a custom curator app, was cut for time. {{CONFIRM: Curator's Desk cut}}
 - **Only six exhibits.** We added three new ones instead of five to leave time for the Workflows spike.
 - **The review flow covers exhibits only.** Endings were published by separate guarded scripts. Each one runs dry by default, checks every document before writing anything, and writes everything in one transaction that aborts if any document changed in between.
 - **The custom publish guard is a Studio guard.** There is a brief gap between its final check and the publish, and anyone with enough API permissions can bypass it.

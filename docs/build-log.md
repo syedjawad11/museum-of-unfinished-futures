@@ -499,3 +499,20 @@ The museum grows from three exhibits to six, two per wing. The founder chose thr
 
 - Deployed commit `7b83620` to production: deploy `6ab7e00cee525798fc0c5281`, https://museum-of-unfinished-futures.netlify.app. Deny rules restored straight after.
 - The site sits behind Netlify's team-login protection for all deploys (`password_context: all`), so logged-out visitors get a 401 login redirect. The founder can review it while logged in. Turning protection off (founder approval) and the logged-out visitor checks come before the DEV submission. Evidence: `evidence/T-017/production-deploy.txt`.
+
+## Oct 1 — final sprint, Phase 0 preflight (T-018-0)
+
+- Fresh clone on a new MacBook (Node 26.10.0). `npm ci`, then the full gate: unit 206/206, typecheck, lint, build, e2e 77 passed, `sanity schemas validate` 0 errors, `git diff --check` clean. The e2e server logs "destination stream closed early" a few times with no failing test; noted, not chased.
+- Production is now public: every route returned 200 to a logged-out curl. The founder had switched Netlify protection off.
+- `docs/reference/` is gitignored, so the saved Sanity docs did not come with the clone. Re-fetched as markdown from sanity.io (39 Workflows pages, plus Agent Actions, App SDK, Live). Workflows 0.36 shipped Sep 30; we stay on 0.35.0 for now because its migrations touch nothing we use.
+- Finding for T-018: the Workflows engine takes the actor from the calling token, so a Clerk run on the founder's user token would be recorded as the founder. The agent needs its own robot token to be recorded as an agent, and its ban on approving is engine-advisory unless backed by dataset roles.
+- Later on Oct 1: the founder logged in to the Sanity CLI (Administrator on `wa27n68e`). Read-only checks found 0 drafts, plus the deployed `production.exhibit-review.v1` and the T-013 demo instance. The founder added the production CORS origin; verified with `sanity cors list` and a credentialed preflight (`204`, allow-origin plus allow-credentials true).
+- T-018 design drafted (`docs/task-packets/T-018-acquisitions-clerk.md`). It uses Agent Actions **Prompt**, not Generate/Transform: those can fill reference fields only through the deprecated Embeddings Index API, and an artifact is mostly references. The Workflows run is bridged into the existing revision-pinned `artifactReview` gate, which stays the only thing that unlocks Publish. The Clerk runs on its own robot token so the history records an agent. Waiting for founder approval.
+
+### Resume here (evening, Oct 1)
+Waiting on the founder:
+1. Studio Workflows panel check on production `/studio` (checklist in `T-018-0-preflight.md`).
+2. Approve the T-018 design.
+3. Create the "Acquisitions Clerk" robot token (Editor) as `SANITY_CLERK_TOKEN` in `.env.local`.
+4. Report the AI credits left (Manage → Settings → Spending limits).
+Next for the orchestrator after approval: T-018 tests first. Start with the in-memory workflow test proving that a draft-only subject works, then the `src/agents/acquisitions-clerk/` module, then the workflow v2 definition and `deploy --check`.

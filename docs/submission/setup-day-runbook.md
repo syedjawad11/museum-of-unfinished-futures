@@ -78,7 +78,7 @@ If the Clerk's draft fails its checks twice, it writes nothing and says why. Run
 
 1. **(Claude)** Re-run every check, update the build log with the live run, commit.
 2. **(you)** Approve `git push` to GitHub.
-3. **(you)** Only if the site code changed since 26 September: in Terminal, `npx netlify-cli login`, then tell Claude to run `npx netlify-cli deploy --build --prod`. Claude then repeats the logged-out checks.
+3. **No Netlify deploy is needed.** The public site's code hasn't changed since the 26 September deploy. Only Studio's packages moved (for the Curator's Desk), and the live Studio works as it is. Deploy only if Claude asks: `npx netlify-cli login`, then Claude runs `npx netlify-cli deploy --build --prod` and repeats the logged-out checks.
 4. **(Claude)** Fill in the post's remaining placeholders from the evidence: the live Clerk run, the final test numbers, the screenshots.
 5. **(you)** On DEV: use the challenge's submission template, paste the post, add the tags it requires, add the video link and the Agent Session link, and publish **before Monday 5 October, 08:59 Malta time**.
 

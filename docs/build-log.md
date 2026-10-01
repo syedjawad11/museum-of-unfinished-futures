@@ -544,5 +544,5 @@ Everything that could be built without keys, credits or deploys is built and com
 1. Ollama installed with `qwen2.5:7b`, and/or Sanity free AI credits checked with no way to bill.
 2. Editor robot token "Acquisitions Clerk" in `.env.local` as `SANITY_CLERK_TOKEN`, plus `CLERK_GENERATOR`.
 3. Studio Workflows panel check (also covers the sdk-react 3.5.0 change).
-4. Approvals, in order: workflow v2 deploy (dry run first), each live Clerk run, the curator's publish, Curator's Desk `npm run dev`, git push, Netlify production deploy (site code changed only through dependencies), DEV publish.
+4. Approvals, in order: workflow v2 deploy (dry run first), each live Clerk run, the curator's publish, Curator's Desk `npm run dev`, git push, DEV publish. No Netlify deploy is needed: the public site's code is unchanged since the Sep 26 deploy; only Studio's packages moved.
 Then fill the post's `{{CONFIRM}}` and screenshot slots from `evidence/T-018/`.

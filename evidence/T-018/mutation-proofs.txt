@@ -1,0 +1,20 @@
+T-018 mutation proofs (Oct 1 2026, vitest 5.0.1). Each mutation was applied alone,
+the suite run, and the file restored. Every mutation turned at least one test red.
+
+workflows/exhibit-review.ts
+  remove `roles: curatorRoles` (approve, request-changes, put-on-display)  -> 1 failed (clerk refused approve/request-changes/display)
+  remove the submittedBy field.set op on submit                            -> 1 failed (clerk recorded as submitter)
+src/agents/acquisitions-clerk
+  decide.ts    CLERK_ACTIONS = ["submit", "approve"]                        -> 1 failed
+  validate.ts  skip the tag-vocabulary check                                -> 1 failed
+  validate.ts  skip the published-exhibit check on leadsTo                  -> 1 failed
+  sync.ts      resubmit replaced by a fresh submit after changes requested  -> 2 failed
+  sync.ts      no noop when the gate is already approved                    -> 1 failed
+  clerk.ts     MAX_GENERATION_ATTEMPTS = 1                                  -> 2 failed
+  generate.ts  Ollama ignores the JSON schema (format: "json")              -> 1 failed
+  documents.ts choice references without _weak                              -> 1 failed
+  prompt.ts    curator's note left out of the revision prompt               -> 1 failed
+
+Draft-only subject: the bench test "runs on a subject that exists only as a draft"
+passed on the v1 definition before any change, which is the proof the design needed
+(a never-published artifact can be the subject of an exhibit-review run).

@@ -29,6 +29,12 @@ const reviewPublishHold = publishHold(
   "Hold publishing during review",
 );
 
+// Only a human curator (project administrator) may decide or display. The
+// Acquisitions Clerk runs on an Editor robot token, so it can submit but not
+// approve. Engine role checks are advisory: they stop cooperating callers such
+// as the Clerk and Studio, not a raw Content Lake write.
+const curatorRoles = ["administrator"];
+
 export const exhibitReview = defineWorkflow({
   name: "exhibit-review",
   title: "Exhibit review",
@@ -43,6 +49,11 @@ export const exhibitReview = defineWorkflow({
       types: ["artifact"],
       initialValue: { type: "input" },
       required: true,
+    }),
+    defineField({
+      type: "actor",
+      name: "submittedBy",
+      title: "Last submitted by",
     }),
     defineField({
       type: "string",
@@ -81,6 +92,11 @@ export const exhibitReview = defineWorkflow({
                   type: "field.unset",
                   target: { field: "reviewDecision" },
                 }),
+                defineOp({
+                  type: "field.set",
+                  target: { field: "submittedBy" },
+                  value: { type: "actor" },
+                }),
               ],
             }),
           ],
@@ -106,6 +122,7 @@ export const exhibitReview = defineWorkflow({
             defineAction({
               name: "request-changes",
               title: "Request changes",
+              roles: curatorRoles,
               params: [
                 {
                   type: "string",
@@ -132,6 +149,7 @@ export const exhibitReview = defineWorkflow({
             defineAction({
               name: "approve",
               title: "Approve",
+              roles: curatorRoles,
               status: "done",
               ops: [
                 defineOp({
@@ -170,6 +188,7 @@ export const exhibitReview = defineWorkflow({
             defineAction({
               name: "put-on-display",
               title: "Put on display",
+              roles: curatorRoles,
               status: "done",
             }),
           ],

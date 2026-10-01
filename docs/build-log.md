@@ -516,3 +516,11 @@ Waiting on the founder:
 3. Create the "Acquisitions Clerk" robot token (Editor) as `SANITY_CLERK_TOKEN` in `.env.local`.
 4. Report the AI credits left (Manage → Settings → Spending limits).
 Next for the orchestrator after approval: T-018 tests first. Start with the in-memory workflow test proving that a draft-only subject works, then the `src/agents/acquisitions-clerk/` module, then the workflow v2 definition and `deploy --check`.
+
+## Oct 1 evening — Acquisitions Clerk built offline (T-018)
+
+- Founder decision: no paid AI of any kind (no Anthropic or other API key). The Clerk writes with Sanity Agent Actions Prompt on the free monthly credits, or with Ollama running on the founder's Mac. The founder installs Ollama and checks the credits on setup day; everything else is built now.
+- Workflow `exhibit-review` v2 (not deployed): human-only `roles: ["administrator"]` on request-changes, approve and put-on-display, and a `submittedBy` actor field. Bench tests prove the Clerk can submit but is refused the human actions, the full agent loop works, and a never-published draft can be a run's subject (this passed on v1 unchanged). `deploy --check` passes.
+- `src/agents/acquisitions-clerk/` and `scripts/acquisitions-clerk.ts`: draft, revise, sync, status, and the curator-only publish. Endings stay drafts until the curator publishes, so no unreviewed text is public. 47 new unit tests, 11 mutation proofs. A rehearsal dry run against the live public collection with a saved answer produced the expected drafts; nothing was written.
+- Found on the way: the test bench stamps every actor as a person, so the claim "history shows an agent" waits for the live run. `@sanity/client` refuses a GROQ parameter named `tag` (it is a request option); the instance query uses `$workflowTag`.
+- Gates: unit 257/257, typecheck, lint, `sanity schemas validate` 0/0, e2e 77 passed, `git diff --check` clean (T-011 screenshots restored after e2e).

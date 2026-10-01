@@ -209,7 +209,7 @@ Each Workflows move is mirrored onto the custom gate, which pins the exact revis
 
 ### Outside Studio: the Curator's Desk
 
-The organizers asked entries to go beyond the Studio, so the curator also gets a small App SDK app, the **Curator's Desk** (`apps/curators-desk/`). It runs in the Sanity Dashboard. One screen lists every exhibit, including drafts nobody has published, with what a curator checks first: are all the endings there, is the plate there with its alt text, where is it in review? Selecting an exhibit opens its live workflow run. The buttons come from the workflow engine's own evaluation for the person signed in, and every move also updates the revision-pinned gate.
+To go beyond the Studio, the curator also gets a small App SDK app, the **Curator's Desk** (`apps/curators-desk/`). It runs in the Sanity Dashboard. One screen lists every exhibit, including drafts nobody has published, with what a curator checks first: are all the endings there, is the plate there with its alt text, where is it in review? Selecting an exhibit opens its live workflow run. The buttons come from the workflow engine's own evaluation for the person signed in, and every move also updates the revision-pinned gate.
 
 One surprise: inside this repository the Sanity CLI kept building the Studio instead of the app, because it looks for a Studio config in parent folders before it looks for an app. A small script stages the app outside the repository and runs the CLI there.
 
@@ -234,6 +234,7 @@ The latest numbers the orchestrator re-ran itself:
 
 ### What was cut, and what isn't finished
 
+- **A public "In conservation" strip** listing exhibits under review was cut. Review records, drafts and workflow runs are private in the dataset (an anonymous query counts 0 of each), and the site deliberately reads without a token. Showing them would mean putting a read token on the web server or publishing titles nobody had reviewed yet.
 - **Only six exhibits.** We added three new ones instead of five to leave time for the Workflows spike.
 - **The review flow covers exhibits only.** Endings were published by separate guarded scripts. Each one runs dry by default, checks every document before writing anything, and writes everything in one transaction that aborts if any document changed in between.
 - **The custom publish guard is a Studio guard.** There is a brief gap between its final check and the publish, and anyone with enough API permissions can bypass it.

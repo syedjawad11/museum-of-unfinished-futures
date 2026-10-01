@@ -509,7 +509,7 @@ The museum grows from three exhibits to six, two per wing. The founder chose thr
 - Later on Oct 1: the founder logged in to the Sanity CLI (Administrator on `wa27n68e`). Read-only checks found 0 drafts, plus the deployed `production.exhibit-review.v1` and the T-013 demo instance. The founder added the production CORS origin; verified with `sanity cors list` and a credentialed preflight (`204`, allow-origin plus allow-credentials true).
 - T-018 design drafted (`docs/task-packets/T-018-acquisitions-clerk.md`). It uses Agent Actions **Prompt**, not Generate/Transform: those can fill reference fields only through the deprecated Embeddings Index API, and an artifact is mostly references. The Workflows run is bridged into the existing revision-pinned `artifactReview` gate, which stays the only thing that unlocks Publish. The Clerk runs on its own robot token so the history records an agent. Waiting for founder approval.
 
-### Resume here (evening, Oct 1)
+### Resume here (evening, Oct 1) — superseded by "Resume here (setup day)" at the end of this log
 Waiting on the founder:
 1. Studio Workflows panel check on production `/studio` (checklist in `T-018-0-preflight.md`).
 2. Approve the T-018 design.
@@ -532,3 +532,17 @@ Next for the orchestrator after approval: T-018 tests first. Start with the in-m
 - Found on the way: inside this repository the Sanity CLI builds the Studio even when run from the app folder, because it looks for `sanity.config.ts` in parent folders before it looks for an app. `apps/curators-desk/run.sh` stages the app outside the repository and runs the CLI there. Sanity UI 4 renamed `space` to `gap` and `columns` to `gridTemplateColumns`.
 - Verified: 7 unit tests for the Desk logic (one mutation survived at first, an ending with a pending edit counted twice; a test was added and the mutation now fails), typecheck, lint, app build (our code is in the bundle), and a logged-out load that redirects to Sanity's login with no errors of its own. Not verified: the signed-in screen, which needs the founder in the Dashboard.
 - Gates: unit 266/266, typecheck, lint, schemas 0/0, e2e 77 passed, `git diff --check` clean.
+
+## Oct 1 evening — "In conservation" strip cut (T-020)
+
+- Checked what a logged-out visitor can read on `production_1` (apicdn, raw perspective): `artifactReview` 0, drafts 0, `sanity.workflow.instance` 0, artifacts 6. Review records and workflow runs have dotted ids and stay private; drafts are private. The site reads without a token by design (T-003), so a public strip of exhibits under review would need a read token on the web server, or a public document carrying titles nobody has reviewed yet. Neither is worth it four days before the deadline. Cut, and the post says so.
+- Not attempted for the same reason: next-sanity Live Content. ISR already refreshes the hall within 60 seconds of a publish, which is what the demo video shows.
+
+### Resume here (setup day)
+
+Everything that could be built without keys, credits or deploys is built and committed locally (not pushed): T-018 Clerk, T-019 Curator's Desk, T-021 post and screenshots; T-020 cut. The founder chose to do the AI setup on one day (Sat 3 Oct preferred; deadline Mon 5 Oct 08:59 Malta). Their checklist is `docs/submission/setup-day-runbook.md`:
+1. Ollama installed with `qwen2.5:7b`, and/or Sanity free AI credits checked with no way to bill.
+2. Editor robot token "Acquisitions Clerk" in `.env.local` as `SANITY_CLERK_TOKEN`, plus `CLERK_GENERATOR`.
+3. Studio Workflows panel check (also covers the sdk-react 3.5.0 change).
+4. Approvals, in order: workflow v2 deploy (dry run first), each live Clerk run, the curator's publish, Curator's Desk `npm run dev`, git push, Netlify production deploy (site code changed only through dependencies), DEV publish.
+Then fill the post's `{{CONFIRM}}` and screenshot slots from `evidence/T-018/`.

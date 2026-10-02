@@ -546,3 +546,30 @@ Everything that could be built without keys, credits or deploys is built and com
 3. Studio Workflows panel check (also covers the sdk-react 3.5.0 change).
 4. Approvals, in order: workflow v2 deploy (dry run first), each live Clerk run, the curator's publish, Curator's Desk `npm run dev`, git push, DEV publish. No Netlify deploy is needed: the public site's code is unchanged since the Sep 26 deploy; only Studio's packages moved.
 Then fill the post's `{{CONFIRM}}` and screenshot slots from `evidence/T-018/`.
+
+## Oct 2 evening: setup day, brought forward (T-018 live)
+
+- Generator: Sanity's free AI credits, 1,000 a month with a $0 cap, so it cannot bill. Ollama was not installed. The whole run used 3 credits: one each for the dry run, the draft and the revision, and every answer passed on the first try.
+- The founder made the Editor robot token "Acquisitions Clerk" and saved it in `.env.local`. The Studio Workflows panel check passed on production (`T-018-0-preflight.md`).
+- Workflow v2 deployed to production after a dry run that showed only the expected changes (`evidence/T-018/workflow-v2-deploy.txt`).
+- Live run on "A doormat that knows who is coming":
+  - The Clerk drafted it and submitted it as `g-BHx7IW47nZRW`.
+  - The curator requested changes in Studio. Their note asked for choices about being known and a more sensory second ending.
+  - The Clerk revised it ("Wipe your feet and let the house know you" / "Step over the threshold without being known") and resubmitted.
+  - The curator approved in Studio. `sync` mirrored the approval onto the gate, then the curator ran `publish` with `--with-user-token`: a dry run first, then the real publish of the endings and the exhibit together, which also put the run On display.
+  - It was live within a minute, and a ticket built from the doormat and the umbrella quotes it.
+  - Evidence: `evidence/T-018/clerk-*-executed-*.json` and `evidence/T-018/screens/01–09`.
+- The founder's Studio clicks were made by a Playwright-driven Chrome on the founder's own signed-in profile, at their direction. They wrote the change-request note and gave the approval in chat. The founder logged in by hand; no token was handled. Recordings were saved outside the repository (`~/Desktop/museum-demo/`).
+- Found on the way:
+  - Workflow history credits the Clerk by its robot id, with no separate "agent" badge.
+  - Studio's Approve is not mirrored onto the gate until `sync` runs, so `publish` refuses until then, as the runbook says.
+  - A revision keeps the choices' original `_key`s, so the URL reads `?choice=step-onto-the-mat` under the new label. This was left as it is, because fixing it needs another review round.
+- Tests: the e2e checks that counted exactly six exhibits and exactly two per wing now treat those as minimums, because the Clerk adds reviewed exhibits. The 404 noindex check reads the first robots tag, because Next can stream two identical tags.
+- Gates: unit 266/266, typecheck, lint, `sanity schemas validate` 0/0, `sanity documents validate` 32/32, e2e 77 passed. The T-011 screenshots that e2e regenerates are left uncommitted.
+
+### Resume here (after the live run)
+Still open:
+1. Optional: Curator's Desk signed in (runbook 5b).
+2. Video: `~/Desktop/museum-demo/0-full-tour.webm` is a continuous take: hall → the Clerk's exhibit → a choice → the umbrella → the ticket → Studio workflow history. The numbered clips show each live step. The founder uploads to YouTube, unlisted.
+3. `git push`, which needs approval.
+4. DEV front matter, the template intro line, the video URL and the Agent Session link, then publish before Mon 5 Oct 08:59 Malta.

@@ -179,7 +179,8 @@ test("missing wing returns a noindex 404", async ({ page }) => {
   const response = await page.goto("/eras/does-not-exist");
 
   expect(response?.status()).toBe(404);
-  await expect(page.locator('meta[name="robots"]')).toHaveAttribute(
+  // Next can stream a second identical robots tag on not-found pages.
+  await expect(page.locator('meta[name="robots"]').first()).toHaveAttribute(
     "content",
     /noindex/,
   );

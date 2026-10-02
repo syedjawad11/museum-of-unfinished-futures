@@ -43,7 +43,7 @@ Public dataset read: `count(*[_type=="artifact"])` = 6 on `wa27n68e/production_1
 5. Open a different artifact. You should see a **Start Exhibit review** button. Don't press it.
 6. Open the **Workflows** tool (top bar) → Overview. It should list the run.
 
-Founder report: _pending_.
+Founder report (Oct 2, signed in on production /studio): all six steps OK. Screenshots show the Vending Machine with "Exhibit review ✓ On display" above the form, and the Umbrella with a "Start workflow" button and no run. Studio runs fine after the sdk-react 3.5.0 change.
 
 ## Update, Oct 1: founder logged in to the Sanity CLI
 

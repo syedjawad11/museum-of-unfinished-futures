@@ -1,0 +1,10 @@
+# Oct 2 2026, founder-approved: npx sanity-workflows deploy --deployment production
+- Deploying 1 definition(s) to production (production) → wa27n68e.production_1…
+✔ Processed 1 definition(s) · production (production) → wa27n68e.production_1
+  ✔ created   exhibit-review v2
+Definition sharing: ON (default)
+New workflow definition versions are being shared with Sanity to improve Workflows.
+Examples:
+  $ sanity-workflows deploy                 # share by default
+  $ sanity-workflows deploy --share-defs    # share explicitly; hide this warning
+  $ sanity-workflows deploy --no-share-defs # opt out

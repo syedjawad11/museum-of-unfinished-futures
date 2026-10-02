@@ -1,0 +1,104 @@
+{
+  "artifactId": "artifact-the-doormat-that-knows-who-is-coming",
+  "reason": "The two choices are too plain. Make them feel like a decision about being known, for example wiping your feet or stepping over the threshold, and make the second ending as specific and sensory as the first.",
+  "generator": "sanity-agent-actions",
+  "sets": {
+    "artifact": {
+      "title": "The Doormat That Knows Who Is Coming",
+      "accessionNote": "Recovered from the entrance of a cooperative house awaiting demolition.",
+      "summary": "Woven with forecast thread, the doormat once recognized approaching callers by the weather they carried. It warmed for expected guests, cooled for strangers, and held the damp imprint of anyone returning home.",
+      "artifactLabel": "The coir remains dark at three corners, as if recently rained upon. Beneath the word WELCOME, a narrow brass strip displays a visitor's expected time but not their name.",
+      "visualDescription": "A rectangular brown doormat rests inside a shallow glass case. Pale blue threads run through its fibers, and a narrow brass display is set along one edge.",
+      "choices[0].label": "Wipe your feet and let the house know you",
+      "choices[1].label": "Step over the threshold without being known"
+    },
+    "outcomes": [
+      {
+        "title": "The threshold recognizes your weather",
+        "body": "The fibers warm beneath your shoes and release the scent of rain on a familiar stair. The brass strip changes to ARRIVED. From now on, every home you approach knows a few minutes early that you are coming: a hook is cleared, a hallway lamp is lit, and room is left for your coat.",
+        "consequenceTags": [
+          "almost-recognized",
+          "shelter-returned",
+          "weather-you-can-re-enter"
+        ],
+        "leadsTo": {
+          "_type": "reference",
+          "_ref": "artifact-memory-umbrella"
+        }
+      },
+      {
+        "title": "The house receives no forecast",
+        "body": "Your shoe passes above the pale threads. They cool without stirring, and the brass strip records NO CALLER EXPECTED. In your future, doors still open when you knock, but no hallway warms beforehand: coat hooks remain crowded, entry lamps stay dim, and rain beads on your sleeves until you choose where to leave it.",
+        "consequenceTags": [
+          "quiet-refusal",
+          "unlisted-by-the-sky",
+          "visits-without-weather"
+        ]
+      }
+    ],
+    "unsetLeadsTo": [
+      false,
+      true
+    ]
+  },
+  "attempts": [
+    {
+      "instruction": "You are the Acquisitions Clerk of the Museum of Unfinished Futures, a museum of objects from futures that never quite happened.\n\nWrite ONE new exhibit as JSON for the curator's review.\n\nCurator's brief: Revise the exhibit \"The Doormat That Knows Who Is Coming\".\n\nWing: The Domestic Weather Memory Era (A short-lived domestic design movement that taught everyday objects to store weather, mood, and the private history of sheltering together.)\n\nHouse style:\n- Calm, precise museum voice. Domestic and civic details. Quietly strange, never jokey, never horror.\n- Present tense for the label, past tense for what the object once did.\n- No real people, brands or places. No violence. Suitable for all ages.\n- The visitor makes one of two choices; each ending says what that choice does to the visitor's future.\n\nExhibits already in the collection (match this voice, do not copy them):\n- \"The Kettle That Brews the Weather of Past Visits\"\n    accession note: Donated by a lodging house that kept its guest book in steam instead of ink.\n    summary: An enamel kettle records the weather outside each time a visitor was offered tea. When boiled, it releases a small cloud of that afternoon into the room, along with the smell of wet coats drying by the door.\n    label: The spout is lightly frosted, though the kettle has not been cold in years. Painted around the base are small tallies, one for every guest who stayed for a second cup.\n    choice \"Put the kettle on\" → ending \"An afternoon comes back indoors\": Steam gathers under the ceiling into a low, patient drizzle. A coat is drying by a door that is not there, and a voice asks whether you are staying for a second cup. You are counted.\n    choice \"Leave it on the trivet\" → ending \"The kettle stays cold\": Nothing boils. For a while afterwards, your visitors arrive in perfectly ordinary weather and leave before the rain, and none of them can say later what the sky was doing while you talked.\n- \"The Umbrella That Remembers Every Storm\"\n    accession note: Donated by the last household insured against emotional weather.\n    summary: A translucent umbrella stores traces of every storm beneath which it was opened, preserving rain, voices, and the feeling of having somewhere to return.\n    label: Silver droplets hang motionless beneath the canopy. Along the handle, tiny brass dates mark storms that official weather archives insist never occurred.\n    choice \"Open it indoors\" → ending \"The room rains back\": The canopy opens with a sigh. A gentle rain falls upward toward the ceiling, carrying the scent of a childhood hallway and a voice calling everyone inside before the thunder.\n    choice \"Leave it furled\" → ending \"The forecast forgets your name\": You leave the clasp untouched. By morning, every forecast shows clear skies where you stand, as if the atmosphere has politely removed you from its memory.\n- \"The Switchboard for Conversations That Ended Too Soon\"\n    accession note: Removed intact from the night exchange at Counterfactual Relay Station Four.\n    summary: An operator's switchboard once routed calls to conversations that had ended mid-sentence, reconnecting both parties at the exact word where they stopped. Operators wore two headsets and were trained never to finish anyone's sentence for them.\n    label: Nearly every jack is labelled with the last word spoken before a line went quiet: because, anyway, actually, wait. One cord is still plugged in, and its lamp has not gone out.\n    choice \"Answer the line that is still lit\" → ending \"A sentence resumes mid-word\": A voice finishes saying because, then pauses, surprised that anyone is still there. It explains the rest in under a minute. It was not about you, and it was never as bad as it sounded.\n    choice \"Pull every cord at once\" → ending \"The exchange goes quiet\": Two hundred conversations stop on the same word. In the silence, the operator's chair turns slightly toward you, and a card drops from the ledger: Service suspended at the caller's request.\n    choice \"Plug a cord into the blank jack\" → ending \"The blank jack rings back\": The unlabelled jack connects to a conversation that has not happened yet. You hear yourself say anyway, someone laughs, and the line holds its breath, waiting for the rest.\n\nconsequenceTags: pick 1 to 4 per ending, ONLY from this list (tag: what the visitor's ticket prints):\n- borrowed-time: carrying a day that was never yours to keep\n- accruing-interest: quietly owing more than you agreed to spend\n- edited-without-asking: amended in a record you were never shown\n- quiet-refusal: declining something without ever raising your voice\n- weekend-intact: with your weekend still unspent\n- room-to-breathe: with more room around you than the corridor promised\n- almost-recognized: known by something that cannot quite place your name\n- another-life-answering: answered by a life you decided not to live\n- line-left-open: with a line still open behind you\n- future-already-calling: already expected somewhere eleven years ahead\n- apology-not-required: released from an apology you had prepared\n- weather-you-can-re-enter: able to step back into weather that has already passed\n- shelter-returned: given back a hallway you were once called into\n- unlisted-by-the-sky: unlisted by every forecast above you\n- advised-in-advance: advised in advance by someone who writes like you\n- thursday-rearranged: with one Thursday already rearranged\n- unadvised: unadvised by anyone, including yourself\n- sentence-finished: with an old sentence finally allowed to end\n- left-unfinished-on-purpose: leaving several things unfinished on purpose\n- conversation-pending: with a conversation waiting for you further on\n- counted-as-a-guest: counted among the guests who stayed for a second cup\n- visits-without-weather: visited by friends who leave no weather behind\n\nleadsTo: optional. If an ending naturally continues into an existing exhibit, give that exhibit's id from this list; otherwise leave leadsTo out:\n- artifact-weather-of-visits-kettle: The Kettle That Brews the Weather of Past Visits\n- artifact-unfinished-conversations-switchboard: The Switchboard for Conversations That Ended Too Soon\n- artifact-roads-not-taken-telephone: The Telephone for Calling Roads Not Taken\n- artifact-future-self-toaster: The Toaster That Prints Notes From Your Future Self\n- artifact-memory-umbrella: The Umbrella That Remembers Every Storm\n- artifact-extra-mondays-vending-machine: The Vending Machine That Sells Extra Mondays\n\nA curator sent your previous draft back. Revise it to address the note, keep what works, and keep the same two choices in the same order.\nCurator's note: The two choices are too plain. Make them feel like a decision about being known, for example wiping your feet or stepping over the threshold, and make the second ending as specific and sensory as the first.\nPrevious draft JSON: {\"title\":\"The Doormat That Knows Who Is Coming\",\"accessionNote\":\"Recovered from the entrance of a cooperative house awaiting demolition.\",\"summary\":\"Woven with forecast thread, the doormat once recognized approaching callers by the weather they carried. It warmed for expected guests, cooled for strangers, and held the damp imprint of anyone returning home.\",\"artifactLabel\":\"The coir remains dark at three corners, as if recently rained upon. Beneath the word WELCOME, a narrow brass strip displays a visitor's expected time but not their name.\",\"visualDescription\":\"A rectangular brown doormat rests inside a shallow glass case. Its fibers contain pale blue threads, and a small brass display is set along one edge.\",\"choices\":[{\"label\":\"Step onto the mat\",\"outcome\":{\"title\":\"The threshold recognizes your weather\",\"body\":\"The fibers warm beneath your shoes and release the scent of rain on a familiar stair. The brass strip changes to ARRIVED. From now on, every home you approach knows a few minutes early that you are coming, and leaves room for your coat.\",\"consequenceTags\":[\"almost-recognized\",\"shelter-returned\",\"weather-you-can-re-enter\"],\"leadsTo\":\"artifact-memory-umbrella\"}},{\"label\":\"Walk around the mat\",\"outcome\":{\"title\":\"The house receives no forecast\",\"body\":\"You cross the threshold without touching the fibers. The brass strip records NO CALLER EXPECTED. In your future, doors still open when you knock, but no hallway prepares for your arrival, and the weather outside remains entirely yours.\",\"consequenceTags\":[\"quiet-refusal\",\"unlisted-by-the-sky\",\"visits-without-weather\"]}}]}\n\nRespond with JSON only, exactly two choices, in this shape (the character ranges are limits, not content):\n{\n  \"title\": \"Three to one hundred characters: the exhibit's name\",\n  \"accessionNote\": \"Eight to one hundred and twenty characters: where the museum acquired it.\",\n  \"summary\": \"Forty to three hundred and twenty characters describing what the object did in its unfinished future.\",\n  \"artifactLabel\": \"Twenty to two hundred and forty characters: the museum label beside the case.\",\n  \"visualDescription\": \"Thirty to three hundred and twenty characters of plain description for visitors who cannot see the case.\",\n  \"choices\": [\n    {\n      \"label\": \"Three to eighty characters: the first thing the visitor may do\",\n      \"outcome\": {\n        \"title\": \"Three to ninety characters\",\n        \"body\": \"Thirty to five hundred and twenty characters: what happens to the visitor after this choice.\",\n        \"consequenceTags\": [\n          \"borrowed-time\"\n        ],\n        \"leadsTo\": \"artifact-example-id\"\n      }\n    },\n    {\n      \"label\": \"Three to eighty characters: the other thing the visitor may do\",\n      \"outcome\": {\n        \"title\": \"Three to ninety characters\",\n        \"body\": \"Thirty to five hundred and twenty characters: what happens to the visitor after this choice.\",\n        \"consequenceTags\": [\n          \"quiet-refusal\"\n        ]\n      }\n    }\n  ]\n}",
+      "answer": {
+        "title": "The Doormat That Knows Who Is Coming",
+        "accessionNote": "Recovered from the entrance of a cooperative house awaiting demolition.",
+        "summary": "Woven with forecast thread, the doormat once recognized approaching callers by the weather they carried. It warmed for expected guests, cooled for strangers, and held the damp imprint of anyone returning home.",
+        "artifactLabel": "The coir remains dark at three corners, as if recently rained upon. Beneath the word WELCOME, a narrow brass strip displays a visitor's expected time but not their name.",
+        "visualDescription": "A rectangular brown doormat rests inside a shallow glass case. Pale blue threads run through its fibers, and a narrow brass display is set along one edge.",
+        "choices": [
+          {
+            "label": "Wipe your feet and let the house know you",
+            "outcome": {
+              "title": "The threshold recognizes your weather",
+              "body": "The fibers warm beneath your shoes and release the scent of rain on a familiar stair. The brass strip changes to ARRIVED. From now on, every home you approach knows a few minutes early that you are coming: a hook is cleared, a hallway lamp is lit, and room is left for your coat.",
+              "consequenceTags": [
+                "almost-recognized",
+                "shelter-returned",
+                "weather-you-can-re-enter"
+              ],
+              "leadsTo": "artifact-memory-umbrella"
+            }
+          },
+          {
+            "label": "Step over the threshold without being known",
+            "outcome": {
+              "title": "The house receives no forecast",
+              "body": "Your shoe passes above the pale threads. They cool without stirring, and the brass strip records NO CALLER EXPECTED. In your future, doors still open when you knock, but no hallway warms beforehand: coat hooks remain crowded, entry lamps stay dim, and rain beads on your sleeves until you choose where to leave it.",
+              "consequenceTags": [
+                "quiet-refusal",
+                "unlisted-by-the-sky",
+                "visits-without-weather"
+              ]
+            }
+          }
+        ]
+      },
+      "reasons": []
+    }
+  ],
+  "instanceId": "production.wf-instance.ea4a4646f8f8",
+  "gate": {
+    "ok": true,
+    "status": "changed",
+    "review": {
+      "_createdAt": "2026-10-02T21:13:21Z",
+      "_id": "artifactReview.artifact-the-doormat-that-knows-who-is-coming",
+      "_rev": "6PahXDAqdeBo5CX2IMmKl2",
+      "_type": "artifactReview",
+      "_updatedAt": "2026-10-02T21:33:35Z",
+      "artifact": {
+        "_ref": "artifact-the-doormat-that-knows-who-is-coming",
+        "_type": "reference",
+        "_weak": true
+      },
+      "state": "submitted",
+      "submittedAt": "2026-10-02T21:33:43.557Z",
+      "submittedRevision": "6gqActuXXdMTZlo73qq6p2"
+    }
+  }
+}

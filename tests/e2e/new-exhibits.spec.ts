@@ -110,7 +110,8 @@ const rewiredDoors = [
   },
 ] as const;
 
-test("home lists all six exhibits; each wing shows exactly two", async ({
+// The Acquisitions Clerk (T-018) adds reviewed exhibits, so counts are floors.
+test("home lists the six curated exhibits; each wing shows at least its two", async ({
   page,
 }) => {
   await page.goto("/");
@@ -118,7 +119,7 @@ test("home lists all six exhibits; each wing shows exactly two", async ({
   await expect(
     page.getByRole("heading", { name: "Museum of Unfinished Futures" }),
   ).toBeVisible();
-  await expect(page.locator('a[href^="/exhibits/"]')).toHaveCount(6);
+  expect(await page.locator('a[href^="/exhibits/"]').count()).toBeGreaterThanOrEqual(6);
 
   for (const wing of wings) {
     const heading = page.getByRole("heading", { name: wing.title, level: 2 });
@@ -130,7 +131,7 @@ test("home lists all six exhibits; each wing shows exactly two", async ({
     await expect(
       section.getByRole("heading", { name: wing.exhibitB }),
     ).toBeVisible();
-    await expect(section.locator('a[href^="/exhibits/"]')).toHaveCount(2);
+    expect(await section.locator('a[href^="/exhibits/"]').count()).toBeGreaterThanOrEqual(2);
   }
 });
 
@@ -231,7 +232,7 @@ test("walking a new exhibit then printing a ticket surfaces a new tag phrase, wi
 });
 
 for (const wing of wings) {
-  test(`the ${wing.title} wing page lists its two exhibits`, async ({
+  test(`the ${wing.title} wing page lists at least its two exhibits`, async ({
     page,
   }) => {
     await page.goto(`/eras/${wing.slug}`);
@@ -245,7 +246,7 @@ for (const wing of wings) {
     await expect(
       page.getByRole("heading", { name: wing.exhibitB, level: 2 }),
     ).toBeVisible();
-    await expect(page.locator('a[href^="/exhibits/"]')).toHaveCount(2);
+    expect(await page.locator('a[href^="/exhibits/"]').count()).toBeGreaterThanOrEqual(2);
   });
 }
 

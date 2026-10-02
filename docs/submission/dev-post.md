@@ -50,11 +50,11 @@ Behind the scenes, new exhibits can arrive through the **Acquisitions Clerk**, a
 
 {{SCREENSHOT: A blueprint plate at full size, plate 005, the switchboard — evidence/T-011/plates/plate-005-preview.png}}
 
-{{SCREENSHOT: Sanity Studio showing the Exhibit review workflow on an artifact — no existing file; new capture needed}}
+{{SCREENSHOT: Studio's Exhibit review card after the curator's note: Drafting, Round 2, with the reason on the card — evidence/T-018/screens/03-changes-requested-round-2.png (production, Oct 2)}}
 
-{{SCREENSHOT: Studio on a Clerk-drafted exhibit in Curatorial review, with the workflow history showing the Clerk's submit — capture on setup day}}
+{{SCREENSHOT: The Clerk's draft in Curatorial review, "Last submitted by" the Clerk's robot — evidence/T-018/screens/01-clerk-draft-in-curatorial-review.png; and the workflow history, the Clerk's moves under its robot id and the curator's under the curator's own name — evidence/T-018/screens/06-history-on-display.png (production, Oct 2)}}
 
-{{SCREENSHOT: The curator's "Request changes" note, and the Clerk's revised draft after it — capture on setup day}}
+{{SCREENSHOT: The Clerk's exhibit live, and the visitor's ticket that now includes it — evidence/T-018/screens/08-live-exhibit-after-choice.png and evidence/T-018/screens/09-ticket-with-clerk-exhibit.png (production, Oct 2)}}
 
 ## Code
 
@@ -217,7 +217,11 @@ One surprise: inside this repository the Sanity CLI kept building the Studio ins
 
 {{CONFIRM: Curator's Desk shown signed in on setup day; if not, say it was built and tested but not shown}}
 
-{{CONFIRM: first live Clerk run — the exhibit's title, the curator's change-request note, what the Clerk changed, and whether the history labels the Clerk as an agent; from evidence/T-018/clerk-*-executed-*.json}}
+**The first live run (2 October).** The brief was one line: "A doormat that knows who is coming", for the Domestic Weather Memory wing. The Clerk wrote *The Doormat That Knows Who Is Coming* with Sanity's Agent Actions on the free monthly AI credits. It passed every check on the first answer, and the Clerk submitted it. The curator asked for changes in Studio: *"The two choices are too plain. Make them feel like a decision about being known, for example wiping your feet or stepping over the threshold, and make the second ending as specific and sensory as the first."* The Clerk read that note from the workflow and turned "Step onto the mat" / "Walk around the mat" into **"Wipe your feet and let the house know you"** / **"Step over the threshold without being known"**. It rewrote the second ending around crowded coat hooks, dim entry lamps and rain beading on your sleeves, then resubmitted. The curator approved and published, and the exhibit appeared in the hall within a minute. Its first ending leads on to the Memory Umbrella, and a visitor's ticket now quotes it. The whole run used three AI credits.
+
+Workflow history shows the Clerk's moves under its own robot id (`g-BHx7IW47nZRW`) and the curator's under the curator's own name. It does not add a separate "agent" badge; the engine credits whoever holds the token, which is why the Clerk has its own. The proof is in `evidence/T-018/clerk-*-executed-*.json` and `evidence/T-018/screens/`.
+
+One small blemish we left: the revised choices kept their original keys, so the address bar still reads `?choice=step-onto-the-mat`. Renaming them would have meant another review round for a cosmetic change.
 
 ### Test results
 
@@ -227,15 +231,14 @@ The latest numbers the orchestrator re-ran itself:
 - **Browser tests: 77 passed** (Playwright, against a production build).
 - **Typecheck and lint:** clean.
 - **`npx sanity-workflows deploy --check`:** passed.
-- **`npx sanity documents validate`:** 28/28 documents valid after the new exhibits went live.
+- **`npx sanity documents validate`:** 32/32 documents valid after the Clerk's exhibit went live.
 - **`npx sanity schemas validate`:** 0 errors, 0 warnings.
 
-{{CONFIRM: final test numbers after T-015 and any later work}}
 
 ### What was cut, and what isn't finished
 
 - **A public "In conservation" strip** listing exhibits under review was cut. Review records, drafts and workflow runs are private in the dataset (an anonymous query counts 0 of each), and the site deliberately reads without a token. Showing them would mean putting a read token on the web server or publishing titles nobody had reviewed yet.
-- **Only six exhibits.** We added three new ones instead of five to leave time for the Workflows spike.
+- **Seven exhibits, not more.** We added three by hand instead of five, to leave time for the Workflows spike, and the Clerk added the seventh through review.
 - **The review flow covers exhibits only.** Endings were published by separate guarded scripts. Each one runs dry by default, checks every document before writing anything, and writes everything in one transaction that aborts if any document changed in between.
 - **The custom publish guard is a Studio guard.** There is a brief gap between its final check and the publish, and anyone with enough API permissions can bypass it.
 - **Every ticket shares one link-preview picture.** Only the title and description change, because of a limit in Next.js 16.3.5 that we traced into the framework's source. The preview cards also can't show the plates, because the image renderer can't draw them.
@@ -343,7 +346,7 @@ Review records hold only public-safe fields: no names, emails or private notes. 
 
 ### The official Workflows definition
 
-`workflows/exhibit-review.ts`, deployed to `production_1` as `production.exhibit-review.v1`. Version 2 adds the curator-only roles and a `submittedBy` field for the Clerk. {{CONFIRM: v2 deployed on setup day}}
+`workflows/exhibit-review.ts`, deployed to `production_1` as `production.exhibit-review.v1`. Version 2 (`production.exhibit-review.v2`, deployed 2 October) adds the curator-only roles and a `submittedBy` field for the Clerk; the Clerk's first run used it, and the earlier demo run stays on v1.
 
 ```text
 drafting ──submit──▶ curatorial-review ──approve──▶ approved ──put-on-display──▶ on-display

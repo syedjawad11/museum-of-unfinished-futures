@@ -568,6 +568,15 @@ Then fill the post's `{{CONFIRM}}` and screenshot slots from `evidence/T-018/`.
 - Gates: unit 266/266, typecheck, lint, `sanity schemas validate` 0/0, `sanity documents validate` 32/32, e2e 77 passed. The T-011 screenshots that e2e regenerates are left uncommitted.
 
 ### Resume here (after the live run)
+Checked on Oct 2 against the challenge page (dev.to/challenges/sanity-2026-09-16): a video is **not** required ("a video walkthrough or screenshots"). The Agent Session transcript is optional but encouraged. Required tags: devchallenge, sanitychallenge, sanity, ai. The post's front matter (suggested title, `published: false`) and the exact intro line are now filled.
+
+Waiting on the founder:
+- a YouTube link, or "no video"
+- "push approved"
+- show or skip the Curator's Desk
+
+`evidence/T-011/screens/` holds e2e-regenerated PNGs that were left uncommitted. Restore them with `git restore evidence/T-011/screens`.
+
 Still open:
 1. Optional: Curator's Desk signed in (runbook 5b).
 2. Video: `~/Desktop/museum-demo/0-full-tour.webm` is a continuous take: hall → the Clerk's exhibit → a choice → the umbrella → the ticket → Studio workflow history. The numbered clips show each live step. The founder uploads to YouTube, unlisted.

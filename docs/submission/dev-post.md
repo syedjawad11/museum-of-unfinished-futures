@@ -1,6 +1,10 @@
-{{DEV_TEMPLATE_FRONT_MATTER}}
+---
+title: "Museum of Unfinished Futures: an AI clerk proposes, a human curator decides"
+published: false
+tags: devchallenge, sanitychallenge, sanity, ai
+---
 
-*This is a submission for the Sanity Challenge, Path Two: Vibe-Code Something Strange.* {{CONFIRM: exact template intro line and challenge link}}
+*This is a submission for the [Sanity Challenge](https://dev.to/challenges/sanity-2026-09-16), Path Two: Vibe-Code Something Strange*
 
 ## What I Built
 

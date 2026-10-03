@@ -594,3 +594,11 @@ Still open:
 
 ### Resume here (Oct 3)
 The founder pastes `docs/submission/dev-post.md` into DEV, previews it, sets `published: true` and publishes before Mon 5 Oct 08:59 Malta.
+
+## Oct 3: post polished after reading two other entries (T-021)
+
+- Compared against two published Sanity Challenge entries: both have a custom 1000×420 cover, a short guided demo and a GitHub card.
+- Added a cover (`evidence/T-021/cover.png`), rendered from the site's own fonts, colours and three blueprint plates, with the doormat as a "Plate pending" case. It is set as `cover_image` in the front matter.
+- Demo: a "Try it in two minutes" path, and six screenshots instead of twelve, starting with a fresh capture of the hall with seven exhibits (`evidence/T-021/screens/10-home-seven-exhibits-desktop.png`).
+- Removed a stale line saying the Studio Workflows panel was not verified; it was verified on Oct 2.
+- The repository link is now a `{% github %}` card.

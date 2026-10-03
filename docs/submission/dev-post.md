@@ -2,6 +2,7 @@
 title: "Museum of Unfinished Futures: an AI clerk proposes, a human curator decides"
 published: false
 tags: devchallenge, sanitychallenge, sanity, ai
+cover_image: https://raw.githubusercontent.com/syedjawad11/museum-of-unfinished-futures/main/evidence/T-021/cover.png
 ---
 
 *This is a submission for the [Sanity Challenge](https://dev.to/challenges/sanity-2026-09-16), Path Two: Vibe-Code Something Strange*
@@ -36,35 +37,35 @@ Behind the scenes, new exhibits can arrive through the **Acquisitions Clerk**, a
 
 ## Demo
 
-**Live site:** https://museum-of-unfinished-futures.netlify.app
+**Live site, no login needed:** https://museum-of-unfinished-futures.netlify.app
 
-![The hall on desktop: three wings and six cases, on 1 October, before the Clerk's doormat arrived](https://raw.githubusercontent.com/syedjawad11/museum-of-unfinished-futures/main/evidence/T-021/screens/01-home-desktop.png)
+### Try it in two minutes
 
-![The switchboard before a choice, with its three choices and blueprint plate](https://raw.githubusercontent.com/syedjawad11/museum-of-unfinished-futures/main/evidence/T-021/screens/03-switchboard-before-choice-desktop.png)
+1. **Enter the hall.** Three wings, seven cases. The newest one, *The Doormat That Knows Who Is Coming* in the violet wing, was drafted by the Acquisitions Clerk and approved by a human curator.
+2. **Open the doormat** and choose: wipe your feet and let the house know you, or step over the threshold without being known.
+3. **Follow the door.** The ending tells you where to go next, and "Continue to →" takes you there, often into another wing.
+4. **Make one more choice**, at the switchboard if you can find it. It is the only exhibit with three.
+5. **Print your ticket.** The endings you reached become a short "unfinished future". Copy the address and open it in another browser: the same ticket comes back, because the whole ticket lives in the link.
+
+![The hall: three wings and seven cases, the doormat in the violet wing](https://raw.githubusercontent.com/syedjawad11/museum-of-unfinished-futures/main/evidence/T-021/screens/10-home-seven-exhibits-desktop.png)
 
 ![The switchboard after a choice: the ending, its tags and the door to the umbrella](https://raw.githubusercontent.com/syedjawad11/museum-of-unfinished-futures/main/evidence/T-021/screens/04-switchboard-after-choice-desktop.png)
 
-![A wing page with its floor plan](https://raw.githubusercontent.com/syedjawad11/museum-of-unfinished-futures/main/evidence/T-021/screens/05-wing-desktop.png)
+![A visitor's ticket that quotes the Clerk's exhibit](https://raw.githubusercontent.com/syedjawad11/museum-of-unfinished-futures/main/evidence/T-018/screens/09-ticket-with-clerk-exhibit.png)
 
-![A visitor's ticket, "Your Unfinished Future"](https://raw.githubusercontent.com/syedjawad11/museum-of-unfinished-futures/main/evidence/T-021/screens/06-ticket-desktop.png)
-
-![The hall on a phone](https://raw.githubusercontent.com/syedjawad11/museum-of-unfinished-futures/main/evidence/T-021/screens/07-home-mobile.png)
-
-![Blueprint plate 005, the switchboard, at full size](https://raw.githubusercontent.com/syedjawad11/museum-of-unfinished-futures/main/evidence/T-011/plates/plate-005-preview.png)
+Behind the glass, in Studio:
 
 ![Studio's Exhibit review card after the curator's note: Drafting, round 2, with the reason on the card](https://raw.githubusercontent.com/syedjawad11/museum-of-unfinished-futures/main/evidence/T-018/screens/03-changes-requested-round-2.png)
-
-![The Clerk's draft in Curatorial review, last submitted by the Clerk's robot](https://raw.githubusercontent.com/syedjawad11/museum-of-unfinished-futures/main/evidence/T-018/screens/01-clerk-draft-in-curatorial-review.png)
 
 ![Workflow history: the Clerk's moves under its robot id, the curator's under their own name](https://raw.githubusercontent.com/syedjawad11/museum-of-unfinished-futures/main/evidence/T-018/screens/06-history-on-display.png)
 
 ![The Clerk's exhibit live on the site](https://raw.githubusercontent.com/syedjawad11/museum-of-unfinished-futures/main/evidence/T-018/screens/08-live-exhibit-after-choice.png)
 
-![A visitor's ticket that now quotes the Clerk's exhibit](https://raw.githubusercontent.com/syedjawad11/museum-of-unfinished-futures/main/evidence/T-018/screens/09-ticket-with-clerk-exhibit.png)
+More screenshots (phone, wing pages, plates at full size) are in [`evidence/`](https://github.com/syedjawad11/museum-of-unfinished-futures/tree/main/evidence) in the repository.
 
 ## Code
 
-**Repository:** https://github.com/syedjawad11/museum-of-unfinished-futures
+{% github syedjawad11/museum-of-unfinished-futures %}
 
 ### Running it locally
 
@@ -247,7 +248,6 @@ The latest numbers the orchestrator re-ran itself:
 - **The custom publish guard is a Studio guard.** There is a brief gap between its final check and the publish, and anyone with enough API permissions can bypass it.
 - **Every ticket shares one link-preview picture.** Only the title and description change, because of a limit in Next.js 16.3.5 that we traced into the framework's source. The preview cards also can't show the plates, because the image renderer can't draw them.
 - **A wing's floor plan** doesn't yet light up the room you're in.
-- **The Workflows panel inside the browser Studio** wasn't verified. The live run was driven from the command line.
 - **Dependency advisories.** The Sanity command-line and Studio tooling carries 15 known advisories (12 moderate, 3 high). The only automatic fix is an incompatible Sanity downgrade, so we didn't apply it.
 
 ## Sanity Project Details
@@ -414,7 +414,6 @@ Workflow documents have dotted ids, and Sanity keeps those private even in a pub
 - Studio-only guard, race, privileged bypass -> README.md "Curator Review Workflow"
 - One preview picture (Next 16.3.5) -> "T-010" Known limitations; plates not in cards (Satori) -> "T-012 (part 1)" T-012d
 - Floor plan -> "T-008" Known limitations
-- Workflows panel not verified -> T-013a packet acceptance note
 - 15 advisories -> "Live Sanity Read Integration", "Netlify Release Candidate"
 - Project ID / dataset / API version -> README.md, .env.example
 - Content model -> schemas/era.ts, artifact.ts, outcome.ts (leadsTo weak: false), artifactReview.ts (weak: true)

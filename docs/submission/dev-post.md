@@ -214,6 +214,12 @@ The Clerk's draft has to pass the same limits as Studio's schema, and more: ever
 
 Each Workflows move is mirrored onto the custom gate, which pins the exact revision. If anyone edits the draft after approval, publishing refuses.
 
+**The first live run (2 October).** The brief was one line: "A doormat that knows who is coming", for the Domestic Weather Memory wing. The Clerk wrote *The Doormat That Knows Who Is Coming* with Sanity's Agent Actions on the free monthly AI credits. It passed every check on the first answer, and the Clerk submitted it. The curator asked for changes in Studio: *"The two choices are too plain. Make them feel like a decision about being known, for example wiping your feet or stepping over the threshold, and make the second ending as specific and sensory as the first."* The Clerk read that note from the workflow and turned "Step onto the mat" / "Walk around the mat" into **"Wipe your feet and let the house know you"** / **"Step over the threshold without being known"**. It rewrote the second ending around crowded coat hooks, dim entry lamps and rain beading on your sleeves, then resubmitted. The curator approved and published, and the exhibit appeared in the hall within a minute. Its first ending leads on to the Memory Umbrella, and a visitor's ticket now quotes it. The whole run used three AI credits.
+
+Workflow history shows the Clerk's moves under its own robot id (`g-BHx7IW47nZRW`) and the curator's under the curator's own name. It does not add a separate "agent" badge; the engine credits whoever holds the token, which is why the Clerk has its own. The proof is in `evidence/T-018/clerk-*-executed-*.json` and `evidence/T-018/screens/`.
+
+One small blemish we left: the revised choices kept their original keys, so the address bar still reads `?choice=step-onto-the-mat`. Renaming them would have meant another review round for a cosmetic change.
+
 ### Outside Studio: the Curator's Desk
 
 To go beyond the Studio, the curator also gets a small App SDK app, the **Curator's Desk** (`apps/curators-desk/`). It runs in the Sanity Dashboard. One screen lists every exhibit, including drafts nobody has published, with what a curator checks first: are all the endings there, is the plate there with its alt text, where is it in review? Selecting an exhibit opens its live workflow run. The buttons come from the workflow engine's own evaluation for the person signed in, and every move also updates the revision-pinned gate.
@@ -221,12 +227,6 @@ To go beyond the Studio, the curator also gets a small App SDK app, the **Curato
 One surprise: inside this repository the Sanity CLI kept building the Studio instead of the app, because it looks for a Studio config in parent folders before it looks for an app. A small script stages the app outside the repository and runs the CLI there.
 
 The Desk is built and tested (seven unit tests, an app build, and a logged-out load that hands over to Sanity's sign-in), but we didn't capture it signed in for this post.
-
-**The first live run (2 October).** The brief was one line: "A doormat that knows who is coming", for the Domestic Weather Memory wing. The Clerk wrote *The Doormat That Knows Who Is Coming* with Sanity's Agent Actions on the free monthly AI credits. It passed every check on the first answer, and the Clerk submitted it. The curator asked for changes in Studio: *"The two choices are too plain. Make them feel like a decision about being known, for example wiping your feet or stepping over the threshold, and make the second ending as specific and sensory as the first."* The Clerk read that note from the workflow and turned "Step onto the mat" / "Walk around the mat" into **"Wipe your feet and let the house know you"** / **"Step over the threshold without being known"**. It rewrote the second ending around crowded coat hooks, dim entry lamps and rain beading on your sleeves, then resubmitted. The curator approved and published, and the exhibit appeared in the hall within a minute. Its first ending leads on to the Memory Umbrella, and a visitor's ticket now quotes it. The whole run used three AI credits.
-
-Workflow history shows the Clerk's moves under its own robot id (`g-BHx7IW47nZRW`) and the curator's under the curator's own name. It does not add a separate "agent" badge; the engine credits whoever holds the token, which is why the Clerk has its own. The proof is in `evidence/T-018/clerk-*-executed-*.json` and `evidence/T-018/screens/`.
-
-One small blemish we left: the revised choices kept their original keys, so the address bar still reads `?choice=step-onto-the-mat`. Renaming them would have meant another review round for a cosmetic change.
 
 ### Test results
 

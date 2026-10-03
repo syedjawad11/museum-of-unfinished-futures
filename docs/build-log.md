@@ -582,3 +582,15 @@ Still open:
 2. Video: `~/Desktop/museum-demo/0-full-tour.webm` is a continuous take: hall → the Clerk's exhibit → a choice → the umbrella → the ticket → Studio workflow history. The numbered clips show each live step. The founder uploads to YouTube, unlisted.
 3. `git push`, which needs approval.
 4. DEV front matter, the template intro line, the video URL and the Agent Session link, then publish before Mon 5 Oct 08:59 Malta.
+
+## Oct 3: the post is ready to paste (T-021)
+
+- The founder approved the push. The 9 local commits are on `origin/main`.
+- No video: the challenge accepts screenshots. The founder may add one if DEV allows an upload.
+- The Agent Session section was removed (optional, no redacted transcript prepared). The Curator's Desk is described as built and tested, not shown signed in.
+- The twelve screenshot slots now embed the repository's own PNGs through `raw.githubusercontent.com`; every URL answers 200. No `{{` placeholders are left.
+- The post now counts seven exhibits: the doormat is in the violet wing and shows "Plate pending".
+- Production check, logged out: home, `/your-future`, `/studio` and all seven exhibit pages answer 200.
+
+### Resume here (Oct 3)
+The founder pastes `docs/submission/dev-post.md` into DEV, previews it, sets `published: true` and publishes before Mon 5 Oct 08:59 Malta.

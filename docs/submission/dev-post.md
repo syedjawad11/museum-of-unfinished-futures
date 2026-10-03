@@ -14,16 +14,16 @@ There is a vending machine that sells extra Mondays. There is an umbrella that r
 
 Each one stands in a case with a blueprint drawing, an accession note (where the museum "got it"), a plaque and a choice. The switchboard's accession note reads: *"Removed intact from the night exchange at Counterfactual Relay Station Four."*
 
-Six exhibits hang in three wings, two per wing, each wing lit in its own colour:
+Seven exhibits hang in three wings, each wing lit in its own colour:
 
 - **The Civic Time Expansion Era** (amber): the vending machine and the toaster.
 - **The Counterfactual Communications Boom** (cyan): the telephone and the switchboard.
-- **The Domestic Weather Memory Era** (violet): the umbrella and the kettle.
+- **The Domestic Weather Memory Era** (violet): the umbrella, the kettle and the doormat, the first exhibit the Acquisitions Clerk drafted (more on that below).
 
 A visit goes like this:
 
 1. **You stand at an exhibit** and read its plaque.
-2. **You choose.** The switchboard offers three choices: answer the line that is still lit, pull every cord at once, or plug a cord into the blank jack. The other five exhibits offer two.
+2. **You choose.** The switchboard offers three choices: answer the line that is still lit, pull every cord at once, or plug a cord into the blank jack. The other exhibits offer two.
 3. **You reach an ending.** Each choice has its own ending, with short consequence tags beneath it, such as `sentence-finished` or `apology-not-required`.
 4. **A door opens.** Every ending says "Continue to →" and sends you to a different exhibit, sometimes in another wing, *because of what you chose*. No ending leads back to its own exhibit. The museum loops on purpose and has no exit.
 5. **You take a ticket.** "Print your ticket" turns the endings you reached into a short, personal "unfinished future". The whole ticket lives in the page address (`/your-future?trace=…`). There are no accounts and nothing is stored. The same link always shows the same ticket, so you can share it.
@@ -38,27 +38,29 @@ Behind the scenes, new exhibits can arrive through the **Acquisitions Clerk**, a
 
 **Live site:** https://museum-of-unfinished-futures.netlify.app
 
-**Video walkthrough:** {{VIDEO_URL}}
+![The hall on desktop: three wings and six cases, on 1 October, before the Clerk's doormat arrived](https://raw.githubusercontent.com/syedjawad11/museum-of-unfinished-futures/main/evidence/T-021/screens/01-home-desktop.png)
 
-{{SCREENSHOT: The hall on desktop, three wings and six cases — evidence/T-021/screens/01-home-desktop.png (production, Oct 1)}}
+![The switchboard before a choice, with its three choices and blueprint plate](https://raw.githubusercontent.com/syedjawad11/museum-of-unfinished-futures/main/evidence/T-021/screens/03-switchboard-before-choice-desktop.png)
 
-{{SCREENSHOT: The switchboard before a choice, with its three choices and blueprint plate — evidence/T-021/screens/03-switchboard-before-choice-desktop.png (production, Oct 1)}}
+![The switchboard after a choice: the ending, its tags and the door to the umbrella](https://raw.githubusercontent.com/syedjawad11/museum-of-unfinished-futures/main/evidence/T-021/screens/04-switchboard-after-choice-desktop.png)
 
-{{SCREENSHOT: The switchboard after a choice: the ending "A sentence resumes mid-word", its tags, and the door to the umbrella — evidence/T-021/screens/04-switchboard-after-choice-desktop.png (production, Oct 1)}}
+![A wing page with its floor plan](https://raw.githubusercontent.com/syedjawad11/museum-of-unfinished-futures/main/evidence/T-021/screens/05-wing-desktop.png)
 
-{{SCREENSHOT: A wing page with its floor plan — evidence/T-021/screens/05-wing-desktop.png (production, Oct 1)}}
+![A visitor's ticket, "Your Unfinished Future"](https://raw.githubusercontent.com/syedjawad11/museum-of-unfinished-futures/main/evidence/T-021/screens/06-ticket-desktop.png)
 
-{{SCREENSHOT: A visitor's ticket, "Your Unfinished Future" — evidence/T-021/screens/06-ticket-desktop.png (production, Oct 1)}}
+![The hall on a phone](https://raw.githubusercontent.com/syedjawad11/museum-of-unfinished-futures/main/evidence/T-021/screens/07-home-mobile.png)
 
-{{SCREENSHOT: The hall on a phone — evidence/T-021/screens/07-home-mobile.png (production, Oct 1)}}
+![Blueprint plate 005, the switchboard, at full size](https://raw.githubusercontent.com/syedjawad11/museum-of-unfinished-futures/main/evidence/T-011/plates/plate-005-preview.png)
 
-{{SCREENSHOT: A blueprint plate at full size, plate 005, the switchboard — evidence/T-011/plates/plate-005-preview.png}}
+![Studio's Exhibit review card after the curator's note: Drafting, round 2, with the reason on the card](https://raw.githubusercontent.com/syedjawad11/museum-of-unfinished-futures/main/evidence/T-018/screens/03-changes-requested-round-2.png)
 
-{{SCREENSHOT: Studio's Exhibit review card after the curator's note: Drafting, Round 2, with the reason on the card — evidence/T-018/screens/03-changes-requested-round-2.png (production, Oct 2)}}
+![The Clerk's draft in Curatorial review, last submitted by the Clerk's robot](https://raw.githubusercontent.com/syedjawad11/museum-of-unfinished-futures/main/evidence/T-018/screens/01-clerk-draft-in-curatorial-review.png)
 
-{{SCREENSHOT: The Clerk's draft in Curatorial review, "Last submitted by" the Clerk's robot — evidence/T-018/screens/01-clerk-draft-in-curatorial-review.png; and the workflow history, the Clerk's moves under its robot id and the curator's under the curator's own name — evidence/T-018/screens/06-history-on-display.png (production, Oct 2)}}
+![Workflow history: the Clerk's moves under its robot id, the curator's under their own name](https://raw.githubusercontent.com/syedjawad11/museum-of-unfinished-futures/main/evidence/T-018/screens/06-history-on-display.png)
 
-{{SCREENSHOT: The Clerk's exhibit live, and the visitor's ticket that now includes it — evidence/T-018/screens/08-live-exhibit-after-choice.png and evidence/T-018/screens/09-ticket-with-clerk-exhibit.png (production, Oct 2)}}
+![The Clerk's exhibit live on the site](https://raw.githubusercontent.com/syedjawad11/museum-of-unfinished-futures/main/evidence/T-018/screens/08-live-exhibit-after-choice.png)
+
+![A visitor's ticket that now quotes the Clerk's exhibit](https://raw.githubusercontent.com/syedjawad11/museum-of-unfinished-futures/main/evidence/T-018/screens/09-ticket-with-clerk-exhibit.png)
 
 ## Code
 
@@ -101,7 +103,7 @@ No passwords, tokens or verification codes belong in these, or anywhere in the r
 ### Credits
 
 - **Fonts:** Fraunces (© The Fraunces Project Authors) and IBM Plex Mono, both under the SIL Open Font License 1.1. The licence files sit next to the fonts in `src/fonts/`.
-- **Blueprint plates:** six original SVG drawings, one per exhibit, made for this project.
+- **Blueprint plates:** six original SVG drawings, one per curator-made exhibit, made for this project. The Clerk's doormat shows a "Plate pending" card for now.
 - **Exhibit text:** original fiction.
 - Built with Next.js 16 and Sanity (Studio, Content Lake, and the Sanity Workflows early-access packages, version 0.35.0).
 
@@ -217,9 +219,7 @@ To go beyond the Studio, the curator also gets a small App SDK app, the **Curato
 
 One surprise: inside this repository the Sanity CLI kept building the Studio instead of the app, because it looks for a Studio config in parent folders before it looks for an app. A small script stages the app outside the repository and runs the CLI there.
 
-{{SCREENSHOT: The Curator's Desk with the Clerk's draft selected and its workflow panel — capture on setup day}}
-
-{{CONFIRM: Curator's Desk shown signed in on setup day; if not, say it was built and tested but not shown}}
+The Desk is built and tested (seven unit tests, an app build, and a logged-out load that hands over to Sanity's sign-in), but we didn't capture it signed in for this post.
 
 **The first live run (2 October).** The brief was one line: "A doormat that knows who is coming", for the Domestic Weather Memory wing. The Clerk wrote *The Doormat That Knows Who Is Coming* with Sanity's Agent Actions on the free monthly AI credits. It passed every check on the first answer, and the Clerk submitted it. The curator asked for changes in Studio: *"The two choices are too plain. Make them feel like a decision about being known, for example wiping your feet or stepping over the threshold, and make the second ending as specific and sensory as the first."* The Clerk read that note from the workflow and turned "Step onto the mat" / "Walk around the mat" into **"Wipe your feet and let the house know you"** / **"Step over the threshold without being known"**. It rewrote the second ending around crowded coat hooks, dim entry lamps and rain beading on your sleeves, then resubmitted. The curator approved and published, and the exhibit appeared in the hall within a minute. Its first ending leads on to the Memory Umbrella, and a visitor's ticket now quotes it. The whole run used three AI credits.
 
@@ -375,12 +375,6 @@ In the live demo run on the vending-machine exhibit (`evidence/T-013/live-demo.t
 Then it accepted *"Plaque says 'Tuesday' where the machine sells Mondays; fix the date line."* and sent the exhibit back to drafting. The exhibit then went back through review, was approved, and was put on display.
 
 Workflow documents have dotted ids, and Sanity keeps those private even in a public dataset. An anonymous query after the demo returned `[]`, and the exhibit itself was not modified.
-
-## Agent Session
-
-{{AGENT_SESSION_URL}}
-
-The session we're sharing is the Claude Code orchestration session, redacted. It shows the orchestrator writing task packets, handing them to Codex and Claude workers, rejecting and re-scoping work, re-running the checks, and recording evidence. Secrets, account details and personal information are removed before it's made public. {{CONFIRM: which session file(s) are uploaded, and that redaction is complete}}
 
 <!-- sources (build-log headings refer to docs/build-log.md):
 - Six inventions (titles) -> docs/content/first-exhibit.json, remaining-exhibits.json, new-exhibits.json
